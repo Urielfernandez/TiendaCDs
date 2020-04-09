@@ -1,0 +1,2 @@
+# TiendaCDs
+En la asignatura de Diseño de Aplicaciones Web Avanzadas (3º Grado en Ingeniería Informática USC), se nos proponé la idea de realizar un tienda de CDs donde los usuarios puedan realiza diferentes acciones sobre el catálogo mostrada, entre ellas comprar y recibir un comprobante de compra. Además, se nos suma que la página debe contar con un apartado en el que los usuarios con el rol administrador podrán realizar funcionalidades propias de su trabajo.
