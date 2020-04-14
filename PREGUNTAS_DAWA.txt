@@ -9,6 +9,7 @@ DIAGRAMA DE CLASES
 	Mirar cómo se conectarán los DAO
 
 OTRAS DUDAS
+	Nº de diagramas y cuales: MER, clases, Casos de Uso y diagrama de secuencia propuestos???
 	Duda sobre escalabilidad, debemos tener interfaces??
 	Duda sobre escalabilidad, jerarquía de usuarios por culpa del tipo??
 
