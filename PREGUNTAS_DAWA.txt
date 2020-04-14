@@ -4,14 +4,14 @@ DIAGRAMA DE CASOS DE USO
 DIAGRAMA DE CLASES
 	
 	Helper usuario, separar en dos el login de usuario y el registrar usuario
-	Filtrado de DAOCDs, no sabemos si hai que realizar el filtrado en la base de datos o a nivel de Java. (Búsqueda VO)
-	En carrito, el importe total tenerlo como un atributo o tenerlo tenerlo en un método que se ejecuta cada vez que quieras saber el valor.
-	Mirar cómo se conectarán los DAO
+	Filtrado de DAOCDs, no sabemos si hai que realizar el filtrado en la base de datos o a nivel de Java. (BÃºsqueda VO)
+	En carrito, el importe total tenerlo como un atributo o tenerlo tenerlo en un mÃ©todo que se ejecuta cada vez que quieras saber el valor.
+	Mirar cÃ³mo se conectarÃ¡n los DAO
 
 OTRAS DUDAS
 	Duda sobre escalabilidad, debemos tener interfaces??
-	Duda sobre escalabilidad, jerarquía de usuarios por culpa del tipo??
+	Duda sobre escalabilidad, jerarquÃ­a de usuarios por culpa del tipo??
 
-	Duda sobre interoperabilidad, que no sabemos cómo asegurarla en el diagrama de clases.
+	Duda sobre interoperabilidad, que no sabemos cÃ³mo asegurarla en el diagrama de clases.
 
 
