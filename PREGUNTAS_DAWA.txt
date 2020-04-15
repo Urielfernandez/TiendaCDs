@@ -1,18 +1,3 @@
-DIAGRAMA DE CASOS DE USO
-	Caso de uso de "recibir correo"
 
-DIAGRAMA DE CLASES
-	
-	Helper usuario, separar en dos el login de usuario y el registrar usuario
-	Filtrado de DAOCDs, no sabemos si hai que realizar el filtrado en la base de datos o a nivel de Java. (Búsqueda VO)
-	En carrito, el importe total tenerlo como un atributo o tenerlo tenerlo en un método que se ejecuta cada vez que quieras saber el valor.
-	Mirar cómo se conectarán los DAO
-
-OTRAS DUDAS
-	Nº de diagramas y cuales: MER, clases, Casos de Uso y diagrama de secuencia propuestos???
-	Duda sobre escalabilidad, debemos tener interfaces??
-	Duda sobre escalabilidad, jerarquía de usuarios por culpa del tipo??
-
-	Duda sobre interoperabilidad, que no sabemos cómo asegurarla en el diagrama de clases.
 
 
