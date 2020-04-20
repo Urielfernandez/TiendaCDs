@@ -1,4 +1,4 @@
-package WEB-INF.classes.Modelo.VO;
+package modelo.vo;
 
 public class InicioSesion {
 

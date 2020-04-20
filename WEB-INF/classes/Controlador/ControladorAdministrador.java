@@ -1,4 +1,4 @@
-package Controlador;
+package controlador;
 
 public class ControladorAdministrador {
 

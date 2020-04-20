@@ -2,12 +2,12 @@
 
 <web-app>
     <servlet>
-        <servlet-name>servlet</servlet-name>
-        <servlet-class>Controller.Controlador</servlet-class>
+        <servlet-name>tienda</servlet-name>
+        <servlet-class>controlador.ControladorTienda</servlet-class>
     </servlet>
 
     <servlet-mapping>
-        <servlet-name>servlet</servlet-name>
-        <url-pattern>/Controlador</url-pattern>
+        <servlet-name>tienda</servlet-name>
+        <url-pattern>/tienda</url-pattern>
     </servlet-mapping>
 </web-app>

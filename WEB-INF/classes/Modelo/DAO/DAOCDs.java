@@ -1,4 +1,4 @@
-package WEB-INF.classes.Modelo.DAO;
+package modelo.dao;
 
 public class DAOCDs {
 

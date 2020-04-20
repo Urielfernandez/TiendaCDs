@@ -1,4 +1,4 @@
-package WEB-INF.classes.Modelo.Tienda;
+package modelo.tienda;
 
 public class Carrito {
 
