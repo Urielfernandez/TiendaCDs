@@ -10,4 +10,14 @@
         <servlet-name>tienda</servlet-name>
         <url-pattern>/tienda</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>administrador</servlet-name>
+        <servlet-class>controlador.ControladorAdministrador</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>administrador</servlet-name>
+        <url-pattern>/administrador</url-pattern>
+    </servlet-mapping>
 </web-app>
