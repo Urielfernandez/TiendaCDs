@@ -1,6 +1,6 @@
 
-#######################################################################
-#	CREAMOS LA BASE DE DATOS bd_alumnos CON LA TABLA altadaw
+-------------------------------------------------------------
+--	CREAMOS LA BASE DE DATOS bd_alumnos CON LA TABLA altadaw
 
 CREATE DATABASE bd_alumnos;
 
