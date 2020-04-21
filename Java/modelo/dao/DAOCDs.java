@@ -5,19 +5,24 @@ import java.util.ArrayList;
 import modelo.vo.CDVO;
 
 public class DAOCDs {
-    public boolean guardarCD(CDVO cd, Connection conexion){
+
+    public DAOCDs() {
+    }
+
+    public boolean guardarCD(CDVO cd, Connection conexion) {
         return false;
     }
 
-    public CDVO obtenerCD(CDVO cd, Connection conexion){
+    public CDVO obtenerCD(CDVO cd, Connection conexion) {
         return null;
     }
 
-    public ArrayList<CDVO> obtenerCatalogo(Connection conexion){
+    public ArrayList<CDVO> obtenerCatalogo(Connection conexion) {
         return null;
     }
 
-    public boolean modificarCD(CDVO cd, Connection conexion){
+    public boolean modificarCD(CDVO cd, Connection conexion) {
         return false;
     }
+
 }

@@ -1,11 +1,11 @@
 package controlador;
 
 import java.io.IOException;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
-public class ControladorAdministrador extends HttpServlet{
-    
+
+public class ControladorAdministrador extends HttpServlet {
+
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
     }
@@ -20,6 +20,7 @@ public class ControladorAdministrador extends HttpServlet{
 
     private void mostrarPagina(String pagina, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
-		request.getRequestDispatcher(pagina).forward(request, response);
-	}
+        request.getRequestDispatcher(pagina).forward(request, response);
+    }
+
 }

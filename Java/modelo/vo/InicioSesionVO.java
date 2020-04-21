@@ -1,8 +1,12 @@
 package modelo.vo;
 
 public class InicioSesionVO {
+
     private String email;
     private String contrasenha;
+
+    public InicioSesionVO() {
+    }
 
     public String getEmail() {
         return email;
@@ -20,5 +24,4 @@ public class InicioSesionVO {
         this.contrasenha = contrasenha;
     }
 
-    
 }

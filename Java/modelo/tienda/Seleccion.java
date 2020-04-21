@@ -3,8 +3,12 @@ package modelo.tienda;
 import modelo.vo.CDVO;
 
 public class Seleccion {
+
     private CDVO cd;
     private int cantidad;
+
+    public Seleccion() {
+    }
 
     public CDVO getCd() {
         return cd;
@@ -25,4 +29,5 @@ public class Seleccion {
     public double getImporteSeleccion(){
         return 0.0;
     }
+
 }

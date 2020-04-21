@@ -1,11 +1,15 @@
 package modelo.vo;
 
-public class CDVO implements CD{
+public class CDVO implements CD {
+
     private String titulo;
     private String artista;
     private String pais;
     private double precio;
     private int anho;
+
+    public CDVO() {
+    }
 
     public String getTitulo() {
         return titulo;
@@ -47,5 +51,4 @@ public class CDVO implements CD{
         this.anho = anho;
     }
 
-    
 }

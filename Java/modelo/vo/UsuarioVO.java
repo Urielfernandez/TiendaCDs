@@ -1,8 +1,12 @@
 package modelo.vo;
 
 public class UsuarioVO {
+
     private String nombre;
     private String email;
+
+    public UsuarioVO() {
+    }
 
     public String getNombre() {
         return nombre;
@@ -19,6 +23,5 @@ public class UsuarioVO {
     public void setEmail(String email) {
         this.email = email;
     }
-
     
 }

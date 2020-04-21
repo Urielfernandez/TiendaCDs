@@ -1,6 +1,7 @@
 package modelo.vo;
 
 public interface CD {
+
     public String getTitulo();
 
     public String getArtista();
@@ -10,4 +11,5 @@ public interface CD {
     public double getPrecio();
 
     public int getAnho();
+    
 }
