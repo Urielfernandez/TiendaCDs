@@ -1,22 +1,23 @@
 package modelo.dao;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 import modelo.vo.CDVO;
 
 public class DAOCDs {
-    public void guardarCD(CDVO cd){
-
+    public boolean guardarCD(CDVO cd, Connection conexion){
+        return false;
     }
 
-    public CDVO obtenerCD(CDVO cd){
+    public CDVO obtenerCD(CDVO cd, Connection conexion){
         return null;
     }
 
-    public ArrayList<CDVO> obtenerCatalogo(){
+    public ArrayList<CDVO> obtenerCatalogo(Connection conexion){
         return null;
     }
 
-    public void modificarCD(CDVO cd){
-
+    public boolean modificarCD(CDVO cd, Connection conexion){
+        return false;
     }
 }
