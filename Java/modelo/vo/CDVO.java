@@ -1,5 +1,7 @@
 package modelo.vo;
 
+import java.util.ArrayList;
+
 public class CDVO implements CD {
 
     private String titulo;
@@ -7,6 +9,7 @@ public class CDVO implements CD {
     private String pais;
     private double precio;
     private int anho;
+    private ArrayList<String> valoraciones;
 
     public CDVO() {
     }
@@ -50,5 +53,15 @@ public class CDVO implements CD {
     public void setAnho(int anho) {
         this.anho = anho;
     }
+
+    public ArrayList<String> getValoraciones() {
+        return valoraciones;
+    }
+
+    public void setValoraciones(ArrayList<String> valoraciones) {
+        this.valoraciones = valoraciones;
+    }
+
+    
 
 }

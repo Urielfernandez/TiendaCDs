@@ -1,5 +1,7 @@
 package modelo.vo;
 
+import java.util.ArrayList;
+
 public interface CD {
 
     public String getTitulo();
@@ -11,5 +13,7 @@ public interface CD {
     public double getPrecio();
 
     public int getAnho();
+
+    public ArrayList<String> getValoraciones();
     
 }
