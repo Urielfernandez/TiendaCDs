@@ -32,6 +32,7 @@ CREATE TABLE inventario (
 CREATE TABLE usuarios (
   email varchar(100) NOT NULL,
   nombre varchar(100) NOT NULL,
+  contrasenha varchar(100) NOT NULL,
   PRIMARY KEY (email)
 );
 
