@@ -14,6 +14,6 @@ public interface CD {
 
     public int getAnho();
 
-    public ArrayList<String> getValoraciones();
+    public ArrayList<ValoracionVO> getValoraciones();
     
 }

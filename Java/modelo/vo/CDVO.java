@@ -9,9 +9,15 @@ public class CDVO implements CD {
     private String pais;
     private double precio;
     private int anho;
-    private ArrayList<String> valoraciones;
+    private ArrayList<ValoracionVO> valoraciones;
 
-    public CDVO() {
+    public CDVO(String titulo, String artista, String pais, double precio, int anho, ArrayList<ValoracionVO> valoraciones) {
+        this.titulo = titulo;
+        this.artista = artista;
+        this.pais = pais;
+        this.precio = precio;
+        this.anho = anho;
+        this.valoraciones = valoraciones;
     }
 
     public String getTitulo() {
@@ -54,11 +60,11 @@ public class CDVO implements CD {
         this.anho = anho;
     }
 
-    public ArrayList<String> getValoraciones() {
+    public ArrayList<ValoracionVO> getValoraciones() {
         return valoraciones;
     }
 
-    public void setValoraciones(ArrayList<String> valoraciones) {
+    public void setValoraciones(ArrayList<ValoracionVO> valoraciones) {
         this.valoraciones = valoraciones;
     }
 
