@@ -105,7 +105,7 @@ public class DAOUsuarios {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
             preparedStatement.setString(1, usuario.getNombre());
-            preparedStatement.setString(2, credencialesNuevas.getEmail();
+            preparedStatement.setString(2, credencialesNuevas.getEmail());
             preparedStatement.setString(3, credencialesNuevas.getContrasenha());
             preparedStatement.setString(4, usuario.getEmail());
 
