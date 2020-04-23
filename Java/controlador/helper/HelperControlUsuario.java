@@ -8,8 +8,4 @@ public class HelperControlUsuario {
     public boolean registrarCliente(){
         return false;
     }
-
-    public boolean iniciarSesion(){
-        return false;
-    }
 }
