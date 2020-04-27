@@ -1,3 +1,4 @@
+WEB-INF/classes/controlador/helper/*.class
 WEB-INF/classes/controlador/*.class
 WEB-INF/classes/modelo/dao/*.class
 WEB-INF/classes/modelo/tienda/*.class
