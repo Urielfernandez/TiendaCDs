@@ -11,7 +11,7 @@ public class ControladorTienda extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        mostrarPagina("index.html", request, response);
+        mostrarPagina("jsp/inicio.jsp", request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {

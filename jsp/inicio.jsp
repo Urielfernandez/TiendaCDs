@@ -11,12 +11,14 @@
 	</head>
 
 	<body>
+    <%@ include file="navTienda.jsp" %>
+
 		<div class="container">
 			<div class="row">
 				<div class="col">
 					<h1 class="mx-auto">Bienvenido a la tienda de CDs</h1>
-					<form action="tienda" method="GET">
-						<button type="submit">Ir a la tienda</button>
+					<form action="" method="GET">
+						<input type="submit" name="entrar" value="Visualizar el Catálogo">
 					</form>
 				</div>
 			</div>

@@ -1,1 +1,1 @@
-jar cvf TiendaCDs.war .
+jar cf TiendaCDs.war css jsp WEB-INF index.html
