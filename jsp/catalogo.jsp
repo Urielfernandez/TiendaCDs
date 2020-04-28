@@ -16,28 +16,23 @@
 	<body>
     <%@ include file="navbar.jsp" %>
 
-    <section class="container-fluid">
+    <section class="container">
       <div class="row">
-        <nav class="col-lg-2 p-0 pt-3 menuLateral">
-          <ul class="p-0 subcategorias">
-            <a href="#"><li class="secionActual">Guitarras</li></a>
-          </ul>
-        </nav>
-
-        <div class="col-lg-10">
-          <div class="row">
             <div class="col mx-4 mt-2 p-0 cabeceroSeccion">
-              <h1 class="m-0">Tienda</h1>
+              <h1 class="m-0">Catalogo de CDs</h1>
             </div>
           </div>
+      <div class="row">
+
+          
 
           <div class="row mt-3 mx-1">
             <c:forEach var="cd" items="${listaArticulos}">
-              <%@ include file="articulo.jsp" %>
+              <%@ include file="cd.jsp" %>
             </c:forEach>
           </div>
         </div>
-      </div>
+
     </section>
 
 		<!--Links para el uso de JQuery-->
