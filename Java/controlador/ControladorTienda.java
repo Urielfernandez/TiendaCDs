@@ -24,7 +24,7 @@ public class ControladorTienda extends HttpServlet {
 
         Connection conexion = null;
         try {
-            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendacds?serverTimezone=UTC", "dawa","Dawaproyecto1");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendacds", "dawa", "Dawaproyecto1");
         } catch (SQLException e) {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());
