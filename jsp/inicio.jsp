@@ -16,7 +16,31 @@
 	<body>
     <%@ include file="navbar.jsp" %>
 
+		<%@ include file="navTienda.jsp" %>
 
+    <section class="container-fluid">
+      <div class="row">
+        <nav class="col-lg-2 p-0 pt-3 menuLateral">
+          <ul class="p-0 subcategorias">
+            <a href="#"><li class="secionActual">Guitarras</li></a>
+          </ul>
+        </nav>
+
+        <div class="col-lg-10">
+          <div class="row">
+            <div class="col mx-4 mt-2 p-0 cabeceroSeccion">
+              <h1 class="m-0">Tienda</h1>
+            </div>
+          </div>
+
+          <div class="row mt-3 mx-1">
+            <c:forEach var="articulo" items="${listaArticulos}">
+              <%@ include file="articulo.jsp" %>
+            </c:forEach>
+          </div>
+        </div>
+      </div>
+    </section>
 
 		<!--Links para el uso de JQuery-->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
