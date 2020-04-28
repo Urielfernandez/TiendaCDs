@@ -1,7 +1,6 @@
 package controlador;
 
 import java.io.IOException;
-import java.net.ConnectException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
