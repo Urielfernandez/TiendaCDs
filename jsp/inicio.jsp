@@ -16,16 +16,7 @@
 	<body>
     <%@ include file="navbar.jsp" %>
 
-		<div class="container">
-			<div class="row">
-				<div class="col">
-					<h1 class="mx-auto">Bienvenido a la tienda de CDs</h1>
-					<form action="" method="GET">
-						<input type="submit" name="entrar" value="Visualizar el Catálogo">
-					</form>
-				</div>
-			</div>
-		</div>
+
 
 		<!--Links para el uso de JQuery-->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
