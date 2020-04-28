@@ -18,20 +18,18 @@
 
     <section class="container">
       <div class="row">
-            <div class="col mx-4 mt-2 p-0 cabeceroSeccion">
-              <h1 class="m-0">Catalogo de CDs</h1>
-            </div>
-          </div>
+        <div class="col mx-4 mt-2 p-0 tituloPagina">
+          <h1 class="m-0">Catálogo de CDs</h1>
+        </div>
+      </div>
       <div class="row">
 
-          
-
-          <div class="row mt-3 mx-1">
-            <c:forEach var="cd" items="${listaArticulos}">
-              <%@ include file="cd.jsp" %>
-            </c:forEach>
-          </div>
-        </div>
+      <div class="row mt-3 mx-1">
+        <c:forEach var="cd" items="${listaArticulos}">
+          <%@ include file="cd.jsp" %>
+        </c:forEach>
+      </div>
+    </div>
 
     </section>
 

@@ -5,7 +5,7 @@
     <img src="imagenes/cd.jpg" alt="Inicio" height="40" width="45" title="Inicio">
   </a>
 
-  <h3 id="titulo" class="text-left my-auto text-white">Tienda de CDs</h3>
+  <h3 id="tituloWeb" class="text-left my-auto text-white">Tienda de CDs</h3>
   
   <div id="botonCollapse" class="navbar-light">
     <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
