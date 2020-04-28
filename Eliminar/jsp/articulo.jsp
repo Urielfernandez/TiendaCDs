@@ -2,28 +2,28 @@
 
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="imagenes/productos/${cd.imagen}"></a>
+    <a href="#"><img class="card-img-top" src="imagenes/productos/${articulo.imagen}"></a>
     
     <div class="card-body px-3 pb-3 pt-1">
       <h4 class="card-title">
-        <a href="#">${cd.nombre}</a>
+        <a href="#">${articulo.nombre}</a>
       </h4>
-      <h5><fmt:formatNumber value="${cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
-      <p class="card-text">${cd.descripcion}</p>
-      <p class="card-text">Unidades disponibles: ${cd.unidadesDisponibles}</p>
+      <h5><fmt:formatNumber value="${articulo.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
+      <p class="card-text">${articulo.descripcion}</p>
+      <p class="card-text">Unidades disponibles: ${articulo.unidadesDisponibles}</p>
 
       <form action="tienda" method="post" class="form-inline">
         <input type="hidden" name="opcion" value="addToCarrito">
-        <input type="hidden" name="nombre" value="${cd.nombre}">
-        <input type="hidden" name="imagen" value="${cd.imagen}">
-        <input type="hidden" name="precio" value="${cd.precio}">
-        <input type="hidden" name="unidadesDisponibles" value="${cd.unidadesDisponibles}" class="unidadesDisponibles">
+        <input type="hidden" name="nombre" value="${articulo.nombre}">
+        <input type="hidden" name="imagen" value="${articulo.imagen}">
+        <input type="hidden" name="precio" value="${articulo.precio}">
+        <input type="hidden" name="unidadesDisponibles" value="${articulo.unidadesDisponibles}" class="unidadesDisponibles">
 
         <div class="input-group mx-auto">
           <select class="form-control cantidad" name="unidadesSeleccionadas">
             <option selected value="1">1</option>
-            <c:if test="${cd.unidadesDisponibles >= 2}">
-              <c:forEach var="i" begin="2" end="${cd.unidadesDisponibles}">
+            <c:if test="${articulo.unidadesDisponibles >= 2}">
+              <c:forEach var="i" begin="2" end="${articulo.unidadesDisponibles}">
                 <option value="${i}">${i}</option>
               </c:forEach>
             </c:if>

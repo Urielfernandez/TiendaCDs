@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 <%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
-<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/sql" prefix="sql" %>
 
 <!DOCTYPE html>
 <html lang="es">
@@ -12,30 +12,27 @@
     <title>Escuela de música</title>
     <link rel="stylesheet" href="./css/bootstrap.min.css">
     <link rel="stylesheet" href="./css/main.css">
+    <link rel="stylesheet" href="./css/registro.css">
   </head>
-
+  
   <body>
     <%@ include file="navTienda.jsp" %>
 
-    <section class="container-fluid">
+    <section class="container">
       <div class="row">
-        <nav class="col-lg-2 p-0 pt-3 menuLateral">
-          <ul class="p-0 subcategorias">
-            <a href="#"><li class="secionActual">Guitarras</li></a>
-          </ul>
-        </nav>
-
-        <div class="col-lg-10">
-          <div class="row">
-            <div class="col mx-4 mt-2 p-0 cabeceroSeccion">
-              <h1 class="m-0">Tienda</h1>
-            </div>
+        <div class="col-6 mx-auto mt-3 p-0 cabeceroSeccion">
+          <h1 class="m-1 text-center">Error de stock</h1>
+        </div>
+      </div>
+      <div class="row">
+        <div class="col-6 mx-auto my-3">
+          <div class="text-center">
+            <img src="./imagenes/iconos/error.svg" class="mx-auto my-5" alt="Logo" height="90" width="90">
           </div>
-
-          <div class="row mt-3 mx-1">
-            <c:forEach var="cd" items="${listaCd}">
-              <%@ include file="articulo.jsp" %>
-            </c:forEach>
+          <p class="text-center">Se han agotado los productos de tu carrito.</p>
+          <p class="text-center">Por favor, inténtelo de nuevo más tarde.</p>
+          <div class="text-center">
+            <a href="./tienda"><button type="button" class="btnInicio">Volver a la tienda</button><a>
           </div>
         </div>
       </div>
@@ -43,6 +40,5 @@
 
     <script src="./js/jquery-3.4.1.min.js"></script>
     <script src="./js/bootstrap.min.js"></script>
-    <script src="./js/tienda/catalogo.js"></script>
   </body>
 </html>

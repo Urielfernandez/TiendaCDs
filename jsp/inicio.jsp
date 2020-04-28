@@ -16,8 +16,6 @@
 	<body>
     <%@ include file="navbar.jsp" %>
 
-		<%@ include file="navTienda.jsp" %>
-
     <section class="container-fluid">
       <div class="row">
         <nav class="col-lg-2 p-0 pt-3 menuLateral">
@@ -34,7 +32,7 @@
           </div>
 
           <div class="row mt-3 mx-1">
-            <c:forEach var="articulo" items="${listaArticulos}">
+            <c:forEach var="cd" items="${listaArticulos}">
               <%@ include file="articulo.jsp" %>
             </c:forEach>
           </div>

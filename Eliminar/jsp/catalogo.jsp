@@ -33,7 +33,7 @@
           </div>
 
           <div class="row mt-3 mx-1">
-            <c:forEach var="cd" items="${listaCd}">
+            <c:forEach var="articulo" items="${listaArticulos}">
               <%@ include file="articulo.jsp" %>
             </c:forEach>
           </div>
