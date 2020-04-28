@@ -2,7 +2,7 @@
 
 <div class="col-lg-4 col-md-6 mb-4">
   <div class="card h-100">
-    <a href="#"><img class="card-img-top" src="imagenes/productos/${cd.imagen}"></a>
+    <a href="#"><img class="card-img-top" src="imagenes/cd.jpg"></a>
     
     <div class="card-body px-3 pb-3 pt-1">
       <h4 class="card-title">

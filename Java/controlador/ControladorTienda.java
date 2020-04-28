@@ -26,10 +26,8 @@ public class ControladorTienda extends HttpServlet {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());
         }
-
-
-
-        mostrarPagina("jsp/inicio.jsp", request, response);
+        
+        mostrarPagina("jsp/catalogo.jsp", request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
