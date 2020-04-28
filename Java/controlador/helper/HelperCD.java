@@ -1,11 +1,19 @@
 package controlador.helper;
 
+import java.sql.Connection;
 import java.util.ArrayList;
 
+import modelo.dao.DAOCDs;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 
 public class HelperCD {
+    private DAOCDs conexionBDCDs;
+
+    public HelperCD(){
+        this.conexionBDCDs = new DAOCDs();
+    }
+
     public boolean introducirValoracion(CDVO cd, UsuarioVO usuario){
         return false;
     }
@@ -24,5 +32,9 @@ public class HelperCD {
 
     public boolean actualizarStock(CDVO cd, int nuevoStock){
         return false;
+    }
+
+    public void cargarCDs(Connection conexion){
+        this.conexionBDCDs.obtenerCatalogo(conexion);
     }
 }
