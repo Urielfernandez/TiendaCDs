@@ -9,6 +9,8 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import controlador.helper.HelperCD;
+
 public class ControladorTienda extends HttpServlet {
 
     public void init(ServletConfig config) throws ServletException {
@@ -20,12 +22,19 @@ public class ControladorTienda extends HttpServlet {
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
          */
+
+        Connection conexion = null;
         try {
-            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendacds", "dawa","Dawaproyecto1");
+            conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendacds", "dawa","Dawaproyecto1");
         } catch (SQLException e) {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());
         }
+        
+
+        HelperCD helperCds = new HelperCD();
+
+        request.setAttribute("listaArticulos", helperCds.cargarCDs(conexion));
         
         mostrarPagina("jsp/catalogo.jsp", request, response);
     }

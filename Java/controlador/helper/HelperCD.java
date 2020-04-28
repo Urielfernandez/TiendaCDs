@@ -34,7 +34,7 @@ public class HelperCD {
         return false;
     }
 
-    public void cargarCDs(Connection conexion){
-        this.conexionBDCDs.obtenerCatalogo(conexion);
+    public ArrayList<CDVO> cargarCDs(Connection conexion){
+        return this.conexionBDCDs.obtenerCatalogo(conexion);
     }
 }
