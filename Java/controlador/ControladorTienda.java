@@ -1,6 +1,11 @@
 package controlador;
 
 import java.io.IOException;
+import java.net.ConnectException;
+import java.sql.Connection;
+import java.sql.DriverManager;
+import java.sql.SQLException;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 
@@ -11,6 +16,19 @@ public class ControladorTienda extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        /*
+         * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
+         * una conexion a la BD y almacenarla en dicha sesion
+         */
+        try {
+            Connection conexion = DriverManager.getConnection("jdbc:mysql://localhost:3306/tiendacds", "dawa","Dawaproyecto1");
+        } catch (SQLException e) {
+            System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
+            System.out.println(e.getMessage());
+        }
+
+
+
         mostrarPagina("jsp/inicio.jsp", request, response);
     }
 
