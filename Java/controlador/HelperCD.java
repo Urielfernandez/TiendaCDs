@@ -22,7 +22,7 @@ public class HelperCD {
     public ArrayList<ValoracionVO> obtenerValoraciones(CDVO cd, Connection con){
         //conectar con tabla opiniones
         ArrayList<ValoracionVO> listaValoraciones; 
-        listaValoraciones=conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
+        listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
 

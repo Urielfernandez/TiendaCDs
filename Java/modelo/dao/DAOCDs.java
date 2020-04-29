@@ -62,7 +62,7 @@ public class DAOCDs {
 
     public ArrayList<CDVO> obtenerCatalogo(Connection conexion) {
         ArrayList<CDVO> catalogo = new ArrayList<>();
-        String consulta = "SELECT * FROM cds";
+        String consulta = "SELECT * FROM cds;";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -70,12 +70,19 @@ public class DAOCDs {
             ResultSet resultado = preparedStatement.executeQuery();
 
             while(resultado.next()){
-                CDVO nuevoCD = new CDVO(resultado.getString("titulo"), resultado.getString("artista"), resultado.getString("pais"), Double.parseDouble(resultado.getString("precio")), Integer.parseInt(resultado.getString("anho")), this.cargarValoracionesDeUnCD(resultado.getString("titulo"), conexion));
+                CDVO nuevoCD = new CDVO(resultado.getString("titulo"),
+                                            resultado.getString("artista"),
+                                            resultado.getString("pais"),
+                                            resultado.getDouble("precio"),
+                                            resultado.getInt("anho"),
+                                            this.cargarValoracionesDeUnCD(resultado.getString("titulo"),
+                                            conexion));
                 catalogo.add(nuevoCD);
             }
 
             return catalogo;
-        }catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("DAOCD: No se ha podido cargar el catálogo.");
             System.out.println(e.getMessage());
         }
@@ -98,7 +105,8 @@ public class DAOCDs {
             preparedStatement.executeUpdate();
 
             return true;
-        }catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("DAOCD: No se ha podido actualizar el cd: "+ cd.getTitulo());
             System.out.println(e.getMessage());
         }
@@ -108,7 +116,7 @@ public class DAOCDs {
 
     public ArrayList<ValoracionVO> cargarValoracionesDeUnCD(String cd, Connection conexion){
         ArrayList<ValoracionVO> valoraciones = new ArrayList<>();
-        String consulta = "SELECT * FROM opiniones WHERE cd=?";
+        String consulta = "SELECT * FROM opiniones WHERE cd = ?;";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -118,12 +126,16 @@ public class DAOCDs {
             ResultSet resultado = preparedStatement.executeQuery();
 
             while(resultado.next()){
-                ValoracionVO valoracion = new ValoracionVO(resultado.getFloat("nota"), resultado.getString("opinion"), resultado.getString("cd"), resultado.getString("email"));
+                ValoracionVO valoracion = new ValoracionVO(resultado.getFloat("nota"), 
+                                                                resultado.getString("opinion"), 
+                                                                resultado.getString("cd"), 
+                                                                resultado.getString("email"));
                 valoraciones.add(valoracion);
             }
 
             return valoraciones;
-        } catch (SQLException e) {
+        }
+        catch (SQLException e) {
             System.out.println("DAOCD: No se han podido cargar las valoraciones del cd:" + cd);
             System.out.println(e.getMessage());
         }

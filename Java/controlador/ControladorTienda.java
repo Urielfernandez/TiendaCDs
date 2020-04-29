@@ -31,12 +31,16 @@ public class ControladorTienda extends HttpServlet {
         // Obtenemos la sesion y la creamos si no la hay
 		HttpSession sesion = request.getSession();
 
-        if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
-                && sesion.getAttribute("conexion") == null) {
-			// Creamos el usuario y el carrito para una sesion
-			sesion.setAttribute("usuario", new UsuarioVO());
+        // Creamos el usuario, el carrito y la conexion para una sesion si no existen
+        if(sesion.getAttribute("usuario") == null) {
+            sesion.setAttribute("usuario", new UsuarioVO());
+        }
+
+        if(sesion.getAttribute("carrito") == null) {
             sesion.setAttribute("carrito", new Carrito());
-            
+        }
+
+        if(sesion.getAttribute("conexion") == null) {
             Connection aux = crearConexionBBDD();
 
             // Comprobamos si se conecta, si no mostramos un error
@@ -46,20 +50,20 @@ public class ControladorTienda extends HttpServlet {
             else {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
-		}else{
-            // Obtenemos el usuario y el carrito de la sesion
-            carrito = (Carrito) sesion.getAttribute("carrito");
-            usuario = (UsuarioVO) sesion.getAttribute("usuario");
-            conexion = (Connection) sesion.getAttribute("conexion");
         }
 
-        switch(opcion){
-            default:
-                request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+        usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        carrito = (Carrito) sesion.getAttribute("carrito");
+        conexion = (Connection) sesion.getAttribute("conexion");
 
-                mostrarPagina("jsp/catalogo.jsp", request, response);
-                break;
+        if (opcion == null) {
+            request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+            mostrarPagina("jsp/catalogo.jsp", request, response);
         }
+
+        //switch(opcion){
+            
+        //}
 
     }
 
@@ -94,7 +98,8 @@ public class ControladorTienda extends HttpServlet {
             else {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
-		}else{
+        }
+        else{
             // Obtenemos el usuario y el carrito de la sesion
             carrito = (Carrito) sesion.getAttribute("carrito");
             usuario = (UsuarioVO) sesion.getAttribute("usuario");
