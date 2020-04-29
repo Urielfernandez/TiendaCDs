@@ -27,10 +27,12 @@ public class ControladorTienda extends HttpServlet {
         // Obtenemos la sesion y la creamos si no la hay
 		HttpSession sesion = request.getSession();
 
-		if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null) {
+        if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
+                && sesion.getAtribute("conexion")) {
 			// Creamos el usuario y el carrito para una sesion
 			sesion.setAttribute("usuario", new UsuarioVO());
-			sesion.setAttribute("carrito", new Carrito());
+            sesion.setAttribute("carrito", new Carrito());
+            sesion.setAttribute("sesion", conexion);
 		}
 
 		// Obtenemos el usuario y el carrito de la sesion
@@ -46,8 +48,8 @@ public class ControladorTienda extends HttpServlet {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());
         } catch (ClassNotFoundException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+            System.out.println("Controlador Tienda: no se ha podido cargar el driver.");
+            System.out.println(e.getMessage());
         }
 
         gestionCDS = new HelperCD();  
