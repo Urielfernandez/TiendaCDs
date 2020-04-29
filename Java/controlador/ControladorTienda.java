@@ -6,8 +6,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
-
-import controlador.HelperCD;
 import modelo.tienda.Carrito;
 import modelo.vo.UsuarioVO;
 
@@ -19,6 +17,9 @@ public class ControladorTienda extends HttpServlet {
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         HelperCD gestionCDS;
+        Carrito carrito;
+        UsuarioVO usuario;
+        Connection conexion;
         /*
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
@@ -32,13 +33,22 @@ public class ControladorTienda extends HttpServlet {
 			// Creamos el usuario y el carrito para una sesion
 			sesion.setAttribute("usuario", new UsuarioVO());
             sesion.setAttribute("carrito", new Carrito());
-            sesion.setAttribute("sesion", crearConexionBBDD());
+            
+            Connection aux = crearConexionBBDD();
+
+            // Comprobamos si se conecta, si no mostramos un error
+            if (aux != null) {
+                sesion.setAttribute("sesion", aux);
+            }
+            else {
+                mostrarPagina("jsp/error.jsp", request, response);
+            }
 		}
 
 		// Obtenemos el usuario y el carrito de la sesion
-		Carrito carrito = (Carrito) sesion.getAttribute("carrito");
-        UsuarioVO usuario = (UsuarioVO) sesion.getAttribute("usuario");
-        Connection conexion = (Connection) sesion.getAttribute("conexion");
+		carrito = (Carrito) sesion.getAttribute("carrito");
+        usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        conexion = (Connection) sesion.getAttribute("conexion");
 
         gestionCDS = new HelperCD();  
 
