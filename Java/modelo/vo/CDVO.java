@@ -20,6 +20,15 @@ public class CDVO implements CD {
         this.valoraciones = valoraciones;
     }
 
+    public CDVO(String titulo, String artista, String pais, double precio, int anho) {
+        this.titulo = titulo;
+        this.artista = artista;
+        this.pais = pais;
+        this.precio = precio;
+        this.anho = anho;
+        this.valoraciones=new ArrayList<>();
+    }
+
     public String getTitulo() {
         return titulo;
     }
