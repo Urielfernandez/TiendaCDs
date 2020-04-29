@@ -28,7 +28,7 @@ public class ControladorTienda extends HttpServlet {
 		HttpSession sesion = request.getSession();
 
         if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
-                && sesion.getAtribute("conexion") == null) {
+                && sesion.getAttribute("conexion") == null) {
 			// Creamos el usuario y el carrito para una sesion
 			sesion.setAttribute("usuario", new UsuarioVO());
             sesion.setAttribute("carrito", new Carrito());
@@ -37,7 +37,8 @@ public class ControladorTienda extends HttpServlet {
 
 		// Obtenemos el usuario y el carrito de la sesion
 		Carrito carrito = (Carrito) sesion.getAttribute("carrito");
-		UsuarioVO usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        UsuarioVO usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        Connection conexion = (Connection) sesion.getAttribute("conexion");
 
         gestionCDS = new HelperCD();  
 
