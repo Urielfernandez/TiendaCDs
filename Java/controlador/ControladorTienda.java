@@ -38,7 +38,7 @@ public class ControladorTienda extends HttpServlet {
 
             // Comprobamos si se conecta, si no mostramos un error
             if (aux != null) {
-                sesion.setAttribute("sesion", aux);
+                sesion.setAttribute("conexion", aux);
             }
             else {
                 mostrarPagina("jsp/error.jsp", request, response);
@@ -53,7 +53,7 @@ public class ControladorTienda extends HttpServlet {
         gestionCDS = new HelperCD();  
 
         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-        
+
         mostrarPagina("jsp/catalogo.jsp", request, response);
     }
 
