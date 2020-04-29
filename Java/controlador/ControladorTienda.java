@@ -7,7 +7,13 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+<<<<<<< HEAD
+import controlador.helper.HelperCD;
+import modelo.tienda.Carrito;
+import modelo.vo.UsuarioVO;
+=======
 import controlador.HelperCD;
+>>>>>>> 56f68664376f67af62528b5688b2de78ea797496
 
 public class ControladorTienda extends HttpServlet {
 
@@ -21,6 +27,19 @@ public class ControladorTienda extends HttpServlet {
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
          */
+
+        // Obtenemos la sesion y la creamos si no la hay
+		HttpSession sesion = request.getSession();
+
+		if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null) {
+			// Creamos el usuario y el carrito para una sesion
+			sesion.setAttribute("usuario", new UsuarioVO());
+			sesion.setAttribute("carrito", new Carrito());
+		}
+
+		// Obtenemos el usuario y el carrito de la sesion
+		Carrito carrito = (Carrito) sesion.getAttribute("carrito");
+		UsuarioVO usuario = (UsuarioVO) sesion.getAttribute("usuario");
 
         Connection conexion = null;
         try {
