@@ -18,11 +18,11 @@ public class ControladorTienda extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
         //atributos para las llamadas a los helpers
-        HelperCD gestionCDS;
+        HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
         Carrito carrito;
         UsuarioVO usuario;
-        Connection conexion;
+        Connection conexion = null;
         /*
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
@@ -46,28 +46,31 @@ public class ControladorTienda extends HttpServlet {
             else {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
-		}
+		}else{
+            // Obtenemos el usuario y el carrito de la sesion
+            carrito = (Carrito) sesion.getAttribute("carrito");
+            usuario = (UsuarioVO) sesion.getAttribute("usuario");
+            conexion = (Connection) sesion.getAttribute("conexion");
+        }
 
-		// Obtenemos el usuario y el carrito de la sesion
-		carrito = (Carrito) sesion.getAttribute("carrito");
-        usuario = (UsuarioVO) sesion.getAttribute("usuario");
-        conexion = (Connection) sesion.getAttribute("conexion");
+        switch(opcion){
+            default:
+                request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
 
-        gestionCDS = new HelperCD();  
+                mostrarPagina("jsp/catalogo.jsp", request, response);
+                break;
+        }
 
-        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-
-        mostrarPagina("jsp/catalogo.jsp", request, response);
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
         //atributos para las llamadas a los helpers
-        HelperCD gestionCDS;
+        HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
         Carrito carrito;
         UsuarioVO usuario;
-        Connection conexion;
+        Connection conexion = null;
         /*
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
@@ -91,18 +94,21 @@ public class ControladorTienda extends HttpServlet {
             else {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
-		}
+		}else{
+            // Obtenemos el usuario y el carrito de la sesion
+            carrito = (Carrito) sesion.getAttribute("carrito");
+            usuario = (UsuarioVO) sesion.getAttribute("usuario");
+            conexion = (Connection) sesion.getAttribute("conexion");
+        }
 
-		// Obtenemos el usuario y el carrito de la sesion
-		carrito = (Carrito) sesion.getAttribute("carrito");
-        usuario = (UsuarioVO) sesion.getAttribute("usuario");
-        conexion = (Connection) sesion.getAttribute("conexion");
+        switch(opcion){
+            case  "anhadirCarrito":
+                request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
 
-        gestionCDS = new HelperCD();  
-
-        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-
-        mostrarPagina("jsp/catalogo.jsp", request, response);        
+                mostrarPagina("jsp/catalogo.jsp", request, response);  
+                break;
+        }
+      
     }
 
     private void mostrarPagina(String pagina, HttpServletRequest request, HttpServletResponse response)

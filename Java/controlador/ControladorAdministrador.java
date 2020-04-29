@@ -109,6 +109,7 @@ public class ControladorAdministrador extends HttpServlet {
             throws ServletException, IOException {
         request.getRequestDispatcher(pagina).forward(request, response);
     }
+    
     private Connection crearConexionBBDD() {
         Connection conexion = null;
 
