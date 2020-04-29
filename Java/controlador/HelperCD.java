@@ -21,7 +21,7 @@ public class HelperCD {
 
     public ArrayList<ValoracionVO> obtenerValoraciones(CDVO cd, Connection con){
         //conectar con tabla opiniones
-        ArrayList<ValoracionVO> listaValoraciones; //= cd.getValoraciones();
+        ArrayList<ValoracionVO> listaValoraciones; 
         listaValoraciones=conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
@@ -30,7 +30,9 @@ public class HelperCD {
         return null;
     }
 
-    public boolean anhadirNuevoCD(CDVO cd){
+    public boolean anhadirNuevoCD(CDVO cd, Connection con){
+        if(cd != null)
+            return conexionBDCDs.guardarCD(cd,con);
         return false;
     }
 

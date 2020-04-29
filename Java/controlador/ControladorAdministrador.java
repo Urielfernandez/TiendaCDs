@@ -6,6 +6,8 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
+
+import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 
 public class ControladorAdministrador extends HttpServlet {
@@ -54,6 +56,52 @@ public class ControladorAdministrador extends HttpServlet {
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HelperCD gestionCDS;
+        UsuarioVO usuario;
+        Connection conexion;
+        String opcion;
+        /*
+         * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
+         * una conexion a la BD y almacenarla en dicha sesion
+         */
+
+        // Obtenemos la sesion y la creamos si no la hay
+		HttpSession sesion = request.getSession();
+
+        if (sesion.getAttribute("usuario") == null && sesion.getAttribute("conexion") == null) {
+			// Creamos el usuario y el carrito para una sesion
+			sesion.setAttribute("usuario", new UsuarioVO());
+            
+            Connection aux = crearConexionBBDD();
+
+            // Comprobamos si se conecta, si no mostramos un error
+            if (aux != null) {
+                sesion.setAttribute("conexion", aux);
+            }
+            else {
+                mostrarPagina("jsp/error.jsp", request, response);
+            }
+		}
+
+		// Obtenemos el usuario y la sesion
+        usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        conexion = (Connection) sesion.getAttribute("conexion");
+        opcion = (String) sesion.getAttribute("opcion");
+        gestionCDS = new HelperCD();  
+
+        switch(opcion){
+            case "addNewCD":
+                //recoger params del cd
+                CDVO cd=recogerCamposCD(request);
+                gestionCDS.anhadirNuevoCD(cd, conexion);
+                mostrarPagina("index.html", request, response);
+            break;
+
+            default:
+            break;
+        }
+       // request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+
         mostrarPagina("index.html", request, response);
     }
 
@@ -78,5 +126,17 @@ public class ControladorAdministrador extends HttpServlet {
         }
 
         return conexion;
+    }
+
+    private CDVO recogerCamposCD(HttpServletRequest request){
+        //PONER LOS NOMBRES DE LOS CAMPOS DE LA VISTA
+        String titulo=request.getParameter("arg0");
+        String artista=request.getParameter("arg0");
+        String pais=request.getParameter("arg0");
+        Double precio=Double.parseDouble(request.getParameter("arg0"));
+        Integer anho= Integer.parseInt(request.getParameter("arg0"));
+
+        CDVO cd=new CDVO(titulo,artista,pais,precio,anho);
+        return cd;
     }
 }
