@@ -6,7 +6,7 @@
     
     <div class="card-body px-3 pb-3 pt-1">
       <h4 class="card-title">
-        <a href="#">${cd.nombre}</a>
+        <a href="#">${cd.titulo}</a>
       </h4>
       <h5><fmt:formatNumber value="${cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
       <p class="card-text">${cd.descripcion}</p>
@@ -14,7 +14,7 @@
 
       <form action="tienda" method="post" class="form-inline">
         <input type="hidden" name="opcion" value="addToCarrito">
-        <input type="hidden" name="nombre" value="${cd.nombre}">
+        <input type="hidden" name="nombre" value="${cd.titulo}">
         <input type="hidden" name="imagen" value="${cd.imagen}">
         <input type="hidden" name="precio" value="${cd.precio}">
         <input type="hidden" name="unidadesDisponibles" value="${cd.unidadesDisponibles}" class="unidadesDisponibles">
