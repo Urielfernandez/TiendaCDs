@@ -1,4 +1,4 @@
-package controlador.helper;
+package controlador;
 
 public class HelperUsuarios {
     public boolean inicioSesion(){

@@ -1,4 +1,4 @@
-package controlador.helper;
+package controlador;
 
 import java.sql.Connection;
 import java.util.ArrayList;

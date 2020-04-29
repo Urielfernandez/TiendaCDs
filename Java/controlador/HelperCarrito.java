@@ -1,4 +1,4 @@
-package controlador.helper;
+package controlador;
 
 import modelo.tienda.Carrito;
 import modelo.vo.CDVO;
