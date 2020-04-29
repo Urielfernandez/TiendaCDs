@@ -7,13 +7,9 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
-<<<<<<< HEAD
-import controlador.helper.HelperCD;
+import controlador.HelperCD;
 import modelo.tienda.Carrito;
 import modelo.vo.UsuarioVO;
-=======
-import controlador.HelperCD;
->>>>>>> 56f68664376f67af62528b5688b2de78ea797496
 
 public class ControladorTienda extends HttpServlet {
 
