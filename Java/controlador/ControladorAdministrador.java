@@ -86,7 +86,8 @@ public class ControladorAdministrador extends HttpServlet {
 		// Obtenemos el usuario y la sesion
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         conexion = (Connection) sesion.getAttribute("conexion");
-        opcion = (String) sesion.getAttribute("opcion");
+        opcion = request.getParameter("opcion");
+
         gestionCDS = new HelperCD();  
 
         switch(opcion){
