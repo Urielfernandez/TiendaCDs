@@ -8,6 +8,8 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import controlador.helper.HelperCD;
+import modelo.tienda.Carrito;
+import modelo.vo.UsuarioVO;
 
 public class ControladorTienda extends HttpServlet {
 
@@ -21,8 +23,22 @@ public class ControladorTienda extends HttpServlet {
          * una conexion a la BD y almacenarla en dicha sesion
          */
 
+        // Obtenemos la sesion y la creamos si no la hay
+		HttpSession sesion = request.getSession();
+
+		if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null) {
+			// Creamos el usuario y el carrito para una sesion
+			sesion.setAttribute("usuario", new UsuarioVO());
+			sesion.setAttribute("carrito", new Carrito());
+		}
+
+		// Obtenemos el usuario y el carrito de la sesion
+		Carrito carrito = (Carrito) sesion.getAttribute("carrito");
+		UsuarioVO usuario = (UsuarioVO) sesion.getAttribute("usuario");
+
         Connection conexion = null;
         try {
+            Class.forName("com.jdbc.mysql.Driver");
             conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa", "Dawaproyecto1");
         } 
         catch (SQLException e) {
