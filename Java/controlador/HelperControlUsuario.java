@@ -1,4 +1,4 @@
-package controlador.helper;
+package controlador;
 
 public class HelperControlUsuario {
     public boolean notificarEmailCliente(){

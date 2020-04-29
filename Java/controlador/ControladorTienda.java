@@ -7,9 +7,13 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+<<<<<<< HEAD
 import controlador.helper.HelperCD;
 import modelo.tienda.Carrito;
 import modelo.vo.UsuarioVO;
+=======
+import controlador.HelperCD;
+>>>>>>> 56f68664376f67af62528b5688b2de78ea797496
 
 public class ControladorTienda extends HttpServlet {
 
@@ -18,6 +22,7 @@ public class ControladorTienda extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        HelperCD gestionCDS;
         /*
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
@@ -38,17 +43,20 @@ public class ControladorTienda extends HttpServlet {
 
         Connection conexion = null;
         try {
-            Class.forName("com.jdbc.mysql.Driver");
+            Class.forName("com.mysql.jdbc.Driver");
             conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa", "Dawaproyecto1");
         } 
         catch (SQLException e) {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());
+        } catch (ClassNotFoundException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
         }
 
-        HelperCD helperCds = new HelperCD();
+        gestionCDS = new HelperCD();  
 
-        request.setAttribute("listaArticulos", helperCds.cargarCDs(conexion));
+        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
         
         mostrarPagina("jsp/catalogo.jsp", request, response);
     }
