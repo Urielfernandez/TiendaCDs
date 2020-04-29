@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import modelo.dao.DAOCDs;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
+import modelo.vo.ValoracionVO;
 
 public class HelperCD {
     private DAOCDs conexionBDCDs;
@@ -18,8 +19,11 @@ public class HelperCD {
         return false;
     }
 
-    public ArrayList<String> obtenerValoraciones(CDVO cd){
-        return null;
+    public ArrayList<ValoracionVO> obtenerValoraciones(CDVO cd, Connection con){
+        //conectar con tabla opiniones
+        ArrayList<ValoracionVO> listaValoraciones; //= cd.getValoraciones();
+        listaValoraciones=conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
+        return listaValoraciones;
     }
 
     public ArrayList<CDVO> filtrarCDs(CDVO cd){

@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import modelo.tienda.Carrito;
 import modelo.vo.UsuarioVO;
 
 public class ControladorAdministrador extends HttpServlet {
@@ -18,7 +17,6 @@ public class ControladorAdministrador extends HttpServlet {
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         
         HelperCD gestionCDS;
-        Carrito carrito;
         UsuarioVO usuario;
         Connection conexion;
         /*
@@ -29,11 +27,9 @@ public class ControladorAdministrador extends HttpServlet {
         // Obtenemos la sesion y la creamos si no la hay
 		HttpSession sesion = request.getSession();
 
-        if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
-                && sesion.getAttribute("conexion") == null) {
+        if (sesion.getAttribute("usuario") == null && sesion.getAttribute("conexion") == null) {
 			// Creamos el usuario y el carrito para una sesion
 			sesion.setAttribute("usuario", new UsuarioVO());
-            sesion.setAttribute("carrito", new Carrito());
             
             Connection aux = crearConexionBBDD();
 
@@ -46,8 +42,7 @@ public class ControladorAdministrador extends HttpServlet {
             }
 		}
 
-		// Obtenemos el usuario y el carrito de la sesion
-		carrito = (Carrito) sesion.getAttribute("carrito");
+		// Obtenemos el usuario y la sesion
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         conexion = (Connection) sesion.getAttribute("conexion");
 
