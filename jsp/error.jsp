@@ -19,7 +19,7 @@
     <section class="container">
       <div class="row">
         <div class="col-6 mx-auto mt-3 p-0 cabeceroSeccion">
-          <h1 class="m-1 text-center">Error de stock</h1>
+          <h1 class="m-1 text-center">Error</h1>
         </div>
       </div>
       <div class="row">
@@ -27,10 +27,10 @@
           <div class="text-center">
             <img src="./imagenes/iconos/error.svg" class="mx-auto my-5" alt="Logo" height="90" width="90">
           </div>
-          <p class="text-center">Ha habido un error al conectarse a la base de datos.</p>
+          <p class="text-center">Ha habido un error</p>
           <p class="text-center">Por favor, inténtelo de nuevo más tarde.</p>
           <div class="text-center">
-            <a href="./tienda"><button type="button" class="btnInicio">Volver a la tienda</button><a>
+            <a href="./tienda"><button type="button" class="boton px-3">Volver a la tienda</button><a>
           </div>
         </div>
       </div>

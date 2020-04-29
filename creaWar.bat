@@ -1,1 +1,1 @@
-jar cf TiendaCDs.war css jsp WEB-INF index.html
+jar cf TiendaCDs.war css jsp imagenes WEB-INF index.html

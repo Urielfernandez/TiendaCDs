@@ -1,4 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
+<%@ taglib uri="http://java.sun.com/jsp/jstl/core" prefix="c" %>
+<%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
 <html lang="en">
@@ -18,13 +20,13 @@
 
     <section class="container">
       <div class="row">
-        <div class="col mx-4 mt-2 p-0 tituloPagina">
+        <div class="col my-3 p-0 pb-1 tituloPagina">
           <h1 class="m-0">Catálogo de CDs</h1>
         </div>
       </div>
       <div class="row">
 
-      <div class="row mt-3 mx-1">
+      <div class="row">
         <c:forEach var="cd" items="${listaArticulos}">
           <%@ include file="cd.jsp" %>
         </c:forEach>
