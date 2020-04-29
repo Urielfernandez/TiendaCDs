@@ -32,25 +32,12 @@ public class ControladorTienda extends HttpServlet {
 			// Creamos el usuario y el carrito para una sesion
 			sesion.setAttribute("usuario", new UsuarioVO());
             sesion.setAttribute("carrito", new Carrito());
-            sesion.setAttribute("sesion", conexion);
+            sesion.setAttribute("sesion", crearConexionBBDD());
 		}
 
 		// Obtenemos el usuario y el carrito de la sesion
 		Carrito carrito = (Carrito) sesion.getAttribute("carrito");
 		UsuarioVO usuario = (UsuarioVO) sesion.getAttribute("usuario");
-
-        Connection conexion = null;
-        try {
-            Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa", "Dawaproyecto1");
-        } 
-        catch (SQLException e) {
-            System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
-            System.out.println(e.getMessage());
-        } catch (ClassNotFoundException e) {
-            System.out.println("Controlador Tienda: no se ha podido cargar el driver.");
-            System.out.println(e.getMessage());
-        }
 
         gestionCDS = new HelperCD();  
 
@@ -66,6 +53,25 @@ public class ControladorTienda extends HttpServlet {
     private void mostrarPagina(String pagina, HttpServletRequest request, HttpServletResponse response)
             throws ServletException, IOException {
         request.getRequestDispatcher(pagina).forward(request, response);
+    }
+
+    private Connection crearConexionBBDD() {
+        Connection conexion = null;
+
+        try {
+            Class.forName("com.mysql.jdbc.Driver");
+            conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa", "Dawaproyecto1");
+        } 
+        catch (SQLException e) {
+            System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
+            System.out.println(e.getMessage());
+        }
+        catch (ClassNotFoundException e) {
+            System.out.println("Controlador Tienda: no se ha podido cargar el driver.");
+            System.out.println(e.getMessage());
+        }
+
+        return conexion;
     }
 
 }
