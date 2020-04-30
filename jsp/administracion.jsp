@@ -32,25 +32,36 @@
         <ul class="col tabla">
           <li class="items mt-2 py-2">
             <ul class="row p-0">
-              <li class="col-5"><b>Correo electrónico</b></li>
-              <li class="col-5"><b>Contraseña</b></li>
+              <li class="col-4"><b>Correo electrónico</b></li>
+              <li class="col-2"><b>Contraseña</b></li>
             </ul>
           </li> 
               
           <c:forEach var="usuario" items="${listaUsuarios}">
             <li class="items py-2">
               <ul class="row p-0">
-                <li class="col-5 my-auto">${usuario.email}</li>
-                <li class="col-5 my-auto">${usuario.contrasenha}</li>
-                <li class="col-2 my-auto">
+                <li class="col-4 my-auto">${usuario.email}</li>
+                <li class="col-2 my-auto">${usuario.contrasenha}</li>
+                <li class="col-1 my-auto">
                   <form action="" method="POST" class="text-center">
-                    <input type="radio" name="inputEliminar" value="${usuario.email}">
+                    <input type="hidden" name="usuarioEliminar" value="${usuario.email}">
+                    <input type="hidden" name="opcion" value="">
+                    <input type="submit" class="boton px-1" value="Eliminar">
+                  </form>
+                </li>
+                <li class="col-5 my-auto">
+                  <form action="" method="POST" class="text-center">
+                    <input type="hidden" name="usuarioModificar" value="${usuario.email}">
+                    <input type="hidden" name="opcion" value="">
+                    <input type="submit" class="boton px-1" value="Modificar contraseña">
+                    <input type="text" class="" placeholder="Nueva contraseña">
                   </form>
                 </li>
               </ul>
             </li>
           </c:forEach>
         </ul>
+      </div>
     </section>
 
 		<!-- JQuery -->
