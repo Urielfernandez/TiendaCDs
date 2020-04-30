@@ -16,7 +16,14 @@
 	</head>
 
 	<body>
-    <%@ include file="navbar.jsp" %>
+
+
+	<%@ include file="navbar.jsp" %>
+
+	
+	<p>CHEQUEOS PREVIOS:
+		${VARIABLE_ESTADO}
+	</p>
 
     <section class="container">
       <div class="row">
@@ -25,6 +32,7 @@
         </div>
       </div>
       <div class="row">
+
 
       <div class="row">
         <c:forEach var="cd" items="${listaArticulos}">

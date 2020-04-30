@@ -1,11 +1,14 @@
 package controlador;
 
+import java.io.Console;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.sound.sampled.SourceDataLine;
+
 import modelo.tienda.Carrito;
 import modelo.tienda.Seleccion;
 import modelo.vo.UsuarioVO;
@@ -17,6 +20,7 @@ public class ControladorTienda extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
+        String VariableEstado = " "; //Con esta variable se creará una trazabilidad para permitir ver qué está haciendo
         String opcion = request.getParameter("opcion");
         //atributos para las llamadas a los helpers
         HelperCD gestionCDS = new HelperCD();
@@ -56,6 +60,8 @@ public class ControladorTienda extends HttpServlet {
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");
+
+        request.setAttribute("VARIABLE_ESTADO", "Pasa por el doGet()");
 
         if(opcion == null){
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
