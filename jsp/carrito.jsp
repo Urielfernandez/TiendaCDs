@@ -68,7 +68,7 @@
               <li class="col-2">
                 <form action="tienda" method="POST" id="formulario">
                   <input type="hidden" name="opcion" value="comprar">
-                  <button type="buttom" class="btn btn-primary px-5" id="btnLogin">Pagar</button>
+                  <button type="button" class="btn btn-primary px-5" id="btnLogin">Pagar</button>
                 </form>
               </li>
               <li class="col-2 offset-5 text-right my-auto"><h5>Total:</h5></li>
@@ -95,6 +95,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous">
     </script>
-    <script src="jsp/comprobarLogin.js"></script>
+    <script src="js/comprobarLogin.js"></script>
   </body>
 </html>
