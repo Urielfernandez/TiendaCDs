@@ -24,13 +24,13 @@
     <section class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <h1 class="tituloPagina">Registrarse</h1>
+          <h1 class="tituloPagina">Insertar Nuevo CD</h1>
         </div>
       </div>
 
       <div class="row mt-2">
         <div class="col-md-6 offset-md-3">
-          <form action="/administrador" method="POST">
+          <form action="../administrador" method="post">
             <input type="hidden" name="opcion" value="almacenarNuevoCD"/>
             <div class="form-group">
               <label for="nombre">Título:</label>
@@ -54,12 +54,12 @@
 
             <div class="form-group">
               <label for="text">Cantidad en Stock:</label>
-              <input type="number" class="form-control" name="cantidad">
+              <input type="text" class="form-control" name="cantidad">
             </div>
 
             <div class="form-group">
               <label for="text">Precio</label>
-              <input type="number" class="form-control" name="precio">
+              <input type="text" class="form-control" name="precio">
             </div>
 
             <div class="form-group text-center">
