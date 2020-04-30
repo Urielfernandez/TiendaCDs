@@ -30,4 +30,14 @@
         <servlet-name>registrar</servlet-name>
         <url-pattern>/registrar</url-pattern>   
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>nuevoCD</servlet-name>
+        <jsp-file>/jsp/anhadirNuevoCD.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>nuevoCD</servlet-name>
+        <url-pattern>/nuevoCD</url-pattern>   
+    </servlet-mapping>
 </web-app>

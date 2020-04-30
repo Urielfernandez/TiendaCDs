@@ -86,9 +86,8 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "eliminarArticulo":
                     this.carrito.eliminarDelCarrito(request.getParameter("titulo"));
-                    sesion.setAttribute("carrito", this.carrito);
                     request.setAttribute("importeTotal", this.carrito.getImporteTotal());
-                    request.setAttribute("contenidoCarrito",this.carrito.getProductos().values());
+                    request.setAttribute("contenidoCarrito", this.carrito.getProductos().values());
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
                 case "iniciarSesion":
@@ -106,7 +105,7 @@ public class ControladorTienda extends HttpServlet {
                         cookie.setMaxAge(30 * 60);
                         response.addCookie(cookie);
 
-                        request.setAttribute("nombreUsuario", usuario.getNombre());
+                        sesion.setAttribute("nombreUsuario", usuario.getNombre());
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
                     } else {

@@ -18,7 +18,7 @@
 			crossorigin="anonymous">
 	</head>
 
-	<body class="fondoPagina">
+	<body>
     <%@ include file="navbarAdministracion.jsp" %>
 
     <section class="container">
