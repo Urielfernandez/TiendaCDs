@@ -15,4 +15,9 @@ INSERT INTO cds VALUES("DAA", "GSTIC", "Spain", 50.00, "2015");
 
 INSERT INTO inventario SELECT titulo, 100 FROM cds;
 
--- Insertamos algunos usuarios
+
+-- Insertar usuarios de prueba
+INSERT INTO usuarios VALUES("usuarioBasicol@gmail.com", "usuarioBasico", "1234", "usuario", "Basico");
+INSERT INTO usuarios VALUES("usuarioVIP@gmail.com", "usuarioVIP", "1234", "usuario", "VIP");
+INSERT INTO usuarios VALUES("aministradorBasico@gmail.com", "administradorBasico", "1234", "administrador", "Basico");
+INSERT INTO usuarios VALUES("aministradorVIP@gmail.com", "aministradorVIP", "1234", "administrador", "VIP");

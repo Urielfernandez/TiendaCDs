@@ -14,10 +14,12 @@ import modelo.vo.UsuarioVO;
 
 public class ControladorAdministrador extends HttpServlet {
     private HelperCD gestionCDS;
+    private HelperUsuarios gestionUsuarios;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
         this.gestionCDS = new HelperCD();
+        this.gestionUsuarios = new HelperUsuarios();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -42,13 +44,13 @@ public class ControladorAdministrador extends HttpServlet {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
 		}
-        else {
-		    // Obtenemos el usuario y la sesion
-            usuario = (UsuarioVO) sesion.getAttribute("usuario");
-            conexion = (Connection) sesion.getAttribute("conexion");
-        }
+        
+        // Obtenemos el usuario y la sesion
+        usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        conexion = (Connection) sesion.getAttribute("conexion");
 
         //COMPROBACIONES DE opcion
+        request.setAttribute("listaArticulos", this.gestionUsuarios.listarUsuarios(conexion));
         mostrarPagina("jsp/administracion.jsp", request, response);
 
         

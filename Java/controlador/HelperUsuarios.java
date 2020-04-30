@@ -1,6 +1,7 @@
 package controlador;
 
 import java.sql.Connection;
+import java.util.ArrayList;
 
 import modelo.dao.DAOUsuarios;
 import modelo.vo.InicioSesionVO;
@@ -27,5 +28,9 @@ public class HelperUsuarios {
 
         return null;
         
+    }
+
+    public ArrayList<UsuarioVO> listarUsuarios (Connection conexion) {
+        return this.dao.obtenerUsuarios(conexion);
     }
 }
