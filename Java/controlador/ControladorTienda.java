@@ -74,7 +74,7 @@ public class ControladorTienda extends HttpServlet {
         //atributos para las llamadas a los helpers
         HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
-        Carrito carrito;
+        Carrito carrito = null;
         UsuarioVO usuario;
         Connection conexion = null;
         /*
