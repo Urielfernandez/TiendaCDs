@@ -97,7 +97,7 @@ public class ControladorTienda extends HttpServlet {
                     //this.usuario.getEmail()
                     // Parte de envio del correo
                     MailSender mensajero = new MailSender();
-                    mensajero.enviarConGMail("tiendacdsdawa@gmail.com",
+                    mensajero.enviarConGMail("chandecurros@gmail.com",
                                             this.carrito.getProductos().values());
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
