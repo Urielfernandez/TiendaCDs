@@ -28,13 +28,9 @@ public class HelperCD {
         return listaValoraciones;
     }
 
-    public CDVO recogerCamposCD(HttpServletRequest request) {
-        // PONER LOS NOMBRES DE LOS CAMPOS DE LA VISTA
-        String titulo = request.getParameter("titulo");
-        String artista = request.getParameter("artista");
-        String pais = request.getParameter("pais");
-        Double precio = Double.parseDouble(request.getParameter("precio"));
-        Integer anho = Integer.parseInt(request.getParameter("anho"));
+    public CDVO recogerCamposCD(String titulo, String artista, String pais, String precioString, String anhoString) {
+        Double precio =  Double.parseDouble(precioString);
+        Integer anho = Integer.parseInt(anhoString);
 
         CDVO cd = new CDVO(titulo, artista, pais, precio, anho);
         return cd;

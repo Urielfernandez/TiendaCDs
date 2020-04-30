@@ -111,7 +111,7 @@ public class ControladorTienda extends HttpServlet {
         if (opcion == null){
             mostrarPagina("jsp/error.jsp", request, response);
         }
-        
+
         else {
             switch(opcion){
                 case  "anhadirCarrito":
@@ -123,7 +123,7 @@ public class ControladorTienda extends HttpServlet {
                     mostrarPagina("./jsp/carrito.jsp", request, response);
                     break;
                 case "anhadirArticulo":
-                    Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request), 
+                    Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request.getParameter("titulo"), request.getParameter("artista"), request.getParameter("pais"), request.getParameter("precio"), request.getParameter("anho")), 
                                                             Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
                     carrito.anhadirAlCarrito(nuevoItem);
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
