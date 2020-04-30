@@ -36,6 +36,23 @@ public class DAOCDs {
         return false;
     }
 
+    public void insertarStockCD(String titulo, int cantidad, Connection conexion){
+        String consulta = "INSERT INTO inventario VALUES(?,?)";
+
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+
+            preparedStatement.setString(1, titulo);
+            preparedStatement.setInt(2, cantidad);
+
+            preparedStatement.executeUpdate();
+
+        } catch (SQLException e) {
+            System.out.println("DAOCD: No se ha podido guardar el cd:" + cd.getTitulo());
+            System.out.println(e.getMessage());
+        }
+    }
+
     public CDVO obtenerCD(CDVO cd, Connection conexion) {
         CDVO cdCargado = null;
         String consulta = "SELECT * FROM cds WHERE titulo=?";

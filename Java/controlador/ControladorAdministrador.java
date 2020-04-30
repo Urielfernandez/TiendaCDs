@@ -13,15 +13,15 @@ import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 
 public class ControladorAdministrador extends HttpServlet {
+    private HelperCD gestionCDS;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+        this.gestionCDS = new HelperCD();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
-        ///////////////////////
-        HelperCD gestionCDS = new HelperCD();
         /////////////////////////////////
         UsuarioVO usuario;
         Connection conexion;
@@ -57,8 +57,6 @@ public class ControladorAdministrador extends HttpServlet {
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
         /////////////////////////////////////
-        HelperCD gestionCDS = new HelperCD();
-        /////////////////////////////////////
         UsuarioVO usuario;
         Connection conexion;
         
@@ -92,14 +90,15 @@ public class ControladorAdministrador extends HttpServlet {
         
 
         switch(opcion){
-            case "addNewCD":
-                //recoger params del cd
-                ///CDVO cd = gestionCDS.recogerCamposCD(request);
-                //gestionCDS.anhadirNuevoCD(cd, conexion);
+            case "almacenarNuevoCD":
+                CDVO nuevoCD = this.gestionCDS.recogerCamposCD(request.getParameter("titulo"),
+                                                                request.getParameter("artista"),
+                                                                request.getParameter("pais"),
+                                                                request.getParameter("precio"),
+                                                                request.getParameter("anho"));
+                int cantidadIntroducida = Integer.parseInt(request.getParameter("cantidad"));
+                this.gestionCDS.anhadirNuevoCD(nuevoCD, cantidadIntroducida, conexion);
                 mostrarPagina("index.html", request, response);
-                break;
-
-            default:
                 break;
         }
     }

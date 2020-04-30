@@ -40,10 +40,11 @@ public class HelperCD {
         return null;
     }
 
-    public boolean anhadirNuevoCD(CDVO cd, Connection con) {
-        if (cd != null)
-            return conexionBDCDs.guardarCD(cd, con);
-        return false;
+    public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) {
+        if (cd != null){
+            this.conexionBDCDs.guardarCD(cd, con);
+            this.conexionBDCDs.insertarStockCD(cd.getTitulo(), cantidad, con);
+        }
     }
 
     public boolean actualizarStock(CDVO cd, int nuevoStock) {
