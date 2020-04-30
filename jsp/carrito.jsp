@@ -71,8 +71,10 @@
                   <button type="submit" class="btn btn-primary px-5">Pagar</button>
                 </form>
               </li>
-              <li class="col-2 offset-5 text-right"><h4>Total:</h4></li>
-              <li class="col-3"><h4><fmt:formatNumber value="${importeTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
+              <li class="col-2 offset-5 text-right my-auto"><h5>Total:</h5></li>
+              <li class="col-3 my-auto">
+                <h5><fmt:formatNumber value="${importeTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
+              </li>
             </ul>
           </li> 
         </ul>
