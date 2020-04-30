@@ -57,6 +57,7 @@
 }
 
 .items {
+  padding: 8px 0px 8px 0px;
   list-style: none;
   border-bottom: 1px solid #d3d3d3;
 }

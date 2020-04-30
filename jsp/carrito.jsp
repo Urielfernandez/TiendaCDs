@@ -30,27 +30,27 @@
       
       <div class="row">
         <ul class="col tabla">
-          <li class="items p-0 py-1 mt-3">
+          <li class="items mt-2">
             <ul class="row p-0">
-              <li class="col-4">Producto</li>
-              <li class="col-2">Precio unidad</li>
-              <li class="col-2">Cantidad</li>
-              <li class="col-2">Importe</li>
+              <li class="col-5"><b>Producto</b></li>
+              <li class="col-2"><b>Precio unidad</b></li>
+              <li class="col-2"><b>Cantidad</b></li>
+              <li class="col-2"><b>Importe</b></li>
             </ul>
           </li> 
               
           <c:forEach var="seleccion" items="${contenidoCarrito}">
-            <li class="items p-0 py-1">
+            <li class="items">
               <ul class="row p-0">
-                <li class="col-4 my-auto">${seleccion.cd.titulo}</li>
+                <li class="col-5 my-auto">${seleccion.cd.titulo}</li>
                 <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
-                <li class="col-2 my-auto">${articulo.cantidad}</li>
+                <li class="col-2 my-auto">${seleccion.cantidad}</li>
                 <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.cd.precio * seleccion.cantidad}" type="number" minFractionDigits="2" maxFractionDigits="2"/>€</li>
                 <li class="col-1 my-auto">
                   <form action="./tienda" method="post" class="text-center">
-                    <input type="hidden" name="opcion" value="removeFromCarrito">
-                    <input type="hidden" name="nombre" value="${articulo.cd.titulo}">
-                    <button type="submit" class="btnInicio">
+                    <input type="hidden" name="opcion" value="eliminarArticulo">
+                    <input type="hidden" name="titulo" value="${articulo.cd.titulo}">
+                    <button type="submit" class="btn btn-light">
                       <img src="./imagenes/iconos/papelera.svg" height="24" width="24">
                     </button>
                   </form>
