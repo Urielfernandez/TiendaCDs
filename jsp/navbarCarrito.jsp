@@ -17,7 +17,7 @@
         <a class="linkBarraNavegacion" href="tienda">Catálogo</a>
       </li>
       <li class="itemBarraNavegacion">
-        <a class="linkBarraNavegacion" href="tienda?vista=carrito">Carrito</a>
+        <a class="linkBarraNavegacion activo" href="tienda?vista=carrito">Carrito</a>
       </li>
     </ul>
 

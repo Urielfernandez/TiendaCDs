@@ -14,7 +14,7 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item active">
-        <a class="linkBarraNavegacion" href="tienda">Catálogo</a>
+        <a class="linkBarraNavegacion activo" href="tienda">Catálogo</a>
       </li>
       <li class="itemBarraNavegacion">
         <a class="linkBarraNavegacion" href="tienda?vista=carrito">Carrito</a>

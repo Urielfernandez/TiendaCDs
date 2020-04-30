@@ -18,8 +18,8 @@
 			crossorigin="anonymous">
 	</head>
 
-	<body>
-		<%@ include file="navbar.jsp" %>
+	<body class="fondoPagina">
+		<%@ include file="navbarCatalogo.jsp" %>
 
     <section class="container">
       <div class="row">

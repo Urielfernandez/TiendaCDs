@@ -1,5 +1,27 @@
 #barraNavegacion {
-  background-color: #172230;
+  background-color: #ffffff;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
+}
+
+.fondoPagina {
+  background-color: #f8f8f8;
+}
+
+.linkBarraNavegacion {
+  display: block;
+  color:rgba(0,0,0,.85);
+  padding: 8px 16px 8px 16px;
+  font-size: 20px;
+}
+
+.linkBarraNavegacion:hover {
+  color: #007BFF;
+  text-decoration: none;
+}
+
+.activo {
+  color: black;
+  font-weight: bold;
 }
 
 #botonCollapse {
@@ -9,19 +31,6 @@
 
 #botonCollapse button {
   color: white;
-}
-
-.itemsBarraNavegacion li a {
-  color: white;
-  font-size: 20px;
-}
-
-.itemsBarraNavegacion li a:hover {
-  background-color: #497dac;
-  text-decoration: none;
-  color: white;
-  font-size: 20px;
-  border-radius: 4px;
 }
 
 @media screen and (min-width: 768px){
@@ -37,13 +46,13 @@
 }
 
 .tituloPagina {
-  margin: 10px 0px;
+  margin: 10px 0px 10px 0px;
   padding: 0px 0px 6px;
   border-bottom: 1px solid #c8c9cd;
 }
 
 .boton {
-  padding: 4px 8px;
+  padding: 4px 8px 4px 8px;
   border-style: none;
   border-radius: 4px;
   background-color: #aec7ce;
