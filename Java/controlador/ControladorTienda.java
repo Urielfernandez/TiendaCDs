@@ -4,9 +4,12 @@ import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
+import java.util.ArrayList;
+
 import javax.servlet.*;
 import javax.servlet.http.*;
 import modelo.tienda.Carrito;
+import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.UsuarioVO;
@@ -41,8 +44,7 @@ public class ControladorTienda extends HttpServlet {
         if (vista == null) {
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/catalogo.jsp", request, response);
-        }
-        else {
+        } else {
             switch (vista) {
                 case "carrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
@@ -89,6 +91,14 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("importeTotal", this.carrito.getImporteTotal());
                     request.setAttribute("contenidoCarrito", this.carrito.getProductos().values());
                     mostrarPagina("jsp/carrito.jsp", request, response);
+                    break;
+                case "comprar":
+                    //this.usuario.getEmail()
+                    // Parte de envio del correo
+                    MailSender mensajero = new MailSender();
+                    mensajero.enviarConGMail("tiendacdsdawa@gmail.com",
+                                            this.carrito.getProductos().values());
+                    mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;
                 case "iniciarSesion":
                     InicioSesionVO inicioSesion = new InicioSesionVO();
