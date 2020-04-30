@@ -18,12 +18,13 @@ function getCookie(nombreCookie) {
     return "";
 }
 
-$(document).ready(function(){
+$("#btnLogin").click(function(){
     //Obtenemos el valor de la cookie
     var valorCookie = getCookie("email");
     var partes = valorCookie.split("=");
     valorCookie = partes[1];
 
-    // Comprobar si hai cookie para pagar
-
+    if(valorCookie != null){
+        $("#formulario").submit();
+    }
 });
