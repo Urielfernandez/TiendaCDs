@@ -50,7 +50,7 @@ public class ControladorAdministrador extends HttpServlet {
         conexion = (Connection) sesion.getAttribute("conexion");
 
         //COMPROBACIONES DE opcion
-        request.setAttribute("listaArticulos", this.gestionUsuarios.listarUsuarios(conexion));
+        request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
         mostrarPagina("jsp/administracion.jsp", request, response);
 
         

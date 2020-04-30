@@ -77,7 +77,8 @@ public class DAOUsuarios {
         return null;
     }
 
-    public ArrayList<UsuarioVO> obtenerUsuarios(Connection conexion) {
+    //Para ver usuarios desde el menu de administracion, se almacenan en InicioSesionVO para tener tanto e-mail como contrasenha
+    public ArrayList<InicioSesionVO> obtenerUsuarios(Connection conexion) {
         String consulta = "SELECT * FROM usuarios";
         ArrayList<InicioSesionVO> listadoDeUsuarios = new ArrayList<>();
 
@@ -90,6 +91,7 @@ public class DAOUsuarios {
                 InicioSesionVO datosUsuario = new InicioSesionVO(resultado.getString("email"), resultado.getString("contrasenha"));
                 listadoDeUsuarios.add(datosUsuario);
             }
+            return listadoDeUsuarios;
         }catch (SQLException e) {
             System.out.println("DAOUsuarios: No se han podido obtener los usuarios.");
             System.out.println(e.getMessage());

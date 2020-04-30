@@ -30,7 +30,7 @@ public class HelperUsuarios {
         
     }
 
-    public ArrayList<UsuarioVO> listarUsuarios (Connection conexion) {
+    public ArrayList<InicioSesionVO> listarUsuarios (Connection conexion) {
         return this.dao.obtenerUsuarios(conexion);
     }
 }

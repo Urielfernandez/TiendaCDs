@@ -22,19 +22,29 @@
 		<%@ include file="navbarAdministracion.jsp" %>
 
     <section class="container">
-      <div class="row">
-        <div class="col">
-          <h1 class="tituloPagina">Usuarios</h1>
+        <div class="row">
+            <div class="col">
+            <h1 class="tituloPagina">Usuarios</h1>
+            </div>
         </div>
-      </div>
 
-      <div class="row">
-        <c:forEach var="cd" items="${listaArticulos}">
-          <%@ include file="cd.jsp" %>
-        </c:forEach>
-      </div>
-    </div>
+        <table class="">
+            <tr>
+                <td><b>E-mail</b></td>
+                <td><b>Contraseña</b></td>
+                <td><b>Selección</b></td>
+            </tr>
+            <form action="ACOMPLETAR" method="POST">
+            <c:forEach var="usuario" items="${listaUsuarios}">
+                <tr>
+                    <td>${usuario.email}</td>
+                    <td>${usuario.contrasenha}</td>
+                    <td><input type="radio" name="inputEliminar" value="${usuario.email}"></td>
+                </tr>
+            </c:forEach>
 
+            </form>
+        </table>
     </section>
 
 		<!-- JQuery -->
