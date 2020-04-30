@@ -82,12 +82,7 @@ public class ControladorTienda extends HttpServlet {
         Carrito carrito = null;
         UsuarioVO usuario = null;
         Connection conexion = null;
-        /*
-         * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
-         * una conexion a la BD y almacenarla en dicha sesion
-         */
 
-        // Obtenemos la sesion y la creamos si no la hay
 		HttpSession sesion = request.getSession();
 
         if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
@@ -116,6 +111,7 @@ public class ControladorTienda extends HttpServlet {
         if (opcion == null){
             mostrarPagina("jsp/error.jsp", request, response);
         }
+        
         else {
             switch(opcion){
                 case  "anhadirCarrito":
