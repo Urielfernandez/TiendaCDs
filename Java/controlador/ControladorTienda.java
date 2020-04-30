@@ -20,7 +20,6 @@ public class ControladorTienda extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String VariableEstado = " "; //Con esta variable se creará una trazabilidad para permitir ver qué está haciendo
         String opcion = request.getParameter("opcion");
         //atributos para las llamadas a los helpers
         HelperCD gestionCDS = new HelperCD();
@@ -61,8 +60,6 @@ public class ControladorTienda extends HttpServlet {
         carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");
 
-        request.setAttribute("VARIABLE_ESTADO", "Pasa por el doGet(). La opcion es: "+opcion);
-
         if(opcion == null){
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/catalogo.jsp", request, response);
@@ -73,15 +70,6 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
-                    
-                    //EL METODO DE AÑADIR ARTICULOS SE REALIZA MEDIANTE POST; NO MEDIANTE GET, ESTÁ EN EL SIGUIENTE MÉTODO
-               /* case "anhadirArticulo":
-                    Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request), 
-                                                            Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
-                    carrito.anhadirAlCarrito(nuevoItem);
-                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                    mostrarPagina("jsp/catalogo.jsp", request, response);
-                    break;*/
             }
         }
     }
