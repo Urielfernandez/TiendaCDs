@@ -30,7 +30,7 @@
 
       <div class="row mt-2">
         <div class="col-md-6 offset-md-3">
-          <form action="" method="POST">
+          <form action="administrador" method="POST">
             <div class="form-group">
               <label for="nombre">Nombre</label>
               <input type="text" class="form-control" name="nombre">
@@ -47,6 +47,7 @@
             </div>
 
             <div class="form-group text-center">
+              <input type="hidden" name="opcion" value="registrar">
               <button type="submit" class="boton px-5">Registrarse</button>
             </div>
           </form>
