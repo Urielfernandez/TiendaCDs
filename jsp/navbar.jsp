@@ -22,7 +22,7 @@
     </ul>
 
     <c:choose>
-      <c:when test="${nombreUsuario == null}">
+      <c:when test="${email == null}">
         <form class="form-inline mx-md-3 my-2">
           <a href="registrar">
             <button type="button" class="btn btn-outline-light">Registrarse</button>
@@ -40,7 +40,7 @@
         <ul class="navbar-nav">
           <li class="nav-item my-auto">
             <a class="usuario" href="#">
-              ${nombreUsuario}
+              ${email}
             </a>
           </li>
           <li class="nav-item">

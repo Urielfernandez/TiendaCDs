@@ -101,11 +101,11 @@ public class ControladorTienda extends HttpServlet {
                         // El usuario ha introducido unas credeciales válidas y queda logueado
                         usuario = loginUsuario;
                         // Enviamos la cookie que indica que el usuario está logueado
-                        Cookie cookie = new Cookie("nombre", usuario.getNombre());
+                        Cookie cookie = new Cookie("email", usuario.getNombre());
                         cookie.setMaxAge(30 * 60);
                         response.addCookie(cookie);
 
-                        sesion.setAttribute("nombreUsuario", usuario.getNombre());
+                        sesion.setAttribute("email", usuario.getEmail());
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
                     } else {
