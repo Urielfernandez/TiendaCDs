@@ -43,9 +43,9 @@
                 <li class="col-4 my-auto">${usuario.email}</li>
                 <li class="col-2 my-auto">${usuario.contrasenha}</li>
                 <li class="col-1 my-auto">
-                  <form action="" method="POST" class="text-center">
+                  <form action="administrador" method="POST" class="text-center">
                     <input type="hidden" name="usuarioEliminar" value="${usuario.email}">
-                    <input type="hidden" name="opcion" value="">
+                    <input type="hidden" name="opcion" value="eliminarUsuario">
                     <input type="submit" class="boton px-1" value="Eliminar">
                   </form>
                 </li>
