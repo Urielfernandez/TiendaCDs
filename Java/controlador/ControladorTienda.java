@@ -105,7 +105,7 @@ public class ControladorTienda extends HttpServlet {
                         cookie.setMaxAge(30 * 60);
                         response.addCookie(cookie);
 
-                        request.setAttribute("NombreUsuario", usuario.getNombre());
+                        request.setAttribute("nombreUsuario", usuario.getNombre());
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
                     } else {
