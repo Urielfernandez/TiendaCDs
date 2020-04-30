@@ -21,6 +21,10 @@
 	<body>
 		<%@ include file="navbar.jsp" %>
 
+		
+  <!-- BRAIS; INCLUIR ESTO EN UN SITIO CHULO -->
+  <p>NOMBRE USUARIO: ${NombreUsuario}</p>
+
     <section class="container">
       <div class="row">
         <div class="col">
