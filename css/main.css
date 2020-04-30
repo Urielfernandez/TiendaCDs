@@ -42,3 +42,33 @@
   border: 2px solid #d3d3d3;
   border-radius: 8px;
 }
+
+.titulos {
+  list-style: none;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.titulos li {
+  font-size: 18px;
+}
+
+.tabla ul {
+  list-style: none;
+}
+
+.items {
+  list-style: none;
+  border-bottom: 1px solid #d3d3d3;
+}
+
+.items ul li {
+  font-size: 18px;
+}
+
+.total {
+  list-style: none;
+}
+
+.total ul li {
+  list-style: none;
+}

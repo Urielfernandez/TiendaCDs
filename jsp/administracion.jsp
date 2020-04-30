@@ -22,29 +22,35 @@
 		<%@ include file="navbarAdministracion.jsp" %>
 
     <section class="container">
-        <div class="row">
-            <div class="col">
-            <h1 class="tituloPagina">Usuarios</h1>
-            </div>
+      <div class="row">
+        <div class="col">
+          <h1 class="tituloPagina">Usuarios</h1>
         </div>
+      </div>
 
-        <table class="">
-            <tr>
-                <td><b>E-mail</b></td>
-                <td><b>Contraseña</b></td>
-                <td><b>Selección</b></td>
-            </tr>
-            <form action="ACOMPLETAR" method="POST">
-            <c:forEach var="usuario" items="${listaUsuarios}">
-                <tr>
-                    <td>${usuario.email}</td>
-                    <td>${usuario.contrasenha}</td>
-                    <td><input type="radio" name="inputEliminar" value="${usuario.email}"></td>
-                </tr>
-            </c:forEach>
-
-            </form>
-        </table>
+      <div class="row">
+        <ul class="col tabla">
+          <li class="items p-0 py-1 mt-3">
+            <ul class="row p-0">
+              <li class="col-5">Correo electrónico</li>
+              <li class="col-5">Contraseña</li>
+            </ul>
+          </li> 
+              
+          <c:forEach var="usuario" items="${listaUsuarios}">
+            <li class="items p-0 py-1">
+              <ul class="row p-0">
+                <li class="col-5 my-auto">${usuario.email}</li>
+                <li class="col-5 my-auto">${usuario.contrasenha}</li>
+                <li class="col-2 my-auto">
+                  <form action="./tienda" method="POST" class="text-center">
+                    <input type="radio" name="inputEliminar" value="${usuario.email}">
+                  </form>
+                </li>
+              </ul>
+            </li>
+          </c:forEach>
+        </ul>
     </section>
 
 		<!-- JQuery -->
