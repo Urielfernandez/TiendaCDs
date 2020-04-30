@@ -102,8 +102,8 @@ public class ControladorTienda extends HttpServlet {
                     //this.usuario.getEmail()
                     // Parte de envio del correo
                     MailSender mensajero = new MailSender();
-                    mensajero.enviarConGMail("tiendacdsdawa@gmail.com",
-                                            this.carrito.getProductos().values());
+                    mensajero.enviarConGMail(usuario.getEmail() ,this.carrito.getProductos().values());
+                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;
                 case "iniciarSesion":
@@ -123,6 +123,7 @@ public class ControladorTienda extends HttpServlet {
                     response.addCookie(cookie);
 
                     sesion.setAttribute("email", usuario.getEmail());
+                    sesion.setAttribute("usuario", usuario);
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
 
@@ -191,6 +192,8 @@ public class ControladorTienda extends HttpServlet {
         // Creamos el usuario, el carrito y la conexion para una sesion si no existen
         if (sesion.getAttribute("usuario") == null) {
             sesion.setAttribute("usuario", new UsuarioVO());
+        }else{
+            usuario = (UsuarioVO) sesion.getAttribute("usuario");
         }
 
         if (sesion.getAttribute("carrito") == null) {
