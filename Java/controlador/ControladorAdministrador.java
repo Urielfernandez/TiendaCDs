@@ -51,7 +51,7 @@ public class ControladorAdministrador extends HttpServlet {
                                                                 request.getParameter("anho"));
                 int cantidadIntroducida = Integer.parseInt(request.getParameter("cantidad"));
                 this.gestionCDS.anhadirNuevoCD(nuevoCD, cantidadIntroducida, conexion);
-                mostrarPagina("index.html", request, response);
+                mostrarPagina("jsp/anhadirNuevoCD.jsp", request, response);
                 break;
         }
     }

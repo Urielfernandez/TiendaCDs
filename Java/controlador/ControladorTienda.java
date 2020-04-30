@@ -82,7 +82,12 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;
-
+                case "removeFromCarrito":
+                    carrito.eliminarDelCarrito(request.getParameter("titulo"));
+                    request.setAttribute("precioTotal", carrito.getImporteTotal());
+                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                    mostrarPagina("jsp/carrito.jsp", request, response);
+                    break;
                 case "iniciarSesion":
                     InicioSesionVO inicioSesion = new InicioSesionVO();
                     inicioSesion.setEmail((String) request.getParameter("email"));

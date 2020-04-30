@@ -23,6 +23,12 @@ public class Carrito {
         }
     }
 
+    public void eliminarDelCarrito(String titulo){
+        if(this.productos.containsKey(titulo)){
+            this.productos.remove(titulo);
+        }
+    }
+
 
     public HashMap<String,Seleccion> getProductos() {
         return this.productos;

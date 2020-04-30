@@ -30,7 +30,7 @@
 
       <div class="row">
         <ul class="col tabla">
-          <li class="items mt-2 py-2">
+          <li class="items mt-2">
             <ul class="row p-0">
               <li class="col-4"><b>Correo electrónico</b></li>
               <li class="col-2"><b>Contraseña</b></li>
@@ -38,7 +38,7 @@
           </li> 
               
           <c:forEach var="usuario" items="${listaUsuarios}">
-            <li class="items py-2">
+            <li class="items">
               <ul class="row p-0">
                 <li class="col-4 my-auto">${usuario.email}</li>
                 <li class="col-2 my-auto">${usuario.contrasenha}</li>
