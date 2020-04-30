@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -102,27 +103,45 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "iniciarSesion":
                     InicioSesionVO inicioSesion = new InicioSesionVO();
-                    inicioSesion.setEmail((String) request.getParameter("email"));
-                    inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
+                    inicioSesion.setEmail(request.getParameter("email"));
+                    inicioSesion.setContrasenha(request.getParameter("contrasenha"));
+
+                    usuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
+
+                    // DIRECTAMENTE QUITAMOS EL IF PORQUE SABEMOS QUE SIEMPRE SON CORRECTAS
+                    // LAS CREDENCIALES
+                    // El usuario ha introducido unas credeciales válidas y queda logueado
+
+                    // Enviamos la cookie que indica que el usuario está logueado
+                    Cookie cookie = new Cookie("email", usuario.getNombre());
+                    cookie.setMaxAge(30 * 60);
+                    response.addCookie(cookie);
+
+                    sesion.setAttribute("email", usuario.getEmail());
+                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                    mostrarPagina("./jsp/catalogo.jsp", request, response);
+
+                    break;
+
+                case "chequearErroresCredenciales":
+
+                    request.setCharacterEncoding("UTF-8");
+                    response.setCharacterEncoding("UTF-8");
+
+                    response.setContentType("text/plain");
+                    PrintWriter out = response.getWriter();
+
+                    inicioSesion = new InicioSesionVO();
+                    inicioSesion.setEmail(request.getParameter("email"));
+                    inicioSesion.setContrasenha(request.getParameter("contrasenha"));
 
                     UsuarioVO loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
 
                     if (loginUsuario != null) {
-                        // El usuario ha introducido unas credeciales válidas y queda logueado
-                        usuario = loginUsuario;
-                        // Enviamos la cookie que indica que el usuario está logueado
-                        Cookie cookie = new Cookie("email", usuario.getNombre());
-                        cookie.setMaxAge(30 * 60);
-                        response.addCookie(cookie);
-
-                        sesion.setAttribute("email", usuario.getEmail());
-                        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                        mostrarPagina("./jsp/catalogo.jsp", request, response);
+                        out.print("true");
                     } else {
-                        // El usuario no ha introducido unas credenciales válidas
-                        mostrarPagina("index.html", request, response);
+                        out.print("false");
                     }
-
                     break;
             }
         }
@@ -160,23 +179,22 @@ public class ControladorTienda extends HttpServlet {
         if (sesion.getAttribute("usuario") == null) {
             sesion.setAttribute("usuario", new UsuarioVO());
         }
-        
+
         if (sesion.getAttribute("carrito") == null) {
             sesion.setAttribute("carrito", new Carrito());
         }
-        
+
         if (sesion.getAttribute("conexion") == null) {
             Connection aux = crearConexionBBDD();
-        
+
             // Comprobamos si se conecta, si no mostramos un error
             if (aux != null) {
                 sesion.setAttribute("conexion", aux);
-            }
-            else {
+            } else {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
         }
-        
+
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");

@@ -46,15 +46,27 @@
                   <form action="administrador" method="POST" class="text-center">
                     <input type="hidden" name="usuarioEliminar" value="${usuario.email}">
                     <input type="hidden" name="opcion" value="eliminarUsuario">
-                    <input type="submit" class="boton px-1" value="Eliminar">
+                    <button type="submit" class="btn btn-light">
+                      <img src="imagenes/iconos/papelera.svg" height="24" width="24">
+                    </button>
                   </form>
                 </li>
                 <li class="col-5 my-auto">
-                  <form action="" method="POST" class="text-center">
+                
+                  <form action="administrador" method="POST" class="text-center">
                     <input type="hidden" name="usuarioModificar" value="${usuario.email}">
-                    <input type="hidden" name="opcion" value="">
-                    <input type="submit" class="boton px-1" value="Modificar contraseña">
-                    <input type="text" class="" placeholder="Nueva contraseña">
+                    <input type="hidden" name="opcion" value="modificarContrasenha">
+
+                    <div class="form-group my-auto">
+                      <div class="form-row">
+                        <div class="col-6">
+                          <input type="text" name="nuevaContrasenha" class="form-control" placeholder="Nueva contraseña" required>
+                        </div>
+                        <div class="col-4">
+                          <input type="submit" class="btn btn-primary" value="Modificar contraseña">
+                        </div>
+                      </div>  
+                    </div>
                   </form>
                 </li>
               </ul>
@@ -65,9 +77,9 @@
     </section>
 
 		<!-- JQuery -->
-		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
-      integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" 
-      crossorigin="anonymous">
+		<script src="https://code.jquery.com/jquery-3.5.0.min.js"
+			integrity="sha256-xNzN2a4ltkB44Mc/Jz3pT4iU1cmeR0FkXs4pru/JxaQ="
+			crossorigin="anonymous">
     </script>
 		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" 
       integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
