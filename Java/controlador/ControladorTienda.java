@@ -105,6 +105,21 @@ public class ControladorTienda extends HttpServlet {
                         cookie.setMaxAge(30 * 60);
                         response.addCookie(cookie);
 
+        request.setCharacterEncoding("UTF-8");
+		response.setCharacterEncoding("UTF-8");
+
+		response.setContentType("text/plain");
+		PrintWriter out = response.getWriter();
+		
+		Usuario usuarioComprobar = new Usuario(request.getParameter("email"), request.getParameter("contrasenha"));
+
+		if(comprobarLogin(usuarioComprobar)){
+			out.print("true");
+		}
+		else{
+			out.print("false");
+		}
+
                         sesion.setAttribute("email", usuario.getEmail());
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
