@@ -1,14 +1,11 @@
 package controlador;
 
-import java.io.Console;
 import java.io.IOException;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.sound.sampled.SourceDataLine;
-
 import modelo.tienda.Carrito;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
@@ -16,21 +13,20 @@ import modelo.vo.UsuarioVO;
 
 public class ControladorTienda extends HttpServlet {
 
-    HelperCD gestionCDS;
-    HelperUsuarios gestionUsuarios;
+    private HelperCD gestionCDS;
+    private HelperUsuarios gestionUsuarios;
 
     // atributos necesarias para la realización de las distintas peticiones
-    Carrito carrito;
-    UsuarioVO usuario;
-    Connection conexion;
-    HttpSession sesion;
+    private Carrito carrito;
+    private UsuarioVO usuario;
+    private Connection conexion;
+    private HttpSession sesion;
 
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
 
         gestionCDS = new HelperCD();
         gestionUsuarios = new HelperUsuarios();
-
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -40,37 +36,13 @@ public class ControladorTienda extends HttpServlet {
          * una conexion a la BD y almacenarla en dicha sesion
          */
 
-        // Obtenemos la sesion y la creamos si no la hay
-        sesion = request.getSession();
-
-        // Creamos el usuario, el carrito y la conexion para una sesion si no existen
-        if (sesion.getAttribute("usuario") == null) {
-            sesion.setAttribute("usuario", new UsuarioVO());
-        }
-
-        if (sesion.getAttribute("carrito") == null) {
-            sesion.setAttribute("carrito", new Carrito());
-        }
-
-        if (sesion.getAttribute("conexion") == null) {
-            Connection aux = crearConexionBBDD();
-
-            // Comprobamos si se conecta, si no mostramos un error
-            if (aux != null) {
-                sesion.setAttribute("conexion", aux);
-            } else {
-                mostrarPagina("jsp/error.jsp", request, response);
-            }
-        }
-
-        usuario = (UsuarioVO) sesion.getAttribute("usuario");
-        carrito = (Carrito) sesion.getAttribute("carrito");
-        conexion = (Connection) sesion.getAttribute("conexion");
+        actualizarDatosSesion(request, response);
 
         if (vista == null) {
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/catalogo.jsp", request, response);
-        } else {
+        }
+        else {
             switch (vista) {
                 case "carrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
@@ -82,31 +54,8 @@ public class ControladorTienda extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
-        // atributos necesarias para la realización de las distintas peticiones
 
-        sesion = request.getSession();
-
-        if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
-                && sesion.getAttribute("conexion") == null) {
-            // Creamos el usuario y el carrito para una sesion
-            sesion.setAttribute("usuario", new UsuarioVO());
-            sesion.setAttribute("carrito", new Carrito());
-
-            Connection aux = crearConexionBBDD();
-
-            // Comprobamos si se conecta, si no mostramos un error
-            if (aux != null) {
-                sesion.setAttribute("conexion", aux);
-                conexion = aux;
-            } else {
-                mostrarPagina("jsp/error.jsp", request, response);
-            }
-        } else {
-            // Obtenemos el usuario y el carrito de la sesion
-            carrito = (Carrito) sesion.getAttribute("carrito");
-            usuario = (UsuarioVO) sesion.getAttribute("usuario");
-            conexion = (Connection) sesion.getAttribute("conexion");
-        }
+        actualizarDatosSesion(request, response);
 
         if (opcion == null) {
             mostrarPagina("jsp/error.jsp", request, response);
@@ -183,6 +132,37 @@ public class ControladorTienda extends HttpServlet {
         }
 
         return conexion;
+    }
+
+    private void actualizarDatosSesion(HttpServletRequest request, HttpServletResponse response)
+            throws ServletException, IOException {
+        // Obtenemos la sesion y la creamos si no la hay
+        sesion = request.getSession();
+
+        // Creamos el usuario, el carrito y la conexion para una sesion si no existen
+        if (sesion.getAttribute("usuario") == null) {
+            sesion.setAttribute("usuario", new UsuarioVO());
+        }
+        
+        if (sesion.getAttribute("carrito") == null) {
+            sesion.setAttribute("carrito", new Carrito());
+        }
+        
+        if (sesion.getAttribute("conexion") == null) {
+            Connection aux = crearConexionBBDD();
+        
+            // Comprobamos si se conecta, si no mostramos un error
+            if (aux != null) {
+                sesion.setAttribute("conexion", aux);
+            }
+            else {
+                mostrarPagina("jsp/error.jsp", request, response);
+            }
+        }
+        
+        usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        carrito = (Carrito) sesion.getAttribute("carrito");
+        conexion = (Connection) sesion.getAttribute("conexion");
     }
 
 }
