@@ -7,12 +7,11 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 public class mailSender {
-    private String remitente;
+    private String remitente; //Para la dirección nomcuenta@gmail.com
     private String clave;
 
     public void enviarConGMail(String destinatario, String asunto, String cuerpo) {
         // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
-        private String remitente = "nomcuenta";  //Para la dirección nomcuenta@gmail.com
     
         Properties props = System.getProperties();
         props.put("mail.smtp.host", "smtp.gmail.com");  //El servidor SMTP de Google
