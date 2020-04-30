@@ -9,6 +9,7 @@ import javax.servlet.http.*;
 
 import modelo.tienda.Carrito;
 import modelo.vo.CDVO;
+import modelo.vo.InicioSesionVO;
 import modelo.vo.UsuarioVO;
 
 public class ControladorAdministrador extends HttpServlet {
@@ -62,6 +63,20 @@ public class ControladorAdministrador extends HttpServlet {
                 else {
                     mostrarPagina("jsp/error.jsp", request, response);
                 }
+            break;
+
+            case "modificarContrasenha":
+            String usuarioModificar = request.getParameter("usuarioModificar");
+            String nuevaContrasenha = request.getParameter("nuevaContrasenha");
+            InicioSesionVO datosUsuario = new InicioSesionVO(usuarioModificar, nuevaContrasenha);
+
+            if(this.gestionUsuarios.modificarContrasenha(datosUsuario, this.conexion)) {
+                request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
+                    mostrarPagina("jsp/administracion.jsp", request, response);
+            }
+            else {
+                mostrarPagina("jsp/error.jsp", request, response);
+            }
             break;
         }
     }
