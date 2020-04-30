@@ -79,7 +79,7 @@ public class DAOUsuarios {
 
     public ArrayList<UsuarioVO> obtenerUsuarios(Connection conexion) {
         String consulta = "SELECT * FROM usuarios";
-        ArrayList<UsuarioVO> listadoDeUsuarios = new ArrayList<>();
+        ArrayList<InicioSesionVO> listadoDeUsuarios = new ArrayList<>();
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
