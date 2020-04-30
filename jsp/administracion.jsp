@@ -43,7 +43,7 @@
                 <li class="col-5 my-auto">${usuario.email}</li>
                 <li class="col-5 my-auto">${usuario.contrasenha}</li>
                 <li class="col-2 my-auto">
-                  <form action="./tienda" method="POST" class="text-center">
+                  <form action="" method="POST" class="text-center">
                     <input type="radio" name="inputEliminar" value="${usuario.email}">
                   </form>
                 </li>
