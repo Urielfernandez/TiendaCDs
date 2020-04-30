@@ -49,7 +49,7 @@
                 <li class="col-1 my-auto">
                   <form action="./tienda" method="post" class="text-center">
                     <input type="hidden" name="opcion" value="eliminarArticulo">
-                    <input type="hidden" name="titulo" value="${articulo.cd.titulo}">
+                    <input type="hidden" name="titulo" value="${seleccion.cd.titulo}">
                     <button type="submit" class="btn btn-light">
                       <img src="./imagenes/iconos/papelera.svg" height="24" width="24">
                     </button>

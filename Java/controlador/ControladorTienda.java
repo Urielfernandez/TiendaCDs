@@ -86,9 +86,8 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "eliminarArticulo":
                     this.carrito.eliminarDelCarrito(request.getParameter("titulo"));
-                    sesion.setAttribute("carrito", this.carrito);
                     request.setAttribute("importeTotal", this.carrito.getImporteTotal());
-                    request.setAttribute("contenidoCarrito",this.carrito.getProductos().values());
+                    request.setAttribute("contenidoCarrito", this.carrito.getProductos().values());
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
                 case "iniciarSesion":
