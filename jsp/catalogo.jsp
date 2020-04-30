@@ -16,12 +16,7 @@
 	</head>
 
 	<body>
-
-	<%@ include file="navbar.jsp" %>
-	
-	<p>CHEQUEOS PREVIOS:
-		${VARIABLE_ESTADO}
-	</p>
+		<%@ include file="navbar.jsp" %>
 
     <section class="container">
       <div class="row">
