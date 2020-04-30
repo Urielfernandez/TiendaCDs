@@ -1,6 +1,6 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
-<nav id="barraNavegacion" class="navbar navbar-expand-md sticky-top py-1 navbar-light">
+<nav id="barraNavegacion" class="navbar navbar-expand-md sticky-top py-1 navbar-dark bg-dark">
   <a class="navbar-brand" href="index.html">
     <img src="imagenes/cdLogo.jpg" alt="Inicio" height="40" width="45" title="Inicio">
   </a>
@@ -13,7 +13,7 @@
 
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
-      <li class="nav-item active">
+      <li class="nav-item">
         <a class="linkBarraNavegacion" href="tienda">Catálogo</a>
       </li>
       <li class="itemBarraNavegacion">
@@ -23,13 +23,13 @@
 
     <form class="form-inline mx-md-3 my-2">
       <a href="registrar">
-        <button type="button" class="btn btn-primary">Registrarse</button>
+        <button type="button" class="btn btn-outline-light">Registrarse</button>
       </a>
     </form>
 
     <form class="form-inline my-2">
       <a href="html/iniciarSesion.html">
-        <button type="button" class="btn btn-primary">Iniciar sesión</button>
+        <button type="button" class="btn btn-outline-light">Iniciar sesión</button>
       </a>
     </form>
   </div>
