@@ -16,6 +16,9 @@
       <li class="nav-item">
         <a class="linkBarraNavegacion activo" href="">Menú de administración</a>
       </li>
+      <li class="nav-item">
+        <a class="linkBarraNavegacion activo" href="./jsp/anhadirNuevoCD.jsp">Añadir Nuevo</a>
+      </li>
     </ul>
 
     <form class="form-inline my-2">
