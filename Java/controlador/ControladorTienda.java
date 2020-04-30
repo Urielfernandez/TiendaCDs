@@ -95,23 +95,20 @@ public class ControladorTienda extends HttpServlet {
                     inicioSesion.setEmail((String) request.getParameter("email"));
                     inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
 
-                    UsuarioVO loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
+                    usuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
 
-                    if (loginUsuario != null) {
-                        // El usuario ha introducido unas credeciales válidas y queda logueado
-                        usuario = loginUsuario;
-                        // Enviamos la cookie que indica que el usuario está logueado
-                        Cookie cookie = new Cookie("email", usuario.getNombre());
-                        cookie.setMaxAge(30 * 60);
-                        response.addCookie(cookie);
+                    // DIRECTAMENTE QUITAMOS EL IF PORQUE SABEMOS QUE SIEMPRE SON CORRECTAS
+                    // LAS CREDENCIALES
+                    // El usuario ha introducido unas credeciales válidas y queda logueado
 
-                        sesion.setAttribute("email", usuario.getEmail());
-                        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                        mostrarPagina("./jsp/catalogo.jsp", request, response);
-                    } else {
-                        // El usuario no ha introducido unas credenciales válidas
-                        mostrarPagina("index.html", request, response);
-                    }
+                    // Enviamos la cookie que indica que el usuario está logueado
+                    Cookie cookie = new Cookie("email", usuario.getNombre());
+                    cookie.setMaxAge(30 * 60);
+                    response.addCookie(cookie);
+
+                    sesion.setAttribute("email", usuario.getEmail());
+                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                    mostrarPagina("./jsp/catalogo.jsp", request, response);
 
                     break;
 
@@ -127,9 +124,9 @@ public class ControladorTienda extends HttpServlet {
                     inicioSesion.setEmail((String) request.getParameter("email"));
                     inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
 
-                    loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
+                    UsuarioVO loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
 
-                    if (loginUsuario!=null) {
+                    if (loginUsuario != null) {
                         out.print("true");
                     } else {
                         out.print("false");

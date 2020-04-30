@@ -1,9 +1,11 @@
 $("#btnEntrar").click(function(){
+
+    console.log("SE HA PULSADO EL BOTON");
         $("#mensajeError").remove();
 
         $.ajax({
             method: "POST",
-            url: "../tienda",
+            url: "./../tienda",
             data: {email: $("#email").val(), contrasenha: $("#contrasenha").val(), opcion: "chequearErroresCredenciales"},
             success: function(respuesta){
                 if(respuesta == "false"){
