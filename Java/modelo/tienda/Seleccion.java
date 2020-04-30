@@ -7,7 +7,9 @@ public class Seleccion {
     private CDVO cd;
     private int cantidad;
 
-    public Seleccion() {
+    public Seleccion(CDVO cd, int cantidad) {
+        this.cd = cd;
+        this.cantidad = cantidad;
     }
 
     public CDVO getCd() {

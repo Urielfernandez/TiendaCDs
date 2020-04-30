@@ -3,6 +3,8 @@ package controlador;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import javax.servlet.http.HttpServletRequest;
+
 import modelo.dao.DAOCDs;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
@@ -24,6 +26,18 @@ public class HelperCD {
         ArrayList<ValoracionVO> listaValoraciones; 
         listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
+    }
+
+    public CDVO recogerCamposCD(HttpServletRequest request){
+        //PONER LOS NOMBRES DE LOS CAMPOS DE LA VISTA
+        String titulo=request.getParameter("arg0");
+        String artista=request.getParameter("arg0");
+        String pais=request.getParameter("arg0");
+        Double precio=Double.parseDouble(request.getParameter("arg0"));
+        Integer anho= Integer.parseInt(request.getParameter("arg0"));
+
+        CDVO cd=new CDVO(titulo,artista,pais,precio,anho);
+        return cd;
     }
 
     public ArrayList<CDVO> filtrarCDs(CDVO cd){

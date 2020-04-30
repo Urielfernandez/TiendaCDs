@@ -11,7 +11,7 @@
       <p class="card-text">Pais: ${cd.pais}, año: ${cd.anho}</p>
 
       <form action="tienda" method="post" class="form-inline">
-        <input type="hidden" name="opcion" value="anhadirCarrito">
+        <input type="hidden" name="opcion" value="anhadirArticulo">
         <input type="hidden" name="nombre" value="${cd.titulo}">
 
         <div class="input-group mx-auto">

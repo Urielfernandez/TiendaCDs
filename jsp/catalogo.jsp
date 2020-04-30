@@ -31,7 +31,14 @@
           <%@ include file="cd.jsp" %>
         </c:forEach>
       </div>
+	  <div class="row">
+	  	<form method="GET" action="tienda">
+			<input type="hidden" name="opcion" value="verCarrito">
+			<button type="submit" class="btn btn-primary btn-lg btn-block">Ver el contenido del Carrito</button>
+		</form>
+	  </div>
     </div>
+
 
     </section>
 

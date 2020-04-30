@@ -1,19 +1,34 @@
 package modelo.tienda;
 
-import java.util.ArrayList;
+import java.util.HashMap;
 
 public class Carrito {
 
-    private ArrayList<Seleccion> productos;
+    private HashMap<String,Seleccion> productos;
 
     public Carrito() {
+        this.productos = new HashMap<>();
     }
 
-    public ArrayList<Seleccion> getProductos() {
+
+    public void anhadirAlCarrito(Seleccion item){
+        if(this.productos.containsKey(item.getCd().getTitulo())){
+            Seleccion aux = this.productos.get(item.getCd().getTitulo()); //Recogemos el valor para dicho cd que ya está introducido
+            this.productos.remove(item.getCd().getTitulo()); //Lo eliminamos del carrito porque vamos a actualñizarlo
+
+            item.setCantidad(item.getCantidad() + aux.getCantidad()); //sumamos las cantidades
+            this.productos.put(item.getCd().getTitulo(), item); //y lo devolvemos al carrito
+        }else{
+            this.productos.put(item.getCd().getTitulo(), item);
+        }
+    }
+
+
+    public HashMap<String,Seleccion> getProductos() {
         return this.productos;
     }
 
-    public void setProductos(ArrayList<Seleccion> productos) {
+    public void setProductos(HashMap<String,Seleccion> productos) {
         this.productos = productos;
     }
 

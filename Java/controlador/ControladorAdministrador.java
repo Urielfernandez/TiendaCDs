@@ -7,6 +7,8 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 
+import modelo.tienda.Carrito;
+import modelo.tienda.Seleccion;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 
@@ -17,22 +19,19 @@ public class ControladorAdministrador extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        
-        HelperCD gestionCDS;
+        String opcion = request.getParameter("opcion");
+        ///////////////////////
+        HelperCD gestionCDS = new HelperCD();
+        /////////////////////////////////
         UsuarioVO usuario;
         Connection conexion;
-        /*
-         * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
-         * una conexion a la BD y almacenarla en dicha sesion
-         */
+        Carrito carrito;
 
-        // Obtenemos la sesion y la creamos si no la hay
 		HttpSession sesion = request.getSession();
 
         if (sesion.getAttribute("usuario") == null && sesion.getAttribute("conexion") == null) {
 			// Creamos el usuario y el carrito para una sesion
 			sesion.setAttribute("usuario", new UsuarioVO());
-            
             Connection aux = crearConexionBBDD();
 
             // Comprobamos si se conecta, si no mostramos un error
@@ -48,18 +47,19 @@ public class ControladorAdministrador extends HttpServlet {
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         conexion = (Connection) sesion.getAttribute("conexion");
 
-        gestionCDS = new HelperCD();  
 
-        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-
-        mostrarPagina("index.html", request, response);
+        
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        HelperCD gestionCDS;
+        String opcion = request.getParameter("opcion");
+        /////////////////////////////////////
+        HelperCD gestionCDS = new HelperCD();
+        /////////////////////////////////////
         UsuarioVO usuario;
         Connection conexion;
-        String opcion;
+        
+        
         /*
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
          * una conexion a la BD y almacenarla en dicha sesion
@@ -86,24 +86,19 @@ public class ControladorAdministrador extends HttpServlet {
 		// Obtenemos el usuario y la sesion
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         conexion = (Connection) sesion.getAttribute("conexion");
-        opcion = request.getParameter("opcion");
-
-        gestionCDS = new HelperCD();  
+        
 
         switch(opcion){
             case "addNewCD":
                 //recoger params del cd
-                CDVO cd=recogerCamposCD(request);
+                CDVO cd = gestionCDS.recogerCamposCD(request);
                 gestionCDS.anhadirNuevoCD(cd, conexion);
                 mostrarPagina("index.html", request, response);
-            break;
+                break;
 
             default:
-            break;
+                break;
         }
-       // request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-
-        mostrarPagina("index.html", request, response);
     }
 
     private void mostrarPagina(String pagina, HttpServletRequest request, HttpServletResponse response)
@@ -130,15 +125,5 @@ public class ControladorAdministrador extends HttpServlet {
         return conexion;
     }
 
-    private CDVO recogerCamposCD(HttpServletRequest request){
-        //PONER LOS NOMBRES DE LOS CAMPOS DE LA VISTA
-        String titulo=request.getParameter("arg0");
-        String artista=request.getParameter("arg0");
-        String pais=request.getParameter("arg0");
-        Double precio=Double.parseDouble(request.getParameter("arg0"));
-        Integer anho= Integer.parseInt(request.getParameter("arg0"));
 
-        CDVO cd=new CDVO(titulo,artista,pais,precio,anho);
-        return cd;
-    }
 }
