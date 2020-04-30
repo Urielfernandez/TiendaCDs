@@ -67,3 +67,9 @@
   color: white;
   font-size: 17px;
 }
+
+.cajaInicioSesion {
+  background-color: white;
+  border: 2px solid #c8c9cd;
+  border-radius: 8px;
+}
