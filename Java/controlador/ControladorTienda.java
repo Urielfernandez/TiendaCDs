@@ -82,12 +82,7 @@ public class ControladorTienda extends HttpServlet {
         Carrito carrito = null;
         UsuarioVO usuario = null;
         Connection conexion = null;
-        /*
-         * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
-         * una conexion a la BD y almacenarla en dicha sesion
-         */
 
-        // Obtenemos la sesion y la creamos si no la hay
 		HttpSession sesion = request.getSession();
 
         if (sesion.getAttribute("usuario") == null && sesion.getAttribute("carrito") == null
@@ -116,6 +111,7 @@ public class ControladorTienda extends HttpServlet {
         if (opcion == null){
             mostrarPagina("jsp/error.jsp", request, response);
         }
+
         else {
             switch(opcion){
                 case  "anhadirCarrito":
@@ -127,9 +123,10 @@ public class ControladorTienda extends HttpServlet {
                     mostrarPagina("./jsp/carrito.jsp", request, response);
                     break;
                 case "anhadirArticulo":
-                    Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request), 
-                                                            Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
+                    Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request.getParameter("titulo"), request.getParameter("artista"), request.getParameter("pais"), request.getParameter("precio"), request.getParameter("anho")), 
+                                                            Integer.parseInt((String) request.getParameter("unidadesSeleccionadas")));
                     carrito.anhadirAlCarrito(nuevoItem);
+                    request.setAttribute("precioTotal", carrito.getImporteTotal());
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;

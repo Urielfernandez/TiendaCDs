@@ -4,19 +4,19 @@
 
 <!DOCTYPE html>
 <html lang="es">
+
   <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <meta name="description" content="Esta es una web con utilidades para músicos y gestión de una escuela de música">
-    <meta name="keywords" content="partituras, metrónomo, grabadora, cursos, escuela, música, matrícula">
-    <title>Escuela de música</title>
-    <link rel="stylesheet" href="./css/bootstrap.min.css">
-    <link rel="stylesheet" href="./css/main.css">
-    <link rel="stylesheet" href="./css/resumen.css">
-  </head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tienda de CDs</title>
+		<!--Link para el uso de Bootstrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous">
+		<link rel="stylesheet" href="./css/main.css">
+	</head>
 
   <body>
-    <%@ include file="/jsp/navTienda.jsp" %>
+    <%@ include file="/jsp/navbar.jsp" %>
 
     <section class="container">
       <div class="row">
@@ -47,7 +47,7 @@
                 <li class="col-1 my-auto">
                   <form action="./tienda" method="post" class="text-center">
                     <input type="hidden" name="opcion" value="removeFromCarrito">
-                    <input type="hidden" name="nombre" value="${articulo.nombre}">
+                    <input type="hidden" name="nombre" value="${articulo.cd.titulo}">
                     <button type="submit" class="btnInicio">
                       <img src="./imagenes/iconos/papelera.svg" height="24" width="24">
                     </button>
@@ -68,7 +68,7 @@
                 </form>
               </li>
               <li class="col-2 text-right"><h4>Total:</h4></li>
-              <li class="col-3"><h4><fmt:formatNumber value="${carrito.total}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
+              <li class="col-3"><h4><fmt:formatNumber value="${precioTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
             </ul>
           </li> 
         </ul>

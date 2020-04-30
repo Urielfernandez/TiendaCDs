@@ -13,48 +13,44 @@ import modelo.vo.ValoracionVO;
 public class HelperCD {
     private DAOCDs conexionBDCDs;
 
-    public HelperCD(){
+    public HelperCD() {
         this.conexionBDCDs = new DAOCDs();
     }
 
-    public boolean introducirValoracion(CDVO cd, UsuarioVO usuario){
+    public boolean introducirValoracion(CDVO cd, UsuarioVO usuario) {
         return false;
     }
 
-    public ArrayList<ValoracionVO> obtenerValoraciones(CDVO cd, Connection con){
-        //conectar con tabla opiniones
-        ArrayList<ValoracionVO> listaValoraciones; 
+    public ArrayList<ValoracionVO> obtenerValoraciones(CDVO cd, Connection con) {
+        // conectar con tabla opiniones
+        ArrayList<ValoracionVO> listaValoraciones;
         listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
 
-    public CDVO recogerCamposCD(HttpServletRequest request){
-        //PONER LOS NOMBRES DE LOS CAMPOS DE LA VISTA
-        String titulo = request.getParameter("titulo");
-        String artista = request.getParameter("artista");
-        String pais = request.getParameter("pais");
-        Double precio = Double.parseDouble(request.getParameter("precio"));
-        Integer anho = Integer.parseInt(request.getParameter("anho"));
+    public CDVO recogerCamposCD(String titulo, String artista, String pais, String precioString, String anhoString) {
+        Double precio =  Double.parseDouble(precioString);
+        Integer anho = Integer.parseInt(anhoString);
 
-        CDVO cd=new CDVO(titulo,artista,pais,precio,anho);
+        CDVO cd = new CDVO(titulo, artista, pais, precio, anho);
         return cd;
     }
 
-    public ArrayList<CDVO> filtrarCDs(CDVO cd){
+    public ArrayList<CDVO> filtrarCDs(CDVO cd) {
         return null;
     }
 
-    public boolean anhadirNuevoCD(CDVO cd, Connection con){
-        if(cd != null)
-            return conexionBDCDs.guardarCD(cd,con);
+    public boolean anhadirNuevoCD(CDVO cd, Connection con) {
+        if (cd != null)
+            return conexionBDCDs.guardarCD(cd, con);
         return false;
     }
 
-    public boolean actualizarStock(CDVO cd, int nuevoStock){
+    public boolean actualizarStock(CDVO cd, int nuevoStock) {
         return false;
     }
 
-    public ArrayList<CDVO> cargarCDs(Connection conexion){
+    public ArrayList<CDVO> cargarCDs(Connection conexion) {
         return this.conexionBDCDs.obtenerCatalogo(conexion);
     }
 }

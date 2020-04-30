@@ -1,6 +1,7 @@
 package modelo.tienda;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class Carrito {
 
@@ -33,7 +34,12 @@ public class Carrito {
     }
 
     public double getImporteTotal() {
-        return 0.0;
+        double resultado = 0.0;
+        for(Seleccion item: this.productos.values()){
+            resultado += item.getCantidad() * item.getCd().getPrecio();
+        }
+
+        return resultado;
     }
 
 }
