@@ -1,8 +1,6 @@
 package modelo.tienda;
 
-import java.io.*;
 import java.util.*;
-import java.sql.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 

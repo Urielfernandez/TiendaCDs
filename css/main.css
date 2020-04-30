@@ -73,3 +73,21 @@
 .total ul li {
   list-style: none;
 }
+
+.icono {
+  background-color: white;
+  padding: 4px;
+  border-radius: 4px;
+}
+
+.usuario {
+  display: block;
+  color:white;
+  padding: 8px 8px 8px 8px;
+  font-size: 20px;
+}
+
+.usuario:hover {
+  color: white;
+  text-decoration: none;
+}

@@ -33,4 +33,8 @@ public class HelperUsuarios {
     public ArrayList<InicioSesionVO> listarUsuarios (Connection conexion) {
         return this.dao.obtenerUsuarios(conexion);
     }
+
+    public boolean eliminarUsuario(UsuarioVO usuario, Connection conexion) {
+        return this.dao.borrarUsuario(usuario, conexion);
+    }
 }
