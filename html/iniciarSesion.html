@@ -8,6 +8,7 @@
 		
     <link rel="stylesheet" href="../css/main.css">
 
+
     <!-- Bootstrap -->
 		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" 
       integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
@@ -22,7 +23,7 @@
   
           <form name="formulario" action="../tienda" method="POST" id="formulario">
             <div class="form-group">
-              <input type="hidden" name="opcion" value="iniciarSesion">
+              <input type="hidden" id="opcion" name="opcion" value="iniciarSesion">
               <label for="email">Correo electrónico</label>
               <input type="email" class="form-control" id="email" name="email">
             </div>
@@ -33,12 +34,15 @@
             </div>
   
             <div class="text-center mb-3">
-              <button type="submit" id="btnEntrar" class="btn btn-primary px-5">Entrar</button>
+              <button type="button" id="btnEntrar" class="btn btn-primary px-5">Entrar</button>
             </div>
           </form>
         </div>
       </div>
     </div>
+
+
+    
 
 		<!-- JQuery -->
 		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" 
@@ -54,6 +58,8 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous">
     </script>
+    
+    <script src="../js/inicioSesion.js"></script>
 	</body>
 
 </html>

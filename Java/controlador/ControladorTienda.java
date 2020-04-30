@@ -1,6 +1,7 @@
 package controlador;
 
 import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
@@ -41,8 +42,7 @@ public class ControladorTienda extends HttpServlet {
         if (vista == null) {
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/catalogo.jsp", request, response);
-        }
-        else {
+        } else {
             switch (vista) {
                 case "carrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
@@ -105,21 +105,6 @@ public class ControladorTienda extends HttpServlet {
                         cookie.setMaxAge(30 * 60);
                         response.addCookie(cookie);
 
-        request.setCharacterEncoding("UTF-8");
-		response.setCharacterEncoding("UTF-8");
-
-		response.setContentType("text/plain");
-		PrintWriter out = response.getWriter();
-		
-		Usuario usuarioComprobar = new Usuario(request.getParameter("email"), request.getParameter("contrasenha"));
-
-		if(comprobarLogin(usuarioComprobar)){
-			out.print("true");
-		}
-		else{
-			out.print("false");
-		}
-
                         sesion.setAttribute("email", usuario.getEmail());
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
@@ -128,6 +113,27 @@ public class ControladorTienda extends HttpServlet {
                         mostrarPagina("index.html", request, response);
                     }
 
+                    break;
+
+                case "chequearErroresCredenciales":
+
+                    request.setCharacterEncoding("UTF-8");
+                    response.setCharacterEncoding("UTF-8");
+
+                    response.setContentType("text/plain");
+                    PrintWriter out = response.getWriter();
+
+                    inicioSesion = new InicioSesionVO();
+                    inicioSesion.setEmail((String) request.getParameter("email"));
+                    inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
+
+                    loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
+
+                    if (loginUsuario!=null) {
+                        out.print("true");
+                    } else {
+                        out.print("false");
+                    }
                     break;
             }
         }
@@ -165,23 +171,22 @@ public class ControladorTienda extends HttpServlet {
         if (sesion.getAttribute("usuario") == null) {
             sesion.setAttribute("usuario", new UsuarioVO());
         }
-        
+
         if (sesion.getAttribute("carrito") == null) {
             sesion.setAttribute("carrito", new Carrito());
         }
-        
+
         if (sesion.getAttribute("conexion") == null) {
             Connection aux = crearConexionBBDD();
-        
+
             // Comprobamos si se conecta, si no mostramos un error
             if (aux != null) {
                 sesion.setAttribute("conexion", aux);
-            }
-            else {
+            } else {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
         }
-        
+
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
         carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");

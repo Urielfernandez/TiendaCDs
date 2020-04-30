@@ -3,8 +3,8 @@ $("#btnEntrar").click(function(){
 
         $.ajax({
             method: "POST",
-            url: "../comprobarLogin",
-            data: {email: $("#email").val(), contrasenha: $("#contrasenha").val()},
+            url: "../tienda",
+            data: {email: $("#email").val(), contrasenha: $("#contrasenha").val(), opcion: "chequearErroresCredenciales"},
             success: function(respuesta){
                 if(respuesta == "false"){
                     $("#formulario").append("<p style='color: red;' id='mensajeError'>Contraseña o email incorrectos.</p>");
