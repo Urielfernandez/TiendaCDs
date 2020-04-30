@@ -52,6 +52,11 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("importeTotal", carrito.getImporteTotal());
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
+
+                case "cargarCDsValorables":
+                    request.setAttribute("cdsValorables",gestionCDS.obtenerCDsValorables(usuario));
+                    mostrarPagina("jsp/addComment.jsp", request, response);
+                    break;
             }
         }
     }
@@ -144,6 +149,13 @@ public class ControladorTienda extends HttpServlet {
                     }
                     break;
 
+                case "addComentario":
+
+                    break;
+
+                case "verComentarios":
+                    
+                    break;
             }
         }
     }

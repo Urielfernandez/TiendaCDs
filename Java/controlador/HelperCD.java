@@ -25,6 +25,11 @@ public class HelperCD {
         listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
+    public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario){//*NUEVO<----------------------------------------*
+        ArrayList<CDVO> listaCDs=new ArrayList<>();
+            
+        return listaCDs;
+    }
 
     public CDVO recogerCamposCD(String titulo, String artista, String pais, String precioString, String anhoString) {
         Double precio =  Double.parseDouble(precioString);
