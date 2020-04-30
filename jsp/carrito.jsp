@@ -45,7 +45,7 @@
                 <li class="col-2 my-auto">${articulo.cantidad}</li>
                 <li class="col-2 my-auto"><fmt:formatNumber value="${articulo.cd.precio * articulo.cantidad}" type="number" minFractionDigits="2" maxFractionDigits="2"/>€</li>
                 <li class="col-1 my-auto">
-                  <form action="tienda" method="post" class="text-center">
+                  <form action="./tienda" method="post" class="text-center">
                     <input type="hidden" name="opcion" value="removeFromCarrito">
                     <input type="hidden" name="nombre" value="${articulo.nombre}">
                     <button type="submit" class="btnInicio">
@@ -62,7 +62,7 @@
           <li class="p-0 py-1">
             <ul class="row p-0">
               <li class="col-2 offset-5">
-                <form action="tienda" method="post" class="text-center">
+                <form action="./tienda" method="post" class="text-center">
                   <input type="hidden" name="opcion" value="comprar">
                   <button type="submit" class="btnInicio px-md-3 px-lg-5">Pagar</button>
                 </form>
