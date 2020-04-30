@@ -91,8 +91,8 @@ public class ControladorAdministrador extends HttpServlet {
         switch(opcion){
             case "addNewCD":
                 //recoger params del cd
-                CDVO cd = gestionCDS.recogerCamposCD(request);
-                gestionCDS.anhadirNuevoCD(cd, conexion);
+                ///CDVO cd = gestionCDS.recogerCamposCD(request);
+                //gestionCDS.anhadirNuevoCD(cd, conexion);
                 mostrarPagina("index.html", request, response);
                 break;
 
