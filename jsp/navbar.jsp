@@ -18,6 +18,9 @@
       <li class="nav-item">
         <a class="nav-link text-nowrap" href="index.html">Catálogo de CDs</a>
       </li>
+      <li class="nav-item">
+        <a class="nav-link text-nowrap" href="tienda?vista=carrito">Ver el carrito</a>
+      </li>
     </ul>
 
     <form class="form-inline mx-md-3 my-2">

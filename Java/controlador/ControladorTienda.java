@@ -20,7 +20,7 @@ public class ControladorTienda extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String opcion = request.getParameter("opcion");
+        String vista = request.getParameter("vista");
         //atributos para las llamadas a los helpers
         HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
@@ -60,13 +60,13 @@ public class ControladorTienda extends HttpServlet {
         carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");
 
-        if(opcion == null){
+        if(vista == null){
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/catalogo.jsp", request, response);
         }
         else {
-            switch(opcion){
-                case "verCarrito":
+            switch(vista){
+                case "carrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
