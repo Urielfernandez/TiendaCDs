@@ -3,7 +3,7 @@
 <%@ taglib prefix="fmt" uri="http://java.sun.com/jsp/jstl/fmt" %>
 
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 
 	<head>
 		<meta charset="UTF-8">
@@ -19,33 +19,22 @@
 	</head>
 
 	<body>
-		<nav id="barraNavegacion" class="navbar navbar-expand-md sticky-top py-1">
-            <a class="navbar-brand" href="index.html">
-                <img src="imagenes/cdLogo.jpg" alt="Inicio" height="40" width="45" title="Inicio">
-            </a>
-            <h3 id="tituloWeb" class="text-left my-auto text-white">Tienda de CDs</h3>
-        </nav>
+		<%@ include file="navbarAdministracion.jsp" %>
 
     <section class="container">
       <div class="row">
-        <div class="col my-3 p-0 pb-1 tituloPagina">
-          <h1 class="m-0">Usuarios</h1>
+        <div class="col">
+          <h1 class="tituloPagina">Usuarios</h1>
         </div>
       </div>
-      <div class="row">
 
-      <!--<div class="row">
+      <div class="row">
         <c:forEach var="cd" items="${listaArticulos}">
           <%@ include file="cd.jsp" %>
         </c:forEach>
       </div>
-	  <div class="row">
-	  	<form method="GET" action="tienda">
-				<input type="hidden" name="opcion" value="verCarrito">
-				<button type="submit" class="btn btn-primary btn-lg btn-block">Ver el contenido del Carrito</button>
-			</form>
-	  </div>
-    </div>-->
+    </div>
+
     </section>
 
 		<!-- JQuery -->
