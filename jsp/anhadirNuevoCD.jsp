@@ -24,7 +24,7 @@
     <section class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <h1 class="tituloPagina">Registrarse</h1>
+          <h1 class="tituloPagina">Insertar Nuevo CD</h1>
         </div>
       </div>
 
