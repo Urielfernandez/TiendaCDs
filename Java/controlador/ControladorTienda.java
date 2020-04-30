@@ -46,6 +46,7 @@ public class ControladorTienda extends HttpServlet {
             switch (vista) {
                 case "carrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
+                    request.setAttribute("importeTotal", carrito.getImporteTotal());
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
             }
@@ -69,6 +70,7 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "verCarrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
+                    request.setAttribute("importeTotal", carrito.getImporteTotal());
                     mostrarPagina("./jsp/carrito.jsp", request, response);
                     break;
                 case "anhadirArticulo":

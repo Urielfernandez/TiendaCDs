@@ -59,18 +59,20 @@
             </li>
           </c:forEach>
         </ul>
+      </div>
 
-        <ul class="col-12 p-0 total">
-          <li class="p-0 py-1">
+      <div class="row">
+        <ul class="col total">
+          <li>
             <ul class="row p-0">
-              <li class="col-2 offset-5">
-                <form action="./tienda" method="post" class="text-center">
+              <li class="col-2">
+                <form action="tienda" method="POST">
                   <input type="hidden" name="opcion" value="comprar">
-                  <button type="submit" class="btnInicio px-md-3 px-lg-5">Pagar</button>
+                  <button type="submit" class="btn btn-primary px-5">Pagar</button>
                 </form>
               </li>
-              <li class="col-2 text-right"><h4>Total:</h4></li>
-              <li class="col-3"><h4><fmt:formatNumber value="${precioTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
+              <li class="col-2 offset-5 text-right"><h4>Total:</h4></li>
+              <li class="col-3"><h4><fmt:formatNumber value="${importeTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
             </ul>
           </li> 
         </ul>
