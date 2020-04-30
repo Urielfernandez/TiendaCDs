@@ -30,8 +30,9 @@
 
       <div class="row mt-2">
         <div class="col-md-6 offset-md-3">
-          <form action="../administrador" method="post">
+          <form action="administrador" method="POST">
             <input type="hidden" name="opcion" value="almacenarNuevoCD"/>
+            
             <div class="form-group">
               <label for="nombre">Título:</label>
               <input type="text" class="form-control" name="titulo">
@@ -43,7 +44,7 @@
             </div>
 
             <div class="form-group">
-              <label for="text">País de Origen:</label>
+              <label for="text">País de origen:</label>
               <input type="text" class="form-control" name="pais">
             </div>
 
@@ -53,7 +54,7 @@
             </div>
 
             <div class="form-group">
-              <label for="text">Cantidad en Stock:</label>
+              <label for="text">Cantidad en stock:</label>
               <input type="text" class="form-control" name="cantidad">
             </div>
 
@@ -63,7 +64,7 @@
             </div>
 
             <div class="form-group text-center">
-              <button type="submit" class="boton px-5">Guardar nuevo CD</button>
+              <button type="submit" class="btn btn-primary px-5">Guardar nuevo CD</button>
             </div>
           </form>
         </div>

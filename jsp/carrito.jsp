@@ -19,7 +19,7 @@
 	</head>
 
   <body>
-    <%@ include file="navbarCarrito.jsp" %>
+    <%@ include file="navbar.jsp" %>
 
     <section class="container">
       <div class="row">

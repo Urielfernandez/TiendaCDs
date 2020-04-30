@@ -17,14 +17,21 @@
         <a class="linkBarraNavegacion activo" href="">Menú de administración</a>
       </li>
       <li class="nav-item">
-        <a class="linkBarraNavegacion activo" href="./jsp/anhadirNuevoCD.jsp">Añadir Nuevo</a>
+        <a class="linkBarraNavegacion activo" href="./jsp/anhadirNuevoCD.jsp">Añadir nuevo CD</a>
       </li>
     </ul>
 
-    <form class="form-inline my-2">
-      <a href="html/iniciarSesion.html">
-        <button type="button" class="btn btn-outline-light">Iniciar sesión</button>
-      </a>
-    </form>
+    <ul class="navbar-nav">
+      <li class="nav-item my-auto">
+        <a class="usuario" href="#">
+          ${nombreUsuario}
+        </a>
+      </li>
+      <li class="nav-item">
+        <a class="usuario" href="#">
+          <img src="imagenes/iconos/usuario.svg" class="icono" height="32" width="32">
+        </a>
+      </li>
+    </ul>
   </div>
 </nav>

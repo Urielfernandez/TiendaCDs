@@ -17,22 +17,40 @@
         <a class="linkBarraNavegacion" href="tienda">Catálogo</a>
       </li>
       <li class="itemBarraNavegacion">
-        <a class="linkBarraNavegacion" href="tienda?vista=carrito">Carrito</a>
+        <a class="linkBarraNavegacion activo" href="tienda?vista=carrito">Carrito</a>
       </li>
     </ul>
 
-    <form class="form-inline mx-md-3 my-2">
-      <a href="registrar">
-        <button type="button" class="btn btn-outline-light">Registrarse</button>
-      </a>
-    </form>
+    <c:choose>
+      <c:when test="${nombreUsuario == null}">
+        <form class="form-inline mx-md-3 my-2">
+          <a href="registrar">
+            <button type="button" class="btn btn-outline-light">Registrarse</button>
+          </a>
+        </form>
 
-    <form class="form-inline my-2">
-      <a href="html/iniciarSesion.html">
-        <button type="button" class="btn btn-outline-light">Iniciar sesión</button>
-      </a>
-    </form>
+        <form class="form-inline my-2">
+          <a href="html/iniciarSesion.html">
+            <button type="button" class="btn btn-outline-light">Iniciar sesión</button>
+          </a>
+        </form>
+      </c:when>
+
+      <c:otherwise>
+        <ul class="navbar-nav">
+          <li class="nav-item my-auto">
+            <a class="usuario" href="#">
+              ${nombreUsuario}
+            </a>
+          </li>
+          <li class="nav-item">
+            <a class="usuario" href="#">
+              <img src="imagenes/iconos/usuario.svg" class="icono" height="32" width="32">
+            </a>
+          </li>
+        </ul>
+      </c:otherwise>
+    </c:choose>
   </div>
-
   
 </nav>
