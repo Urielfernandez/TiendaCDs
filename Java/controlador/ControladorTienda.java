@@ -11,18 +11,22 @@ import javax.sound.sampled.SourceDataLine;
 
 import modelo.tienda.Carrito;
 import modelo.tienda.Seleccion;
+import modelo.vo.InicioSesionVO;
 import modelo.vo.UsuarioVO;
 
 public class ControladorTienda extends HttpServlet {
 
+    HelperCD gestionCDS;
+    HelperUsuarios gestionUsuarios;
+
     public void init(ServletConfig config) throws ServletException {
         super.init(config);
+        gestionCDS = new HelperCD();
+        gestionUsuarios = new HelperUsuarios();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String vista = request.getParameter("vista");
-        //atributos para las llamadas a los helpers
-        HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
         Carrito carrito;
         UsuarioVO usuario;
@@ -76,8 +80,6 @@ public class ControladorTienda extends HttpServlet {
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         String opcion = request.getParameter("opcion");
-        //atributos para las llamadas a los helpers
-        HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
         Carrito carrito = null;
         UsuarioVO usuario = null;
@@ -129,6 +131,31 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("precioTotal", carrito.getImporteTotal());
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
+                    break;
+
+                case "iniciarSesion":
+                    InicioSesionVO inicioSesion = new InicioSesionVO();
+                    inicioSesion.setEmail((String) request.getParameter("email"));
+                    inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
+
+                    UsuarioVO loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
+
+                    if (loginUsuario != null){
+                        //El usuario ha introducido unas credeciales válidas y queda logueado
+                        usuario=loginUsuario;
+                        //Enviamos la cookie que indica que el usuario está logueado
+                        Cookie cookie = new Cookie("nombre", usuario.getNombre());
+                        cookie.setMaxAge(30*60);
+                        response.addCookie(cookie);
+
+                        request.setAttribute("NombreUsuario", usuario.getNombre());
+                        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                        mostrarPagina("./jsp/catalogo.jsp", request, response);
+                    }else{
+                        //El usuario no ha introducido unas credenciales válidas
+                        mostrarPagina("index.html", request, response);
+                    }
+
                     break;
             }
         }
