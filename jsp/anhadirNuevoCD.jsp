@@ -19,7 +19,7 @@
 	</head>
 
 	<body class="fondoPagina">
-    <%@ include file="navbar.jsp" %>
+    <%@ include file="navbarAdministracion.jsp" %>
 
     <section class="container">
       <div class="row">
