@@ -66,20 +66,19 @@ public class ControladorTienda extends HttpServlet {
         if(opcion == null){
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/catalogo.jsp", request, response);
-        }else{
-            switch(opcion){
+        }
+        switch(opcion){
 
-                case "verCarrito":
-                    request.setAttribute("contenidoCarrito", carrito.getProductos().values());
-                    mostrarPagina("jsp/carrito.jsp", request, response);
-                    break;
-                case "anhadirArticulo":
-                    Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request)
+            case "verCarrito":
+                request.setAttribute("contenidoCarrito", carrito.getProductos().values());
+                mostrarPagina("jsp/carrito.jsp", request, response);
+                break;
+            case "anhadirArticulo":
+                Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request)
                                                         , Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
-                    carrito.anhadirAlCarrito(nuevoItem);
-                    mostrarPagina("jsp/catalogo.jsp", request, response);
-                    break;
-            }
+                carrito.anhadirAlCarrito(nuevoItem);
+                mostrarPagina("jsp/catalogo.jsp", request, response);
+                break;
         }
     }
 
