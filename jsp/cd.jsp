@@ -12,7 +12,11 @@
 
       <form action="tienda" method="post" class="form-inline">
         <input type="hidden" name="opcion" value="anhadirArticulo">
-        <input type="hidden" name="nombre" value="${cd.titulo}">
+        <input type="hidden" name="titulo" value="${cd.titulo}">
+        <input type="hidden" name="artista" value="${cd.artista}">
+        <input type="hidden" name="pais" value="${cd.pais}">
+        <input type="hidden" name="precio" value="${cd.precio}">
+        <input type="hidden" name="anho" value="${cd.anho}">
 
         <div class="input-group mx-auto">
           <select class="form-control m-0 p-0" name="unidadesSeleccionadas">

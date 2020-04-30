@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+
+	<head>
+		<meta charset="UTF-8">
+		<meta name="viewport" content="width=device-width, initial-scale=1.0">
+		<title>Tienda de CDs</title>
+		<!--Link para el uso de Bootstrap-->
+		<link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T"
+			crossorigin="anonymous">
+	</head>
+
+	<body style="background-color: #edeae6;">
+    <div class="container-fluid">
+      <div class="row my-5">
+        <div class="col-xl-3 col-lg-4 col-md-6 col-sm-8 mx-auto my-5 cajaInicio">
+          <h2 class="text-center my-2">Iniciar sesión</h2>
+  
+          <div class="text-center mt-3 mb-4">
+            <a href="../index.html" class="text-center">
+              <img src="../imagenes/iconos/logo.svg" class="mx-auto logo" alt="Logo" height="90" width="90" title="Inicio">
+            </a>
+          </div>
+  
+          <form action="../login.jsp" method="post" id="formulario">
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" class="form-control" id="email" name="email">
+            </div>
+  
+            <div class="form-group">
+              <label for="contrasenha">Contraseña</label>
+              <input type="password" class="form-control" id="contrasenha" name="contrasenha">
+            </div>
+  
+            <div class="text-center">
+              <button type="button" class="btn btn-primary my-3 px-3" id="btnEntrar">Entrar</button>
+            </div>
+          </form>
+        </div>
+      </div>
+    </div>
+
+		<!--Links para el uso de JQuery-->
+		<script src="https://code.jquery.com/jquery-3.3.1.slim.min.js" integrity="sha384-q8i/X+965DzO0rT7abK41JStQIAqVgRVzpbzo5smXKp4YfRvH+8abtTE1Pi6jizo" crossorigin="anonymous"></script>
+		<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.7/umd/popper.min.js" integrity="sha384-UO2eT0CpHqdSJQ6hJty5KVphtPhzWj9WO1clHTMGa3JDZwrnQq4sF86dIHNDz0W1"
+			crossorigin="anonymous"></script>
+		<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/js/bootstrap.min.js" integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
+			crossorigin="anonymous"></script>
+	</body>
+
+</html>
