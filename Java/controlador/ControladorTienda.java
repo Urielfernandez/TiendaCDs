@@ -63,25 +63,10 @@ public class ControladorTienda extends HttpServlet {
 
         request.setAttribute("VARIABLE_ESTADO", "Pasa por el doGet()");
 
-        if(opcion == null){
-            request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-            mostrarPagina("jsp/catalogo.jsp", request, response);
-        }
-
-        switch(opcion){
-
-            case "verCarrito":
-                request.setAttribute("contenidoCarrito", carrito.getProductos().values());
-                mostrarPagina("jsp/carrito.jsp", request, response);
-                break;
-            case "anhadirArticulo":
-                Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request)
-                                                        , Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
-                carrito.anhadirAlCarrito(nuevoItem);
-                request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                mostrarPagina("jsp/catalogo.jsp", request, response);
-                break;
-        }
+        
+        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+        mostrarPagina("./jsp/catalogo.jsp", request, response);
+        
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -128,6 +113,17 @@ public class ControladorTienda extends HttpServlet {
                 request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
 
                 mostrarPagina("jsp/catalogo.jsp", request, response);  
+                break;
+            case "verCarrito":
+                request.setAttribute("contenidoCarrito", carrito.getProductos().values());
+                mostrarPagina("./jsp/carrito.jsp", request, response);
+                break;
+            case "anhadirArticulo":
+                Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request)
+                                                        , Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
+                carrito.anhadirAlCarrito(nuevoItem);
+                request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                mostrarPagina("./jsp/catalogo.jsp", request, response);
                 break;
         }
       
