@@ -52,8 +52,6 @@ public class ControladorAdministrador extends HttpServlet {
         //COMPROBACIONES DE opcion
         request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
         mostrarPagina("jsp/administracion.jsp", request, response);
-
-        
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
