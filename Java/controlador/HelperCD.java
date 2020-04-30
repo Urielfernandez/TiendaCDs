@@ -34,7 +34,7 @@ public class HelperCD {
         String artista = request.getParameter("artista");
         String pais = request.getParameter("pais");
         Double precio = Double.parseDouble(request.getParameter("precio"));
-        Integer anho = Integer.parseInt(request.getParameter("arg0"));
+        Integer anho = Integer.parseInt(request.getParameter("anho"));
 
         CDVO cd = new CDVO(titulo, artista, pais, precio, anho);
         return cd;
