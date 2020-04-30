@@ -8,6 +8,11 @@ public class InicioSesionVO {
     public InicioSesionVO() {
     }
 
+    public InicioSesionVO(String email, String contrasenha) {
+        this.email = email;
+        this.contrasenha = contrasenha;
+    }
+
     public String getEmail() {
         return email;
     }

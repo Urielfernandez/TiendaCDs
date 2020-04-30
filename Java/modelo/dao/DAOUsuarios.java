@@ -77,7 +77,7 @@ public class DAOUsuarios {
         return null;
     }
 
-    public ArrayList<UsuarioVO> obtenerUsuarios(UsuarioVO usuario, Connection conexion) {
+    public ArrayList<UsuarioVO> obtenerUsuarios(Connection conexion) {
         String consulta = "SELECT * FROM usuarios";
         ArrayList<UsuarioVO> listadoDeUsuarios = new ArrayList<>();
 
@@ -87,8 +87,8 @@ public class DAOUsuarios {
             ResultSet resultado = preparedStatement.executeQuery();
 
             while(resultado.next()){
-                UsuarioVO usuarioAux = new UsuarioVO(resultado.getString("nombre"), resultado.getString("email"));
-                listadoDeUsuarios.add(usuarioAux);
+                InicioSesionVO datosUsuario = new InicioSesionVO(resultado.getString("email"), resultado.getString("contrasenha"));
+                listadoDeUsuarios.add(datosUsuario);
             }
         }catch (SQLException e) {
             System.out.println("DAOUsuarios: No se han podido obtener los usuarios.");
