@@ -89,8 +89,8 @@ public class ControladorTienda extends HttpServlet {
         //atributos para las llamadas a los helpers
         HelperCD gestionCDS = new HelperCD();
         //atributos necesarias para la realización de las distintas peticiones
-        Carrito carrito;
-        UsuarioVO usuario;
+        Carrito carrito = null;
+        UsuarioVO usuario = null;
         Connection conexion = null;
         /*
          * Cuando el usuario inicio se debería: Generar la sesion del usuario Generar
@@ -128,6 +128,17 @@ public class ControladorTienda extends HttpServlet {
                 request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
 
                 mostrarPagina("jsp/catalogo.jsp", request, response);  
+                break;
+            case "verCarrito":
+                request.setAttribute("contenidoCarrito", carrito.getProductos().values());
+                mostrarPagina("./jsp/carrito.jsp", request, response);
+                break;
+            case "anhadirArticulo":
+                Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request)
+                                                        , Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
+                carrito.anhadirAlCarrito(nuevoItem);
+                request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                mostrarPagina("./jsp/catalogo.jsp", request, response);
                 break;
         }
       
