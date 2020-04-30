@@ -16,7 +16,6 @@ public class ControladorAdministrador extends HttpServlet {
     private HelperUsuarios gestionUsuarios;
 
     // atributos necesarias para la realización de las distintas peticiones
-    private Carrito carrito;
     private UsuarioVO usuario;
     private Connection conexion;
     private HttpSession sesion;
@@ -28,11 +27,10 @@ public class ControladorAdministrador extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        String vista = request.getParameter("vista");
+        //String vista = request.getParameter("vista");
 
         actualizarDatosSesion(request, response);
 
-        //COMPROBACIONES DE opcion
         request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
         mostrarPagina("jsp/administracion.jsp", request, response);
     }
@@ -53,6 +51,17 @@ public class ControladorAdministrador extends HttpServlet {
                 this.gestionCDS.anhadirNuevoCD(nuevoCD, cantidadIntroducida, conexion);
                 mostrarPagina("jsp/anhadirNuevoCD.jsp", request, response);
                 break;
+
+            case "eliminarUsuario":
+                String usuarioEliminar = request.getParameter("usuarioEliminar");
+                UsuarioVO usuario = new UsuarioVO("", usuarioEliminar);
+                if(this.gestionUsuarios.eliminarUsuario(usuario, this.conexion)) {
+                    mostrarPagina("jsp/administracion.jsp", request, response);
+                }
+                else {
+                    mostrarPagina("jsp/error.jsp", request, response);
+                }
+            break;
         }
     }
 
@@ -107,7 +116,6 @@ public class ControladorAdministrador extends HttpServlet {
         }
         
         usuario = (UsuarioVO) sesion.getAttribute("usuario");
-        carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");
     }
 

@@ -3,8 +3,6 @@ package controlador;
 import java.sql.Connection;
 import java.util.ArrayList;
 
-import javax.servlet.http.HttpServletRequest;
-
 import modelo.dao.DAOCDs;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
