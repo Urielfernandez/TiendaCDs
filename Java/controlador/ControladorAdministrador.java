@@ -56,6 +56,7 @@ public class ControladorAdministrador extends HttpServlet {
                 String usuarioEliminar = request.getParameter("usuarioEliminar");
                 UsuarioVO usuario = new UsuarioVO("", usuarioEliminar);
                 if(this.gestionUsuarios.eliminarUsuario(usuario, this.conexion)) {
+                    request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
                     mostrarPagina("jsp/administracion.jsp", request, response);
                 }
                 else {
