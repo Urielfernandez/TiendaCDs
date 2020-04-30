@@ -52,11 +52,11 @@
                   </form>
                 </li>
                 <li class="col-5 my-auto">
-                  <form action="" method="POST" class="text-center">
+                  <form action="administrador" method="POST" class="text-center">
                     <input type="hidden" name="usuarioModificar" value="${usuario.email}">
-                    <input type="hidden" name="opcion" value="">
-                    <input type="text" class="form-control" placeholder="Nueva contraseña">
-                    <input type="submit" class="btn btn-primary" value="Modificar contraseña">
+                    <input type="hidden" name="opcion" value="modificarContrasenha">
+                    <input type="submit" class="boton px-1" value="Modificar contraseña">
+                    <input type="text" name="nuevaContrasenha" class="form-control" placeholder="Nueva contraseña" required>
                   </form>
                 </li>
               </ul>

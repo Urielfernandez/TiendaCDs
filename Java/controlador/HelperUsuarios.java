@@ -37,4 +37,8 @@ public class HelperUsuarios {
     public boolean eliminarUsuario(UsuarioVO usuario, Connection conexion) {
         return this.dao.borrarUsuario(usuario, conexion);
     }
+
+    public boolean modificarContrasenha(InicioSesionVO datosUsuario, Connection conexion){
+        return this.dao.modificarUsuario(datosUsuario, conexion);
+    }
 }

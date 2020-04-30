@@ -100,22 +100,20 @@ public class DAOUsuarios {
         return null;
     }
 
-    public boolean modificarUsuario(UsuarioVO usuario, InicioSesionVO credencialesNuevas, Connection conexion) {
-        String consulta = "UPDATE usuarios SET nombre=?, email=?, contrasenha=? WHERE email=?";
+    public boolean modificarUsuario(InicioSesionVO datosUsuario, Connection conexion) {
+        String consulta = "UPDATE usuarios SET contrasenha=? WHERE email=?";
 
         try{
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
-            preparedStatement.setString(1, usuario.getNombre());
-            preparedStatement.setString(2, credencialesNuevas.getEmail());
-            preparedStatement.setString(3, credencialesNuevas.getContrasenha());
-            preparedStatement.setString(4, usuario.getEmail());
+            preparedStatement.setString(1, datosUsuario.getContrasenha());
+            preparedStatement.setString(2, datosUsuario.getEmail());
 
             preparedStatement.executeUpdate();
 
             return true;
         }catch (SQLException e) {
-            System.out.println("DAOUsuarios: No se ha podido modificar el correo de: " + usuario.getEmail() + " a: " + credencialesNuevas.getEmail());
+            System.out.println("DAOUsuarios: No se ha podido modificar la contraseña del usuario con email: " + datosUsuario.getEmail());
             System.out.println(e.getMessage());
         }
 
