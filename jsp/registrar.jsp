@@ -19,22 +19,39 @@
 	</head>
 
 	<body>
-		<%@ include file="navbar.jsp" %>
+    <%@ include file="navbar.jsp" %>
 
     <section class="container">
       <div class="row">
-        <div class="col">
-          <h1 class="tituloPagina">Catálogo de CDs</h1>
+        <div class="col-md-6 offset-md-3">
+          <h1 class="tituloPagina">Registrarse</h1>
         </div>
       </div>
 
-      <div class="row">
-        <c:forEach var="cd" items="${listaArticulos}">
-          <%@ include file="cd.jsp" %>
-        </c:forEach>
-      </div>
-    </div>
+      <div class="row mt-2">
+        <div class="col-md-6 offset-md-3">
+          <form action="" method="POST">
+            <div class="form-group">
+              <label for="nombre">Nombre</label>
+              <input type="text" class="form-control" name="nombre">
+            </div>
 
+            <div class="form-group">
+              <label for="email">Correo electrónico</label>
+              <input type="email" class="form-control" name="email">
+            </div>
+
+            <div class="form-group">
+              <label for="email">Contraseña</label>
+              <input type="password" class="form-control" name="contrasenha">
+            </div>
+
+            <div class="form-group text-center">
+              <button type="submit" class="boton px-5">Registrarse</button>
+            </div>
+          </form>
+        </div>
+      </div>
     </section>
 
 		<!-- JQuery -->

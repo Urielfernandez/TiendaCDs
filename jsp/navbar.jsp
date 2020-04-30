@@ -24,14 +24,14 @@
     </ul>
 
     <form class="form-inline mx-md-3 my-2">
-      <a href="html/registro.html">
-        <button type="button" class="boton px-2 py-1">Registrarse</button>
+      <a href="registrar">
+        <button type="button" class="boton">Registrarse</button>
       </a>
     </form>
 
     <form class="form-inline my-2">
       <a href="html/iniciarSesion.html">
-        <button type="button" class="text-nowrap boton px-2 py-1">Iniciar sesión</button>
+        <button type="button" class="text-nowrap boton">Iniciar sesión</button>
       </a>
     </form>
   </div>

@@ -37,10 +37,13 @@
 }
 
 .tituloPagina {
+  margin: 10px 0px;
+  padding: 0px 0px 6px;
   border-bottom: 1px solid #c8c9cd;
 }
 
 .boton {
+  padding: 4px 8px;
   border-style: none;
   border-radius: 4px;
   background-color: #aec7ce;
@@ -48,6 +51,7 @@
 }
 
 .boton:hover {
+  padding: 4px 8px;
   background-color: #497dac;
   color: white;
   border-radius: 4px;
@@ -61,7 +65,7 @@
   font-size: 17px;
 }
 
-.boton:hover {
+.botonAnhadirCarrito:hover {
   border-radius: 0px 4px 4px 0px;
   background-color: #497dac;
   color: white;

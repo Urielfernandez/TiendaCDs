@@ -20,4 +20,14 @@
         <servlet-name>administrador</servlet-name>
         <url-pattern>/administrador</url-pattern>
     </servlet-mapping>
+
+    <servlet>
+        <servlet-name>registrar</servlet-name>
+        <jsp-file>/jsp/registrar.jsp</jsp-file>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>registrar</servlet-name>
+        <url-pattern>/registrar</url-pattern>   
+    </servlet-mapping>
 </web-app>
