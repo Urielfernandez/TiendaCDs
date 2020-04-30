@@ -42,11 +42,14 @@ public class ControladorAdministrador extends HttpServlet {
                 mostrarPagina("jsp/error.jsp", request, response);
             }
 		}
+        else {
+		    // Obtenemos el usuario y la sesion
+            usuario = (UsuarioVO) sesion.getAttribute("usuario");
+            conexion = (Connection) sesion.getAttribute("conexion");
+        }
 
-		// Obtenemos el usuario y la sesion
-        usuario = (UsuarioVO) sesion.getAttribute("usuario");
-        conexion = (Connection) sesion.getAttribute("conexion");
-
+        //COMPROBACIONES DE opcion
+        mostrarPagina("jsp/administracion.jsp", request, response);
 
         
     }
