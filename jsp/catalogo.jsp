@@ -24,8 +24,6 @@
           <h1 class="m-0">Catálogo de CDs</h1>
         </div>
       </div>
-      <div class="row">
-
 
       <div class="row">
         <c:forEach var="cd" items="${listaArticulos}">
