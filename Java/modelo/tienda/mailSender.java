@@ -7,8 +7,10 @@ import javax.mail.*;
 import javax.mail.internet.*;
 
 public class mailSender {
+    private String remitente;
+    private String clave;
 
-    private static void enviarConGMail(String destinatario, String asunto, String cuerpo) {
+    public void enviarConGMail(String destinatario, String asunto, String cuerpo) {
         // Esto es lo que va delante de @gmail.com en tu cuenta de correo. Es el remitente también.
         private String remitente = "nomcuenta";  //Para la dirección nomcuenta@gmail.com
     
@@ -25,11 +27,11 @@ public class mailSender {
     
         try {
             message.setFrom(new InternetAddress(remitente));
-            message.addRecipient(Message.RecipientType.TO, destinatario);   //Se podrían añadir varios de la misma manera
+            message.addRecipients(Message.RecipientType.TO, destinatario);   //Se podrían añadir varios de la misma manera
             message.setSubject(asunto);
             message.setText(cuerpo);
             Transport transport = session.getTransport("smtp");
-            transport.connect("smtp.gmail.com", remitente, clave);
+            transport.connect("smtp.gmail.com", this.remitente, this.clave);
             transport.sendMessage(message, message.getAllRecipients());
             transport.close();
         }
