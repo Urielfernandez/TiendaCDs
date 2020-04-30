@@ -92,8 +92,8 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "iniciarSesion":
                     InicioSesionVO inicioSesion = new InicioSesionVO();
-                    inicioSesion.setEmail((String) request.getParameter("email"));
-                    inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
+                    inicioSesion.setEmail(request.getParameter("email"));
+                    inicioSesion.setContrasenha(request.getParameter("contrasenha"));
 
                     UsuarioVO loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
 
@@ -124,8 +124,8 @@ public class ControladorTienda extends HttpServlet {
                     PrintWriter out = response.getWriter();
 
                     inicioSesion = new InicioSesionVO();
-                    inicioSesion.setEmail((String) request.getParameter("email"));
-                    inicioSesion.setContrasenha((String) request.getParameter("contrasenha"));
+                    inicioSesion.setEmail(request.getParameter("email"));
+                    inicioSesion.setContrasenha(request.getParameter("contrasenha"));
 
                     loginUsuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
 
