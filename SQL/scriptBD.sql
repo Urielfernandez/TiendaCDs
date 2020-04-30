@@ -33,6 +33,8 @@ CREATE TABLE usuarios (
   email varchar(100) NOT NULL,
   nombre varchar(100) NOT NULL,
   contrasenha varchar(100) NOT NULL,
+  tipo varchar(100) NOT NULL,
+  membresia varchar(100) NOT NULL,
   PRIMARY KEY (email)
 );
 
