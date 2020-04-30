@@ -9,7 +9,7 @@ $("#btnEntrar").click(function(){
             data: {email: $("#email").val(), contrasenha: $("#contrasenha").val(), opcion: "chequearErroresCredenciales"},
             success: function(respuesta){
                 if(respuesta == "false"){
-                    $("#formulario").append("<p style='color: red;' id='mensajeError'>Contraseña o email incorrectos.</p>");
+                    $("#formulario").append("<p class='text-center' style='color: red;' id='mensajeError'>Contraseña o email incorrectos.</p>");
                 }
                 else{
                     $("#formulario")[0].submit();
