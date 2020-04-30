@@ -30,11 +30,11 @@ public class HelperCD {
 
     public CDVO recogerCamposCD(HttpServletRequest request){
         //PONER LOS NOMBRES DE LOS CAMPOS DE LA VISTA
-        String titulo=request.getParameter("arg0");
-        String artista=request.getParameter("arg0");
-        String pais=request.getParameter("arg0");
-        Double precio=Double.parseDouble(request.getParameter("arg0"));
-        Integer anho= Integer.parseInt(request.getParameter("arg0"));
+        String titulo = request.getParameter("titulo");
+        String artista = request.getParameter("artista");
+        String pais = request.getParameter("pais");
+        Double precio = Double.parseDouble(request.getParameter("precio"));
+        Integer anho = Integer.parseInt(request.getParameter("anho"));
 
         CDVO cd=new CDVO(titulo,artista,pais,precio,anho);
         return cd;
