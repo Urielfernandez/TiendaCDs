@@ -61,7 +61,7 @@ public class ControladorTienda extends HttpServlet {
         carrito = (Carrito) sesion.getAttribute("carrito");
         conexion = (Connection) sesion.getAttribute("conexion");
 
-        request.setAttribute("VARIABLE_ESTADO", "Pasa por el doGet()");
+        request.setAttribute("VARIABLE_ESTADO", "Pasa por el doGet(). La opcion es: "+opcion);
 
         if(opcion == null){
             request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
