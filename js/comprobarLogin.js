@@ -24,6 +24,9 @@ $("#btnLogin").click(function(){
     var partes = valorCookie.split("=");
     valorCookie = partes[1];
 
+    console.log(valorCookie);
+    console.log(valorCookie != null);
+
     if(valorCookie != null){
         $("#formulario").submit();
     }
