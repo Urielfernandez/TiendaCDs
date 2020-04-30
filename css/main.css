@@ -1,27 +1,22 @@
 #barraNavegacion {
-  background-color: #172230;
+  box-shadow: 0 1px 2px rgba(0,0,0,.15);
 }
 
-#botonCollapse {
-  background-color: #aec7ce;
-  border-radius: 4px;
-}
-
-#botonCollapse button {
-  color: white;
-}
-
-.itemsBarraNavegacion li a {
-  color: white;
+.linkBarraNavegacion {
+  display: block;
+  color:rgba(255,255,255,.85);
+  padding: 8px 16px 8px 16px;
   font-size: 20px;
 }
 
-.itemsBarraNavegacion li a:hover {
-  background-color: #497dac;
+.linkBarraNavegacion:hover {
+  color: white;
   text-decoration: none;
+}
+
+.activo {
   color: white;
-  font-size: 20px;
-  border-radius: 4px;
+  font-weight: bold;
 }
 
 @media screen and (min-width: 768px){
@@ -37,43 +32,13 @@
 }
 
 .tituloPagina {
-  margin: 10px 0px;
+  margin: 10px 0px 10px 0px;
   padding: 0px 0px 6px;
-  border-bottom: 1px solid #c8c9cd;
-}
-
-.boton {
-  padding: 4px 8px;
-  border-style: none;
-  border-radius: 4px;
-  background-color: #aec7ce;
-  font-size: 17px;
-}
-
-.boton:hover {
-  padding: 4px 8px;
-  background-color: #497dac;
-  color: white;
-  border-radius: 4px;
-  font-size: 17px;
-}
-
-.botonAnhadirCarrito {
-  border-style: none;
-  border-radius: 0px 4px 4px 0px;
-  background-color: #aec7ce;
-  font-size: 17px;
-}
-
-.botonAnhadirCarrito:hover {
-  border-radius: 0px 4px 4px 0px;
-  background-color: #497dac;
-  color: white;
-  font-size: 17px;
+  border-bottom: 1px solid #d3d3d3;
 }
 
 .cajaInicioSesion {
   background-color: white;
-  border: 2px solid #c8c9cd;
+  border: 2px solid #d3d3d3;
   border-radius: 8px;
 }

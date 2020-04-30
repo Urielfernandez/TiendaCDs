@@ -19,7 +19,7 @@
 	</head>
 
 	<body>
-		<%@ include file="navbar.jsp" %>
+		<%@ include file="navbarCatalogo.jsp" %>
 
 		
   <!-- BRAIS; INCLUIR ESTO EN UN SITIO CHULO -->

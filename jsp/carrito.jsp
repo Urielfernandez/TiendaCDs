@@ -19,12 +19,12 @@
 	</head>
 
   <body>
-    <%@ include file="/jsp/navbar.jsp" %>
+    <%@ include file="navbarCarrito.jsp" %>
 
     <section class="container">
       <div class="row">
-        <div class="col mt-2 p-0 cabeceroSeccion">
-          <h1 class="m-1">Carrito</h1>
+        <div class="col">
+          <h1 class="tituloPagina">Carrito</h1>
         </div>
       </div>
       

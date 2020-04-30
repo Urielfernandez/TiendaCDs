@@ -19,15 +19,15 @@
         <input type="hidden" name="anho" value="${cd.anho}">
 
         <div class="input-group mx-auto">
-          <select class="form-control m-0 p-0" name="unidadesSeleccionadas">
+          <select class="form-control" name="unidadesSeleccionadas">
             <option selected value="1">1</option>
             <c:forEach var="i" begin="2" end="10">
               <option value="${i}">${i}</option>
             </c:forEach>
           </select>
 
-          <button type="submit" class="botonAnhadirCarrito px-3">
-            <img src="imagenes/iconos/carro.svg" class="align-top" height="22" width="22">
+          <button type="submit" class="btn btn-primary"
+            style="border-radius: 0rem .25rem .25rem 0rem;">
             Añadir a la cesta
           </button>
         </div> 
