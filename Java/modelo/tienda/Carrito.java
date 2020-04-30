@@ -24,9 +24,7 @@ public class Carrito {
     }
 
     public void eliminarDelCarrito(String titulo){
-        if(this.productos.containsKey(titulo)){
-            this.productos.remove(titulo);
-        }
+        this.productos.remove(titulo);
     }
 
 
