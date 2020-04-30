@@ -66,9 +66,9 @@
           <li>
             <ul class="row p-0">
               <li class="col-2">
-                <form action="tienda" method="POST" class="formulario">
+                <form action="tienda" method="POST" id="formulario">
                   <input type="hidden" name="opcion" value="comprar">
-                  <button type="buttom" class="btn btn-primary px-5 btnLogin">Pagar</button>
+                  <button type="buttom" class="btn btn-primary px-5" id="btnLogin">Pagar</button>
                 </form>
               </li>
               <li class="col-2 offset-5 text-right my-auto"><h5>Total:</h5></li>
