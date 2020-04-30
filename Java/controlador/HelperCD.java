@@ -4,18 +4,21 @@ import java.sql.Connection;
 import java.util.ArrayList;
 
 import modelo.dao.DAOCDs;
+import modelo.dao.DAOPedidos;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 import modelo.vo.ValoracionVO;
 
 public class HelperCD {
     private DAOCDs conexionBDCDs;
-
+    private DAOPedidos conexionBDpedidos;
     public HelperCD() {
         this.conexionBDCDs = new DAOCDs();
+        this.conexionBDpedidos=new DAOPedidos();
     }
 
-    public boolean introducirValoracion(CDVO cd, UsuarioVO usuario) {
+    public boolean introducirValoracion(Connection con,String cd, UsuarioVO usuario, float nota, String comentario) {//Params cambiados
+        
         return false;
     }
 
@@ -25,9 +28,14 @@ public class HelperCD {
         listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
-    public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario){//*NUEVO<----------------------------------------*
+    public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario, Connection con){//*NUEVO<----------------------------------------*
         ArrayList<CDVO> listaCDs=new ArrayList<>();
-            
+        ArrayList<String> titulosAdquiridos=conexionBDpedidos.getCDsPedidosUsuario(usuario,  con);
+        // comprobar cuales de estos titulos ya se han valorado
+        ArrayList<String> titulosNoComentados=conexionBDpedidos.getCDsNoComentados(titulosAdquiridos,usuario, con);
+        for(int i=0;i<titulosNoComentados.size();i++){
+            listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
+        }
         return listaCDs;
     }
 

@@ -5,7 +5,6 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-import java.util.ArrayList;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
@@ -54,7 +53,7 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "cargarCDsValorables":
-                    request.setAttribute("cdsValorables",gestionCDS.obtenerCDsValorables(usuario));
+                    request.setAttribute("cdsValorables",gestionCDS.obtenerCDsValorables(usuario,conexion));
                     mostrarPagina("jsp/addComment.jsp", request, response);
                     break;
             }
@@ -150,8 +149,9 @@ public class ControladorTienda extends HttpServlet {
                     }
                     break;
 
-                case "addComentario":
-
+                case "comentarCD":
+                    gestionCDS.introducirValoracion(conexion,request.getParameter("cdSeleccionado"),usuario,0,"");
+                    mostrarPagina("./jsp/addComment.jsp", request, response);
                     break;
 
                 case "verComentarios":

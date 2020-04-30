@@ -76,7 +76,28 @@ public class DAOCDs {
 
         return null;
     }
+    public CDVO obtenerCD(String cd, Connection conexion) {
+        CDVO cdCargado = null;
+        String consulta = "SELECT * FROM cds WHERE titulo=?";
 
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+
+            preparedStatement.setString(1, cd);
+
+            ResultSet resultado = preparedStatement.executeQuery();
+
+            if(resultado.next()){
+                cdCargado = new CDVO(resultado.getString("titulo"), resultado.getString("artista"), resultado.getString("pais"), Double.valueOf(resultado.getString("precio")), Integer.parseInt(resultado.getString("anho")), this.cargarValoracionesDeUnCD(resultado.getString("titulo"), conexion));
+            }
+
+            return cdCargado;
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return null;
+    }
     public ArrayList<CDVO> obtenerCatalogo(Connection conexion) {
         ArrayList<CDVO> catalogo = new ArrayList<>();
         String consulta = "SELECT * FROM cds;";

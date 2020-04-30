@@ -19,7 +19,7 @@ public class ControladorAdministrador extends HttpServlet {
     private HelperControlUsuario controlUsuarios;
 
     // atributos necesarias para la realización de las distintas peticiones
-    private UsuarioVO usuario;
+    //private UsuarioVO usuario;
     private Connection conexion;
     private HttpSession sesion;
 
@@ -144,7 +144,7 @@ public class ControladorAdministrador extends HttpServlet {
             }
         }
 
-        usuario = (UsuarioVO) sesion.getAttribute("usuario");
+        //usuario = (UsuarioVO) sesion.getAttribute("usuario");
         conexion = (Connection) sesion.getAttribute("conexion");
     }
 

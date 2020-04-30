@@ -27,7 +27,38 @@
           <h1 class="tituloPagina">Añadir Comentarios</h1>
         </div>
       </div>
-      
+
+      <div class="row">
+        <ul class="col tabla">
+          <li class="items mt-2">
+            <ul class="row p-0">
+              <li class="col-5"><b>Producto</b></li>
+              <li class="col-3"><b>Artista</b></li>
+              <li class="col-2"><b>Precio unidad</b></li>
+              <li class="col-2"><b>Comentar</b></li>
+            </ul>
+          </li>     
+          <c:forEach var="seleccion" items="${cdsValorables}">
+            <li class="items">
+              <ul class="row p-0">
+                <li class="col-5 my-auto">${seleccion.titulo}</li>
+                <li class="col-3 my-auto">${seleccion.artista}</li>
+                <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
+                <li class="col-2 my-auto">
+                  <form action="tienda" method="post" class="text-center">
+                    <input type="hidden" name="opcion" value="comentarCD">
+                    <input type="hidden" name="titulo" value="${seleccion.titulo}">
+                    <button type="submit" class="btn btn-light">
+                      <strong>Comentar</strong>
+                    </button>
+                  </form>
+                </li>
+              </ul>
+            </li>
+            <!--Añadir zona de comentarios y nota-->
+          </c:forEach>
+        </ul>
+      </div>
       
       
     </section>
