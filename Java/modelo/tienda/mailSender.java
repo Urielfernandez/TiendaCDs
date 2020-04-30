@@ -17,7 +17,7 @@ public class MailSender {
         Properties props = new Properties();
         props.put("mail.smtp.host", "smtp.gmail.com"); // El servidor SMTP de Google
         props.put("mail.smtp.ssl.trust", "smtp.gmail.com");
-        props.put("mail.debug", "true");
+        //props.put("mail.debug", "true");  //Activar si se quiere que se vea en el fichero log la salida detallada
         props.put("mail.smtp.starttls.enable", "true"); // Para conectar de manera segura al servidor SMTP
         props.put("mail.smtp.port", "587"); // El puerto SMTP seguro de Google
         props.put("mail.smtp.auth", "true"); // Usar autenticación mediante usuario y clave
@@ -25,11 +25,11 @@ public class MailSender {
         Session session = Session.getDefaultInstance(props);
 
         String correo = "tiendacdsdawa@gmail.com";
-        String contrasenha = "Contrasenha1";
+        String contrasenha = "Contrasenha1"; //
 
         MimeMessage message = new MimeMessage(session);
 
-        System.out.println("\n\tENVIANDO CORREO DESDE "+correo+" para "+destinatario);
+        System.out.println("\n\n\n\n\n\t--------------------------------------------------\n\n\tENVIANDO CORREO DESDE "+correo+" para "+destinatario);
 
 
 
@@ -58,7 +58,7 @@ public class MailSender {
 
         for (Seleccion aux : items) {
             ticket += "\t" + aux.getCd().getTitulo() + "\t" + aux.getCd().getArtista() + "\t" + aux.getCd().getPrecio()
-                    + "\t" + aux.getCantidad();
+                    + "\t" + aux.getCantidad()+"\n";
         }
 
         return ticket;
