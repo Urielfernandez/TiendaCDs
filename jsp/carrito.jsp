@@ -29,24 +29,23 @@
       </div>
       
       <div class="row">
-        <ul class="col-12 p-0 resumen">
-          <li class="producto p-0 py-1 mt-3">
+        <ul class="col tabla">
+          <li class="items p-0 py-1 mt-3">
             <ul class="row p-0">
-              <li class="col-3 offset-2">Producto</li>
+              <li class="col-4">Producto</li>
               <li class="col-2">Precio unidad</li>
               <li class="col-2">Cantidad</li>
               <li class="col-2">Importe</li>
             </ul>
           </li> 
               
-          <c:forEach var="articulo" items="${contenidoCarrito}">
-            <li class="producto p-0 py-1">
+          <c:forEach var="seleccion" items="${contenidoCarrito}">
+            <li class="items p-0 py-1">
               <ul class="row p-0">
-                <li class="col-2 p-0"><img src="./imagenes/cd.png" class="img-fluid" width="175" height="100"></li>
-                <li class="col-3 my-auto">${articulo.cd.titulo}</li>
-                <li class="col-2 my-auto"><fmt:formatNumber value="${articulo.cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
+                <li class="col-4 my-auto">${seleccion.cd.titulo}</li>
+                <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
                 <li class="col-2 my-auto">${articulo.cantidad}</li>
-                <li class="col-2 my-auto"><fmt:formatNumber value="${articulo.cd.precio * articulo.cantidad}" type="number" minFractionDigits="2" maxFractionDigits="2"/>€</li>
+                <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.cd.precio * seleccion.cantidad}" type="number" minFractionDigits="2" maxFractionDigits="2"/>€</li>
                 <li class="col-1 my-auto">
                   <form action="./tienda" method="post" class="text-center">
                     <input type="hidden" name="opcion" value="removeFromCarrito">
