@@ -30,7 +30,7 @@
 
       <div class="row mt-2">
         <div class="col-md-6 offset-md-3">
-          <form action="/administrador" method="post">
+          <form action="../administrador" method="post">
             <input type="hidden" name="opcion" value="almacenarNuevoCD"/>
             <div class="form-group">
               <label for="nombre">Título:</label>
