@@ -16,7 +16,7 @@
 	</head>
 
   <body>
-    <%@ include file="jsp/navbar.jsp" %>
+    <%@ include file="/jsp/navbar.jsp" %>
 
     <section class="container">
       <div class="row">
@@ -47,7 +47,7 @@
                 <li class="col-1 my-auto">
                   <form action="./tienda" method="post" class="text-center">
                     <input type="hidden" name="opcion" value="removeFromCarrito">
-                    <input type="hidden" name="nombre" value="${articulo.nombre}">
+                    <input type="hidden" name="nombre" value="${articulo.cd.titulo}">
                     <button type="submit" class="btnInicio">
                       <img src="./imagenes/iconos/papelera.svg" height="24" width="24">
                     </button>
@@ -68,7 +68,7 @@
                 </form>
               </li>
               <li class="col-2 text-right"><h4>Total:</h4></li>
-              <li class="col-3"><h4><fmt:formatNumber value="${carrito.total}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
+              <li class="col-3"><h4><fmt:formatNumber value="${precioTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h4></li>
             </ul>
           </li> 
         </ul>

@@ -124,8 +124,9 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "anhadirArticulo":
                     Seleccion nuevoItem = new Seleccion( gestionCDS.recogerCamposCD(request.getParameter("titulo"), request.getParameter("artista"), request.getParameter("pais"), request.getParameter("precio"), request.getParameter("anho")), 
-                                                            Integer.parseInt((String) request.getAttribute("unidadesSeleccionadas")));
+                                                            Integer.parseInt((String) request.getParameter("unidadesSeleccionadas")));
                     carrito.anhadirAlCarrito(nuevoItem);
+                    request.setAttribute("precioTotal", carrito.getImporteTotal());
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;
