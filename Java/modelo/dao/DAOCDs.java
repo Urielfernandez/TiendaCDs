@@ -48,7 +48,7 @@ public class DAOCDs {
             preparedStatement.executeUpdate();
 
         } catch (SQLException e) {
-            System.out.println("DAOCD: No se ha podido guardar el cd:" + cd.getTitulo());
+            System.out.println("DAOCD: No se ha podido guardar el cd:" + titulo);
             System.out.println(e.getMessage());
         }
     }
