@@ -14,3 +14,5 @@ INSERT INTO cds VALUES("DAA", "GSTIC", "Spain", 50.00, "2015");
 -- Insertamos 20 unidades de cada CD
 
 INSERT INTO inventario SELECT titulo, 100 FROM cds;
+
+-- Insertamos algunos usuarios
