@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <nav id="barraNavegacion" class="navbar navbar-expand-md sticky-top py-1 navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">
+  <a class="navbar-brand" href="tienda">
     <img src="imagenes/cdLogo.jpg" alt="Inicio" height="40" width="45" title="Inicio">
   </a>
 

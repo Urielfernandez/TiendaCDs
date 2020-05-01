@@ -19,8 +19,8 @@ INSERT INTO inventario SELECT titulo, 100 FROM cds;
 -- Insertar usuarios de prueba
 INSERT INTO usuarios VALUES("usuario@gmail.com", "usuario", "1234", "usuario", "Basico");
 INSERT INTO usuarios VALUES("usuarioVIP@gmail.com", "usuarioVIP", "1234", "usuario", "VIP");
-INSERT INTO usuarios VALUES("aministradorBasico@gmail.com", "administradorBasico", "1234", "administrador", "Basico");
-INSERT INTO usuarios VALUES("aministradorVIP@gmail.com", "aministradorVIP", "1234", "administrador", "VIP");
+INSERT INTO usuarios VALUES("administradorBasico@gmail.com", "administradorBasico", "1234", "administrador", "Basico");
+INSERT INTO usuarios VALUES("administradorVIP@gmail.com", "administradorVIP", "1234", "administrador", "VIP");
 
 
 --Insertar un pedido para generar un usuario VIP
