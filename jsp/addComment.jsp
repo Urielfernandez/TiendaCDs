@@ -24,7 +24,7 @@
     <section class="container">
       <div class="row">
         <div class="col">
-          <h1 class="tituloPagina">Añadir Comentarios</h1>
+          <h1 class="tituloPagina">Añadir comentarios</h1>
         </div>
       </div>
 
@@ -43,8 +43,8 @@
                 <li class="col-6 my-auto">${seleccion.titulo}</li>
                 <li class="col-4 my-auto">${seleccion.artista}</li>
                 <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
-
               </ul>
+
               <ul class="row p-0">
                 <form action="tienda" method="post" class="text-center">
                     <li><input type="text" class="form-control" name="nota" placeholder="Nota"></li>
