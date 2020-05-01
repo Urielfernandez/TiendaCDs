@@ -136,7 +136,7 @@ public class ControladorTienda extends HttpServlet {
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
                 case "comprar":
-                    // this.usuario.getEmail()
+                     this.usuario.getEmail();
                     // Parte de envio del correo
                     MailSender mensajero = new MailSender();
                     mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());
@@ -200,7 +200,8 @@ public class ControladorTienda extends HttpServlet {
                 case "comentarCD":
                     String nota= request.getParameter("nota");
                     String comentario=request.getParameter("comentario");
-                    gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, nota, comentario);
+                    if(!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, nota, comentario))
+                        mostrarPagina("jsp/error.jsp", request, response);
                     //devolver vista de catalogo o seguir en añadir comentarios?
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("jsp/catalogo.jsp", request, response);
