@@ -73,7 +73,7 @@
               </li>
               <li class="col-2 offset-5 text-right my-auto"><h5>Total:</h5></li>
               <li class="col-3 my-auto">
-                <h5><fmt:formatNumber value="${importeTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
+                <h5>${importeTotal} €</h5>
               </li>
             </ul>
           </li> 
