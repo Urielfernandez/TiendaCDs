@@ -53,20 +53,19 @@ public class ControladorTienda extends HttpServlet {
 
                     // Chequeamos la membresia
                     if (usuario.getNombre().isEmpty()) {
-                        System.out.println("\n\n---EL USUARIO NO ESTA INTRODUCIDO, ES NULL");
-                        request.setAttribute("importeTotal", String.format("%.2f", carrito.getImporteTotal()));
+                        request.setAttribute("importeTotal", carrito.getImporteTotal());
                         mostrarPagina("./jsp/carrito.jsp", request, response);
-                    } else {
-                        System.out.println("\n\n---EL USUARIO SI ESTA INTRODUCIDO, ES DISTINTO DE NULL. Nombre: "+usuario.getNombre()+", email: "+usuario.getEmail()+", tipo: "+usuario.getTipo());
+                    }
+                    else {
                         String membresia = this.gestionUsuarios.getMembresia(usuario, conexion);
+                        request.setAttribute("tipo", membresia);
                         if (membresia.equals("VIP")) {
-                            System.out.println("\n\n---EL USUARIO ES VIP");
-                            request.setAttribute("importeTotal", 
-                                    String.format("%.2f", carrito.getImporteTotal()) + " con 20% de descuento --> "
-                                            + String.format("%.2f", carrito.getImporteTotal() * 0.8));
-                        } else if (membresia.equals("Basico")) {
-                            System.out.println("\n\n---EL USUARIO ES BASICO");
-                            request.setAttribute("importeTotal", "Usuario básico--> "+String.format("%.2f", carrito.getImporteTotal()));
+                            request.setAttribute("importeTotal", carrito.getImporteTotal());
+                            request.setAttribute("mensajeDescuento", "20% de descuento");
+                            request.setAttribute("importeDescontado",  carrito.getImporteTotal() * 0.8);
+                        }
+                        else if (membresia.equals("Basico")) {
+                            request.setAttribute("importeTotal", carrito.getImporteTotal());
                         }
                         mostrarPagina("./jsp/carrito.jsp", request, response);
                     }
@@ -108,11 +107,12 @@ public class ControladorTienda extends HttpServlet {
                     // Chequeamos la membresia
                     String membresia = this.gestionUsuarios.getMembresia(usuario, conexion);
                     if (membresia.equals("VIP")) {
-                        request.setAttribute("importeTotal", String.format("%.2f", carrito.getImporteTotal())
-                                + " con 20% de descuento: " + String.format("%.2f", carrito.getImporteTotal() * 0.8));
-                    } else if (membresia.equals("Basico")) {
-
-                        request.setAttribute("importeTotal", String.format("%.2f", carrito.getImporteTotal()));
+                        request.setAttribute("importeTotal", carrito.getImporteTotal());
+                        request.setAttribute("mensajeDescuento", "20% de descuento");
+                        request.setAttribute("importeDescontado",  carrito.getImporteTotal() * 0.8);
+                    }
+                    else if (membresia.equals("Basico")) {
+                        request.setAttribute("importeTotal", carrito.getImporteTotal());
                     }
                     mostrarPagina("./jsp/carrito.jsp", request, response);
                     break;
@@ -134,7 +134,7 @@ public class ControladorTienda extends HttpServlet {
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
                 case "comprar":
-                     this.usuario.getEmail();
+                    this.usuario.getEmail();
                     // Parte de envio del correo
                     MailSender mensajero = new MailSender();
                     mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());

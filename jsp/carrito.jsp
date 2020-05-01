@@ -61,24 +61,66 @@
         </ul>
       </div>
 
-      <div class="row">
-        <ul class="col total">
-          <li>
-            <ul class="row p-0">
-              <li class="col-2">
-                <form action="tienda" method="POST" id="formulario">
-                  <input type="hidden" name="opcion" value="comprar">
-                  <button type="button" class="btn btn-primary px-5" id="btnLogin">Pagar</button>
-                </form>
-              </li>
-              <li class="col-2 offset-5 text-right my-auto"><h5>Total:</h5></li>
-              <li class="col-3 my-auto">
-                <h5>${importeTotal} €</h5>
-              </li>
+      <c:choose>
+        <c:when test="${mensajeDescuento != null && importeDescontado != null}">
+          <div class="row">
+            <ul class="col total">
+              <li>
+                <ul class="row p-0">
+                  <li class="col-3 offset-9 my-auto">
+                    <h5><fmt:formatNumber value="${importeTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
+                  </li>
+                </ul>
+              </li> 
             </ul>
-          </li> 
-        </ul>
-      </div>      
+          </div>
+
+          <div class="row">
+            <ul class="col total">
+              <li>
+                <ul class="row p-0">
+                  <li class="col-3 offset-9 my-auto">
+                    <h5>${mensajeDescuento}</h5>
+                  </li>
+                </ul>
+              </li> 
+            </ul>
+          </div>
+
+          <div class="row">
+            <ul class="col total">
+              <li>
+                <ul class="row p-0">
+                  <li class="col-2 offset-7 text-right my-auto"><h5>Total:</h5></li>
+                  <li class="col-3 my-auto">
+                    <h5><fmt:formatNumber value="${importeDescontado}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
+                  </li>
+                </ul>
+              </li> 
+            </ul>
+          </div>
+        </c:when>
+
+        <c:otherwise>
+          <div class="row">
+            <ul class="col total">
+              <li>
+                <ul class="row p-0">
+                  <li class="col-2 offset-7 text-right my-auto"><h5>Total:</h5></li>
+                  <li class="col-3 my-auto">
+                    <h5><fmt:formatNumber value="${importeTotal}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</h5>
+                  </li>
+                </ul>
+              </li> 
+            </ul>
+          </div>
+        </c:otherwise>
+      </c:choose>
+      
+      <form action="tienda" method="POST" id="formulario" class="text-center">
+        <input type="hidden" name="opcion" value="comprar">
+        <button type="submit" class="btn btn-primary px-5">Pagar</button>
+      </form>
     </section>
 
 		<!-- JQuery -->
