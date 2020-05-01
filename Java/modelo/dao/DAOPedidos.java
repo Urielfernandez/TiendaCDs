@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 
 import modelo.tienda.Pedido;
+import modelo.tienda.Seleccion;
 import modelo.vo.*;
 
 public class DAOPedidos {
@@ -15,7 +16,8 @@ public class DAOPedidos {
     }
 
     public boolean guardarPedido(Pedido pedido, Connection conexion) {
-        String insercionPedidos = "INSERT INTO pedidos ('usuario', 'total_compra') VALUES (?,?)";
+        String insercionPedidos = "INSERT INTO pedidos (usuario, total_compra) VALUES (?,?)";
+        String insercionItemsPedido = "INSERT INTO items_pedido VALUES (?, ?, ?, now())";
 
         try {
             conexion.setAutoCommit(false);
@@ -27,9 +29,17 @@ public class DAOPedidos {
 
             int indice = preparedStatement.executeUpdate();
 
+            for(Seleccion seleccionActual : pedido.getProductos()){
+                PreparedStatement preparedStatementSeleccion = conexion.prepareStatement(insercionItemsPedido);
 
+                preparedStatementSeleccion.setInt(1, indice);
+                preparedStatementSeleccion.setString(2, seleccionActual.getCd().getTitulo());
+                preparedStatementSeleccion.setInt(3, seleccionActual.getCantidad());
 
+                preparedStatementSeleccion.executeUpdate();
+            }
 
+            conexion.commit();
 
         } catch (SQLException e) {
             try {
@@ -37,7 +47,7 @@ public class DAOPedidos {
             } catch (SQLException e1) {
                 System.out.println(e1.getMessage());
             }
-            System.out.println("DAOUsuarios: No se ha podido guardar el pedido del usuario:" + pedido.getUsuario().getEmail());
+            //System.out.println("DAOUsuarios: No se ha podido guardar el pedido del usuario:" + pedido.getUsuario().getEmail());
             System.out.println(e.getMessage());
 
             return false;

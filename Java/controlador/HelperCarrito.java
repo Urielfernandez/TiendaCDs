@@ -34,7 +34,7 @@ public class HelperCarrito {
     }
 
     public boolean guardarPedido(Carrito carrito, UsuarioVO usuario, Connection conexion){
-        ArrayList<Seleccion> selecciones = new ArrayList();
+        ArrayList<Seleccion> selecciones = new ArrayList<>(carrito.getProductos().values());
 
         Pedido pedido = new Pedido(usuario, selecciones, carrito.getImporteTotal());
         

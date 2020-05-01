@@ -138,19 +138,17 @@ public class ControladorTienda extends HttpServlet {
                 case "comprar":
                     this.usuario.getEmail();
                     // Parte de envio del correo
-                    MailSender mensajero = new MailSender();
-                    mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());
+                    //MailSender mensajero = new MailSender();
+                    //mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());
 
-                   /* //EN CONSTRUCCION
+                    //EN CONSTRUCCION
                     if(this.gestionCarrito.guardarPedido(this.carrito, this.usuario, this.conexion)){
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
                     }
                     else {
                         mostrarPagina("jsp/error.jsp", request, response);
-                    }*/
-                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                    mostrarPagina("./jsp/catalogo.jsp", request, response);
+                    }
                     
                     break;
                 case "iniciarSesion":
