@@ -1,7 +1,7 @@
 <%@page contentType="text/html" pageEncoding="UTF-8"%>
 
 <nav id="barraNavegacion" class="navbar navbar-expand-md sticky-top py-1 navbar-dark bg-dark">
-  <a class="navbar-brand" href="index.html">
+  <a class="navbar-brand" href="administrador">
     <img src="imagenes/cdLogo.jpg" alt="Inicio" height="40" width="45" title="Inicio">
   </a>
 
@@ -14,10 +14,10 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="linkBarraNavegacion" href="">Menú de administración</a>
+        <a class="linkBarraNavegacion" href="administrador">Menú de administración</a>
       </li>
       <li class="nav-item">
-        <a class="linkBarraNavegacion" href="./jsp/anhadirNuevoCD.jsp">Añadir nuevo CD</a>
+        <a class="linkBarraNavegacion" href="nuevoCD">Añadir nuevo CD</a>
       </li>
     </ul>
 
