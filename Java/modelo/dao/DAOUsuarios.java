@@ -8,10 +8,15 @@ import java.util.ArrayList;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.UsuarioVO;
 import modelo.vo.Tipo;
+import modelo.vo.UsuarioBasico;
+import modelo.vo.UsuarioVIP;
 
 public class DAOUsuarios {
 
+    DAOPedidos daoPedidos;
+
     public DAOUsuarios() {
+        daoPedidos = new DAOPedidos();
     }
 
     public boolean guardarUsuario(UsuarioVO usuario, InicioSesionVO credenciales, Connection conexion) {
@@ -61,6 +66,8 @@ public class DAOUsuarios {
         return false;
     }
 
+    // Nos devuelve un usuarioVIP si tiene más de 100 euros en compras realizadas, o
+    // UsuarioBasico en otro caso
     public UsuarioVO obtenerUsuarioPorEmail(UsuarioVO usuario, Connection conexion) {
         String consulta = "SELECT * FROM usuarios WHERE email=?";
         UsuarioVO usuarioAux = null;
@@ -75,11 +82,24 @@ public class DAOUsuarios {
             if (resultado.next()) {
                 String tipo = resultado.getString("tipo");
                 Tipo t;
-                if (tipo.equals("usuario")){
-                    t = Tipo.usuario;
-                }else{
+                if (tipo.equals("usuario")) {
+                    String membresia = daoPedidos.getMembresiaUsuario(usuario, conexion);
+
+                    if (membresia.equals("Basico")) {
+
+                        usuarioAux = new UsuarioBasico(resultado.getString("nombre"), resultado.getString("email"));
+                    } else if (membresia.equals("VIP")) {
+
+                        usuarioAux = new UsuarioVIP(resultado.getString("nombre"), resultado.getString("email"));
+                    } else {
+                        return null;
+                    }
+                    return usuarioAux;
+                } else {
                     t = Tipo.administrador;
                 }
+
+                // Creamos un administrador
                 usuarioAux = new UsuarioVO(resultado.getString("nombre"), resultado.getString("email"), t);
                 return usuarioAux;
             }

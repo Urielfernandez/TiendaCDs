@@ -8,11 +8,14 @@ import java.sql.SQLException;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
+import javax.sound.sampled.SourceDataLine;
+
 import modelo.tienda.Carrito;
 import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
+import modelo.vo.UsuarioVIP;
 import modelo.vo.UsuarioVO;
 
 public class ControladorTienda extends HttpServlet {
@@ -49,8 +52,26 @@ public class ControladorTienda extends HttpServlet {
             switch (vista) {
                 case "carrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
-                    request.setAttribute("importeTotal", carrito.getImporteTotal());
-                    mostrarPagina("jsp/carrito.jsp", request, response);
+
+                    // Chequeamos la membresia
+                    if (usuario.getNombre().isEmpty()) {
+                        System.out.println("\n\n---EL USUARIO NO ESTA INTRODUCIDO, ES NULL");
+                        request.setAttribute("importeTotal", String.format("%.2f", carrito.getImporteTotal()));
+                        mostrarPagina("./jsp/carrito.jsp", request, response);
+                    } else {
+                        System.out.println("\n\n---EL USUARIO SI ESTA INTRODUCIDO, ES DISTINTO DE NULL. Nombre: "+usuario.getNombre()+", email: "+usuario.getEmail()+", tipo: "+usuario.getTipo());
+                        String membresia = this.gestionUsuarios.getMembresia(usuario, conexion);
+                        if (membresia.equals("VIP")) {
+                            System.out.println("\n\n---EL USUARIO ES VIP");
+                            request.setAttribute("importeTotal", 
+                                    String.format("%.2f", carrito.getImporteTotal()) + " con 20% de descuento --> "
+                                            + String.format("%.2f", carrito.getImporteTotal() * 0.8));
+                        } else if (membresia.equals("Basico")) {
+                            System.out.println("\n\n---EL USUARIO ES BASICO");
+                            request.setAttribute("importeTotal", "Usuario básico--> "+String.format("%.2f", carrito.getImporteTotal()));
+                        }
+                        mostrarPagina("./jsp/carrito.jsp", request, response);
+                    }
                     break;
 
                 case "cargarCDsValorables":
@@ -59,7 +80,7 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "verValoracionesCD":
-                    String titulo=request.getParameter("titulo");
+                    String titulo = request.getParameter("titulo");
                     request.setAttribute("valoracioneCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
                     request.setAttribute("titulo",titulo);
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
@@ -85,7 +106,16 @@ public class ControladorTienda extends HttpServlet {
                     break;
                 case "verCarrito":
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
-                    request.setAttribute("importeTotal", carrito.getImporteTotal());
+
+                    // Chequeamos la membresia
+                    String membresia = this.gestionUsuarios.getMembresia(usuario, conexion);
+                    if (membresia.equals("VIP")) {
+                        request.setAttribute("importeTotal", String.format("%.2f", carrito.getImporteTotal())
+                                + " con 20% de descuento: " + String.format("%.2f", carrito.getImporteTotal() * 0.8));
+                    } else if (membresia.equals("Basico")) {
+
+                        request.setAttribute("importeTotal", String.format("%.2f", carrito.getImporteTotal()));
+                    }
                     mostrarPagina("./jsp/carrito.jsp", request, response);
                     break;
                 case "anhadirArticulo":

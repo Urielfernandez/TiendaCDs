@@ -7,6 +7,7 @@ public class Pedido {
 
     private UsuarioVO usuario;
     private ArrayList<Seleccion> productos;
+    private double importe;
 
     public Pedido() {
     }
@@ -28,7 +29,13 @@ public class Pedido {
     }
 
     public double getTotalCompra() {
-        return 0.0;
+        return importe;
     }
+
+    public void setImporte(double importe) {
+        this.importe = importe;
+    }
+
+    
 
 }

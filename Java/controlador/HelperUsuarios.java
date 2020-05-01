@@ -3,6 +3,7 @@ package controlador;
 import java.sql.Connection;
 import java.util.ArrayList;
 
+import modelo.dao.DAOPedidos;
 import modelo.dao.DAOUsuarios;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.UsuarioVO;
@@ -10,9 +11,11 @@ import modelo.vo.UsuarioVO;
 public class HelperUsuarios {
 
     DAOUsuarios dao;
+    DAOPedidos daoPedidos;
 
     public HelperUsuarios(){
         dao = new DAOUsuarios();
+        daoPedidos = new DAOPedidos();
     }
 
 
@@ -40,5 +43,9 @@ public class HelperUsuarios {
 
     public boolean modificarContrasenha(InicioSesionVO datosUsuario, Connection conexion){
         return this.dao.modificarUsuario(datosUsuario, conexion);
+    }
+
+    public String getMembresia(UsuarioVO usuario, Connection conexion){
+        return daoPedidos.getMembresiaUsuario(usuario, conexion);
     }
 }
