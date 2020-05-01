@@ -172,8 +172,8 @@ public class DAOPedidos {
         return lista;
     }
 
-    public ArrayList<String> obtenerComentariosTitulo(String tituloCD, Connection conexion) {
-        ArrayList<String> lista = new ArrayList<>();
+    public ArrayList<ValoracionVO> obtenerValoracionesTitulo(String tituloCD, Connection conexion) {
+        ArrayList<ValoracionVO> lista = new ArrayList<>();
         String consulta = "SELECT * FROM opiniones where cd=?";
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -183,7 +183,12 @@ public class DAOPedidos {
             ResultSet resultado = preparedStatement.executeQuery();
 
             while (resultado.next()) {
-                lista.add(resultado.getString("opinion"));
+                ValoracionVO v=new ValoracionVO(resultado.getFloat("nota"),
+                                                resultado.getString("opinion"),
+                                                resultado.getString("cd"),
+                                                resultado.getString("email"));
+
+                lista.add(v);
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());

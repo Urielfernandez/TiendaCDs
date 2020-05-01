@@ -24,10 +24,36 @@
     <section class="container">
       <div class="row">
         <div class="col">
-          <h1 class="tituloPagina">Valoraciones de un CD: ${titulo}</h1>
+          <h1 class="tituloPagina">Valoraciones del CD <strong>${titulo}</strong></h1>
         </div>
       </div>
-      
+
+      <div class="row">
+        <ul class="col tabla">
+          <li class="items mt-2">
+            <ul class="row p-0">
+              <li class="col-2"><b>Nota</b></li>
+              <li class="col-6"><b>Opinion</b></li>
+              <li class="col-2"><b>Titulo</b></li>
+              <li class="col-2"><b>Usuario</b></li>
+            </ul>
+          </li> 
+              
+          <c:forEach var="seleccion" items="${valoracionesCD}">
+            <li class="items">
+              <ul class="row p-0">
+                <li class="col-2 my-auto">${seleccion.nota}</li>
+                <li class="col-6 my-auto">${seleccion.opinion}</li>
+                <li class="col-2 my-auto">${seleccion.tituloDelCD}</li>
+                <li class="col-2 my-auto">${seleccion.emailUsuarioEmisor}</li>
+              </ul>
+            </li>
+          </c:forEach>
+        </ul>
+      </div>
+
+
+      <!--
       <div class="row">
         <ul class="col tabla">  
           <c:forEach var="seleccion" items="${valoracionesCD}">
@@ -38,7 +64,7 @@
             </li>
           </c:forEach>
         </ul>
-      </div>    
+      </div>    -->
     </section>
 
 		<!-- JQuery -->

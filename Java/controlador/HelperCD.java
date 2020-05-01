@@ -42,8 +42,8 @@ public class HelperCD {
         return listaCDs;
     }
     
-    public ArrayList<String> obtenerValoracionesCD(String titulo, Connection con){//*NUEVO<----------------------------------------*
-        ArrayList<String> lista=conexionBDpedidos.obtenerComentariosTitulo(titulo, con);
+    public ArrayList<ValoracionVO> obtenerValoracionesCD(String titulo, Connection con){//*NUEVO<----------------------------------------*
+        ArrayList<ValoracionVO> lista=conexionBDpedidos.obtenerValoracionesTitulo(titulo, con);
         return lista;
     }
 
