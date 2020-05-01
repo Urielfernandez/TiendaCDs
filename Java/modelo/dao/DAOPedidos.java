@@ -4,7 +4,10 @@ import java.sql.Connection;
 import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
+import java.sql.Statement;
 import java.util.ArrayList;
+
+
 
 import modelo.tienda.Pedido;
 import modelo.tienda.Seleccion;
@@ -16,29 +19,60 @@ public class DAOPedidos {
     }
 
     public boolean guardarPedido(Pedido pedido, Connection conexion) {
+        String consultaStock = "SELECT * FROM inventario WHERE cd=? AND cantidad_stock >= ?";
+        String actualizacionStock = "UPDATE inventario SET cantidad_stock=? WHERE cd=?";
         String insercionPedidos = "INSERT INTO pedidos (usuario, total_compra) VALUES (?,?)";
         String insercionItemsPedido = "INSERT INTO items_pedido VALUES (?, ?, ?, now())";
+
+        int indice = -1;
 
         try {
             conexion.setAutoCommit(false);
 
-            PreparedStatement preparedStatement = conexion.prepareStatement(insercionPedidos, PreparedStatement.RETURN_GENERATED_KEYS);
+            PreparedStatement preparedStatement = conexion.prepareStatement(insercionPedidos, Statement.RETURN_GENERATED_KEYS);
 
             preparedStatement.setString(1, pedido.getUsuario().getEmail());
             preparedStatement.setDouble(2, pedido.getTotalCompra());
 
-            int indice = preparedStatement.executeUpdate();
+            preparedStatement.executeUpdate();
 
-            for(Seleccion seleccionActual : pedido.getProductos()){
-                PreparedStatement preparedStatementSeleccion = conexion.prepareStatement(insercionItemsPedido);
-
-                preparedStatementSeleccion.setInt(1, indice);
-                preparedStatementSeleccion.setString(2, seleccionActual.getCd().getTitulo());
-                preparedStatementSeleccion.setInt(3, seleccionActual.getCantidad());
-
-                preparedStatementSeleccion.executeUpdate();
+            ResultSet clavesGeneradas = preparedStatement.getGeneratedKeys();
+            if(clavesGeneradas.next()){
+                indice = clavesGeneradas.getInt(1);
             }
 
+            for(Seleccion seleccionActual : pedido.getProductos()){
+                PreparedStatement preparedStatementStock = conexion.prepareStatement(consultaStock);
+
+                preparedStatementStock.setString(1, seleccionActual.getCd().getTitulo());
+                preparedStatementStock.setInt(2, seleccionActual.getCantidad());
+    
+                ResultSet hayStock = preparedStatementStock.executeQuery();
+
+                if(hayStock.next()){
+                    int stockActual = hayStock.getInt("cantidad_stock");
+                    stockActual -= seleccionActual.getCantidad();
+
+                    PreparedStatement preparedStatementActualizacion = conexion.prepareStatement(actualizacionStock);
+                    preparedStatementActualizacion.setInt(1, stockActual);
+                    preparedStatementActualizacion.setString(2, seleccionActual.getCd().getTitulo());
+
+                    preparedStatementActualizacion.executeUpdate();
+                    
+                    PreparedStatement preparedStatementSeleccion = conexion.prepareStatement(insercionItemsPedido);
+
+                    preparedStatementSeleccion.setInt(1, indice);
+                    preparedStatementSeleccion.setString(2, seleccionActual.getCd().getTitulo());
+                    preparedStatementSeleccion.setInt(3, seleccionActual.getCantidad());
+
+                    preparedStatementSeleccion.executeUpdate();
+                }
+                else {
+                    System.out.println("No hay stock suficiente del CD "+seleccionActual.getCd().getTitulo());
+                    conexion.rollback();
+                    return false;
+                }
+            }
             conexion.commit();
 
         } catch (SQLException e) {
@@ -47,7 +81,7 @@ public class DAOPedidos {
             } catch (SQLException e1) {
                 System.out.println(e1.getMessage());
             }
-            //System.out.println("DAOUsuarios: No se ha podido guardar el pedido del usuario:" + pedido.getUsuario().getEmail());
+            System.out.println("DAOUsuarios: No se ha podido guardar el pedido del usuario: " + pedido.getUsuario().getEmail());
             System.out.println(e.getMessage());
 
             return false;

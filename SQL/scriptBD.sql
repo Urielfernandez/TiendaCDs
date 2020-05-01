@@ -24,7 +24,7 @@ CREATE TABLE inventario (
   cd varchar(100) NOT NULL,
   cantidad_stock int NOT NULL,
   PRIMARY KEY (cd),
-  FOREIGN KEY (cd) REFERENCES cds(titulo)
+  FOREIGN KEY (cd) REFERENCES cds(titulo) on update cascade on delete cascade
 );
 
 -- Tabla usuarios
@@ -46,7 +46,7 @@ CREATE TABLE pedidos (
   usuario varchar(100) NOT NULL,
   total_compra float NOT NULL,
   PRIMARY KEY (id),
-  FOREIGN KEY (usuario) REFERENCES usuarios(email)
+  FOREIGN KEY (usuario) REFERENCES usuarios(email) on update cascade on delete cascade
 );
 
 -- Tabla opiniones
@@ -57,8 +57,8 @@ CREATE TABLE opiniones (
     cd varchar(100) NOT NULL,
     email varchar(100) NOT NULL,
     PRIMARY KEY(cd,email),
-    FOREIGN KEY (cd) REFERENCES cds(titulo),
-    FOREIGN KEY (email) REFERENCES usuarios(email)
+    FOREIGN KEY (cd) REFERENCES cds(titulo) on update cascade on delete cascade,
+    FOREIGN KEY (email) REFERENCES usuarios(email) on update cascade on delete cascade
 );
 
 
@@ -70,8 +70,8 @@ CREATE TABLE items_pedido (
   cantidad int NOT NULL,
   fecha TIMESTAMP DEFAULT CURRENT_TIMESTAMP NOT NULL,
   PRIMARY KEY (pedido,cd),
-  FOREIGN KEY (cd) REFERENCES cds(titulo),
-  FOREIGN KEY (pedido) REFERENCES pedidos(id)
+  FOREIGN KEY (cd) REFERENCES cds(titulo) on update cascade on delete cascade,
+  FOREIGN KEY (pedido) REFERENCES pedidos(id) on update cascade on delete cascade
 );
 
 CREATE USER 'dawa'@'localhost' IDENTIFIED BY 'Dawaproyecto1';
