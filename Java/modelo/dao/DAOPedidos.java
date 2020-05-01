@@ -189,4 +189,27 @@ public class DAOPedidos {
 
         return lista;
     }
+
+    public boolean nuevaValoracion(Connection conexion,String cd, UsuarioVO usuario, float nota, String comentario){
+        String consulta = "INSERT INTO opiniones VALUES(?,?,?,?)";
+
+        try{
+            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+
+            preparedStatement.setFloat(1, nota);
+            preparedStatement.setString(2, comentario);
+            preparedStatement.setString(3, cd);
+            preparedStatement.setString(4, usuario.getEmail());
+
+            preparedStatement.executeUpdate();
+
+            return true;
+        } catch (SQLException e) {
+            System.out.println("DAOCD: No se ha podido guardar la valoracion: "+nota+" : "+ comentario);
+            System.out.println(e.getMessage());
+        }
+
+        return false;
+    }
+
 }
