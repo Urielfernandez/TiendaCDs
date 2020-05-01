@@ -28,6 +28,7 @@ public class HelperCD {
         listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
+    
     public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario, Connection con){//*NUEVO<----------------------------------------*
         ArrayList<CDVO> listaCDs=new ArrayList<>();
         //ArrayList<String> titulosAdquiridos=conexionBDpedidos.getCDsPedidosUsuario(usuario,  con);
@@ -36,8 +37,8 @@ public class HelperCD {
         for(int i=0;i<titulosNoComentados.size();i++){
            listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
         }
-        CDVO a=new CDVO("DAA","artista","EEUU",12,1910);
-        listaCDs.add(a);
+        //CDVO a=new CDVO("DAA","artista","EEUU",12,1910);
+        //listaCDs.add(a);
         return listaCDs;
     }
     
