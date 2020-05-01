@@ -8,14 +8,12 @@ import java.sql.SQLException;
 
 import javax.servlet.*;
 import javax.servlet.http.*;
-import javax.sound.sampled.SourceDataLine;
 
 import modelo.tienda.Carrito;
 import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
-import modelo.vo.UsuarioVIP;
 import modelo.vo.UsuarioVO;
 
 public class ControladorTienda extends HttpServlet {

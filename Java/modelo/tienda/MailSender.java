@@ -4,8 +4,6 @@ import java.util.*;
 import javax.mail.*;
 import javax.mail.internet.*;
 
-import modelo.vo.CDVO;
-
 public class MailSender {
 
     public void enviarConGMail(String destinatario, Collection<Seleccion> collection) {
