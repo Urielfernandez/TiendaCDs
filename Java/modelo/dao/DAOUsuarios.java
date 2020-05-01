@@ -7,6 +7,7 @@ import java.sql.SQLException;
 import java.util.ArrayList;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.UsuarioVO;
+import modelo.vo.Tipo;
 
 public class DAOUsuarios {
 
@@ -62,6 +63,7 @@ public class DAOUsuarios {
 
     public UsuarioVO obtenerUsuarioPorEmail(UsuarioVO usuario, Connection conexion) {
         String consulta = "SELECT * FROM usuarios WHERE email=?";
+        UsuarioVO usuarioAux = null;
 
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -71,7 +73,14 @@ public class DAOUsuarios {
             ResultSet resultado = preparedStatement.executeQuery();
 
             if (resultado.next()) {
-                UsuarioVO usuarioAux = new UsuarioVO(resultado.getString("nombre"), resultado.getString("email"));
+                String tipo = resultado.getString("tipo");
+                Tipo t;
+                if (tipo.equals("usuario")){
+                    t = Tipo.usuario;
+                }else{
+                    t = Tipo.administrador;
+                }
+                usuarioAux = new UsuarioVO(resultado.getString("nombre"), resultado.getString("email"), t);
                 return usuarioAux;
             }
         } catch (SQLException e) {

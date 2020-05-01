@@ -6,7 +6,7 @@ public class UsuarioVIP extends UsuarioVO{
     }
 
     public UsuarioVIP(String nombre, String email) {
-        super(nombre, email);
+        super(nombre, email, Tipo.usuario);
     }
 
     

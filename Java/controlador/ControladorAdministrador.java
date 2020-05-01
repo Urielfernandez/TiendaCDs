@@ -10,6 +10,7 @@ import javax.servlet.http.*;
 import modelo.tienda.Carrito;
 import modelo.vo.CDVO;
 import modelo.vo.InicioSesionVO;
+import modelo.vo.Tipo;
 import modelo.vo.UsuarioBasico;
 import modelo.vo.UsuarioVO;
 
@@ -56,7 +57,7 @@ public class ControladorAdministrador extends HttpServlet {
 
             case "eliminarUsuario":
                 String usuarioEliminar = request.getParameter("usuarioEliminar");
-                UsuarioVO usuario = new UsuarioVO("", usuarioEliminar);
+                UsuarioVO usuario = new UsuarioVO("", usuarioEliminar, Tipo.usuario);
                 if (this.gestionUsuarios.eliminarUsuario(usuario, this.conexion)) {
                     request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
                     mostrarPagina("jsp/administracion.jsp", request, response);
