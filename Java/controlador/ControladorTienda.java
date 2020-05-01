@@ -205,9 +205,6 @@ public class ControladorTienda extends HttpServlet {
                     mostrarPagina("jsp/catalogo.jsp", request, response);
                     break;
 
-                case "verComentarios":
-
-                    break;
             }
         }
     }

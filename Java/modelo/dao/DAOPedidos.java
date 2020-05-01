@@ -134,7 +134,9 @@ public class DAOPedidos {
     public ArrayList<String> titulosNoComentados(UsuarioVO usuario, Connection conexion) {
         ArrayList<String> lista = new ArrayList<>();
         // añado los titulos de los cds comprados a una lista(sin repetirlos)
-        String consulta = "SELECT * FROM pedidos p JOIN items_pedido i" + "ON p.id=i.pedido" + " WHERE p.usuario=?";
+        String consulta = "SELECT cd FROM pedidos p JOIN items_pedido i " +
+                                     "ON p.id=i.pedido " +
+                                     " WHERE p.usuario=?";
 
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -151,7 +153,7 @@ public class DAOPedidos {
             System.out.println(e.getMessage());
         }
         // Quito cds ya comentados
-        consulta = "SELECT * FROM opiniones " + " WHERE email=?";
+        consulta = "SELECT cd FROM opiniones WHERE email=?";
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
