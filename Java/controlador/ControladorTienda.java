@@ -79,7 +79,7 @@ public class ControladorTienda extends HttpServlet {
 
                 case "verValoracionesCD":
                     String titulo = request.getParameter("titulo");
-                    request.setAttribute("valoracioneCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
+                    request.setAttribute("valoracionesCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
                     request.setAttribute("titulo",titulo);
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
                     break;
@@ -163,7 +163,6 @@ public class ControladorTienda extends HttpServlet {
                     // Ahora chequeamos si es usuario o administrador para llevarlo a una de las
                     // páginas
                     if (usuario.getTipo().equals(Tipo.administrador)) {
-
                         request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
                         mostrarPagina("jsp/administracion.jsp", request, response);
 
@@ -175,7 +174,6 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "chequearErroresCredenciales":
-
                     request.setCharacterEncoding("UTF-8");
                     response.setCharacterEncoding("UTF-8");
 

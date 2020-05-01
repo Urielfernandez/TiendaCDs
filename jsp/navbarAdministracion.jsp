@@ -14,17 +14,17 @@
   <div class="collapse navbar-collapse" id="navbarNav">
     <ul class="navbar-nav mr-auto">
       <li class="nav-item">
-        <a class="linkBarraNavegacion activo" href="">Menú de administración</a>
+        <a class="linkBarraNavegacion" href="">Menú de administración</a>
       </li>
       <li class="nav-item">
-        <a class="linkBarraNavegacion activo" href="./jsp/anhadirNuevoCD.jsp">Añadir nuevo CD</a>
+        <a class="linkBarraNavegacion" href="./jsp/anhadirNuevoCD.jsp">Añadir nuevo CD</a>
       </li>
     </ul>
 
     <ul class="navbar-nav">
       <li class="nav-item my-auto">
         <a class="usuario" href="#">
-          ${nombreUsuario}
+          ${email}
         </a>
       </li>
       <li class="nav-item">
