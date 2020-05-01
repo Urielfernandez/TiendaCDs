@@ -76,6 +76,8 @@ public class DAOPedidos {
     }
 
     public ArrayList<String> getCDsNoComentados(ArrayList<String> listaCDs,UsuarioVO usuario, Connection conexion){
+
+
         ArrayList<String> lista= (ArrayList<String>) listaCDs.clone();
         String consulta = "SELECT * FROM opiniones WHERE cd=? and usuario=?";
 
@@ -96,6 +98,68 @@ public class DAOPedidos {
         } catch (SQLException e) {
             System.out.println(e.getMessage());
         }
+        return lista;
+    }
+
+    public ArrayList<String> titulosNoComentados(UsuarioVO usuario, Connection conexion){
+        ArrayList<String> lista= new ArrayList<>();
+        //añado los titulos de los cds comprados a una lista(sin repetirlos)
+        String consulta = "SELECT * FROM pedidos p JOIN items_pedido i"+
+                        "ON p.id=i.pedido"+    
+                        " WHERE p.usuario=?";
+
+        try {
+                PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+
+                preparedStatement.setString(1,usuario.getEmail());
+
+                ResultSet resultado = preparedStatement.executeQuery();
+
+                while (resultado.next()) {
+                    if(!lista.contains(resultado.getString("cd")))
+                        lista.add(resultado.getString("cd"));
+                }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+        //Quito cds ya comentados
+        consulta = "SELECT * FROM opiniones "+
+                        " WHERE email=?";
+        try {
+            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+
+            preparedStatement.setString(1,usuario.getEmail());
+
+            ResultSet resultado = preparedStatement.executeQuery();
+
+            while (resultado.next()) {
+                if(lista.contains(resultado.getString("cd")))
+                    lista.remove(resultado.getString("cd"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
+        return lista;
+    }
+
+    public ArrayList<String> obtenerComentariosTitulo(String tituloCD, Connection conexion){
+        ArrayList<String> lista= new ArrayList<>();
+        String consulta = "SELECT * FROM opiniones where cd=?";
+        try {
+            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+
+            preparedStatement.setString(1,tituloCD);
+
+            ResultSet resultado = preparedStatement.executeQuery();
+
+            while (resultado.next()) {
+                lista.add(resultado.getString("opinion"));
+            }
+        } catch (SQLException e) {
+            System.out.println(e.getMessage());
+        }
+
         return lista;
     }
 }

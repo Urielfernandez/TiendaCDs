@@ -24,47 +24,27 @@
     <section class="container">
       <div class="row">
         <div class="col">
-          <h1 class="tituloPagina">Añadir Comentarios</h1>
+          <h1 class="tituloPagina">Valoraciones de un CD</h1>
         </div>
       </div>
-
+      
       <div class="row">
         <ul class="col tabla">
           <li class="items mt-2">
             <ul class="row p-0">
-              <li class="col-6"><b>Producto</b></li>
-              <li class="col-4"><b>Artista</b></li>
-              <li class="col-2"><b>Precio unidad</b></li>
+              <li class="col-5"><b>Producto</b></li>
             </ul>
-          </li>     
-          <c:forEach var="seleccion" items="${cdsValorables}">
+          </li> 
+              
+          <c:forEach var="seleccion" items="${valoracioneCD}">
             <li class="items">
               <ul class="row p-0">
-                <li class="col-6 my-auto">${seleccion.titulo}</li>
-                <li class="col-4 my-auto">${seleccion.artista}</li>
-                <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
-                
-              </ul>
-              <ul class="row p-0">¡
-                <li class="col-6 my-auto">nota</li>
-                <li class="col-4 my-auto">comentatio</li>
-                <li class="col-2 my-auto">
-                  <form action="tienda" method="post" class="text-center">
-                    <input type="hidden" name="opcion" value="comentarCD">
-                    <input type="hidden" name="titulo" value="${seleccion.titulo}">
-                    <button type="submit" class="btn btn-light">
-                      <strong>Comentar</strong>
-                    </button>
-                  </form>
-                </li>
+                <li class="col-5 my-auto">${seleccion}</li>
               </ul>
             </li>
-            <!--Añadir zona de comentarios y nota-->
           </c:forEach>
         </ul>
-      </div>
-      
-      
+      </div>    
     </section>
 
 		<!-- JQuery -->
@@ -81,6 +61,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous">
     </script>
-    <script src="jsp/comprobarLogin.js"></script>
+    <script src="js/comprobarLogin.js"></script>
   </body>
 </html>

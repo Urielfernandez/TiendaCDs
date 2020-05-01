@@ -56,6 +56,12 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("cdsValorables",gestionCDS.obtenerCDsValorables(usuario,conexion));
                     mostrarPagina("jsp/addComment.jsp", request, response);
                     break;
+
+                case "verValoracionesCD":
+                    String titulo=request.getParameter("titulo");
+                    request.setAttribute("valoracioneCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
+                    mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
+                    break;
             }
         }
     }
@@ -100,8 +106,8 @@ public class ControladorTienda extends HttpServlet {
                 case "comprar":
                     //this.usuario.getEmail()
                     // Parte de envio del correo
-                    MailSender mensajero = new MailSender();
-                    mensajero.enviarConGMail(usuario.getEmail() ,this.carrito.getProductos().values());
+                    //MailSender mensajero = new MailSender();
+                    //mensajero.enviarConGMail(usuario.getEmail() ,this.carrito.getProductos().values());
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;

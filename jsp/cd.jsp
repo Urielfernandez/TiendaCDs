@@ -32,6 +32,15 @@
           </button>
         </div> 
       </form>
+    
+      <form action="tienda" method="get" class="form-inline">
+        <input type="hidden" name="vista" value="verValoracionesCD">
+        <input type="hidden" name="titulo" value="${cd.titulo}">
+        <button type="submit" class="btn btn-primary"
+            style="border-radius: 0rem .25rem .25rem 0rem;">
+            Ver valoraciones
+          </button>
+      </form>
     </div>
   </div>
 </div>

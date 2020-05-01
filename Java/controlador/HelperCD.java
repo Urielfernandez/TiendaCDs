@@ -30,13 +30,18 @@ public class HelperCD {
     }
     public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario, Connection con){//*NUEVO<----------------------------------------*
         ArrayList<CDVO> listaCDs=new ArrayList<>();
-        ArrayList<String> titulosAdquiridos=conexionBDpedidos.getCDsPedidosUsuario(usuario,  con);
+        //ArrayList<String> titulosAdquiridos=conexionBDpedidos.getCDsPedidosUsuario(usuario,  con);
         // comprobar cuales de estos titulos ya se han valorado
-        ArrayList<String> titulosNoComentados=conexionBDpedidos.getCDsNoComentados(titulosAdquiridos,usuario, con);
+        ArrayList<String> titulosNoComentados=conexionBDpedidos.titulosNoComentados(usuario, con);
         for(int i=0;i<titulosNoComentados.size();i++){
-            listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
+           listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
         }
         return listaCDs;
+    }
+    
+    public ArrayList<String> obtenerValoracionesCD(String titulo, Connection con){//*NUEVO<----------------------------------------*
+        ArrayList<String> lista=conexionBDpedidos.obtenerComentariosTitulo(titulo, con);
+        return lista;
     }
 
     public CDVO recogerCamposCD(String titulo, String artista, String pais, String precioString, String anhoString) {
