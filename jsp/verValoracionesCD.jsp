@@ -24,17 +24,12 @@
     <section class="container">
       <div class="row">
         <div class="col">
-          <h1 class="tituloPagina">Valoraciones de un CD</h1>
+          <h1 class="tituloPagina">Valoraciones de un CD: ${titulo} </h1>
         </div>
       </div>
       
       <div class="row">
         <ul class="col tabla">
-          <li class="items mt-2">
-            <ul class="row p-0">
-              <li class="col-5"><b>Producto</b></li>
-            </ul>
-          </li> 
               
           <c:forEach var="seleccion" items="${valoracioneCD}">
             <li class="items">

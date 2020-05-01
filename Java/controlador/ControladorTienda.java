@@ -61,6 +61,7 @@ public class ControladorTienda extends HttpServlet {
                 case "verValoracionesCD":
                     String titulo=request.getParameter("titulo");
                     request.setAttribute("valoracioneCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
+                    request.setAttribute("titulo",titulo);
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
                     break;
             }
@@ -167,8 +168,12 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "comentarCD":
-                    gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, 0, "");
-                    mostrarPagina("./jsp/addComment.jsp", request, response);
+                    String nota= request.getParameter("nota");
+                    String comentario=request.getParameter("comentario");
+                    gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, nota, comentario);
+                    //devolver vista de catalogo o seguir en añadir comentarios?
+                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                    mostrarPagina("jsp/catalogo.jsp", request, response);
                     break;
 
                 case "verComentarios":

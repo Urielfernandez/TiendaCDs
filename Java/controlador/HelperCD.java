@@ -17,9 +17,9 @@ public class HelperCD {
         this.conexionBDpedidos=new DAOPedidos();
     }
 
-    public boolean introducirValoracion(Connection con,String cd, UsuarioVO usuario, float nota, String comentario) {//Params cambiados
-        
-        return false;
+    public boolean introducirValoracion(Connection con,String cd, UsuarioVO usuario, String notaString, String comentario) {//Params cambiados
+        Float nota=Float.parseFloat(notaString);
+        return conexionBDpedidos.nuevaValoracion(con, cd, usuario, nota, comentario);
     }
 
     public ArrayList<ValoracionVO> obtenerValoraciones(CDVO cd, Connection con) {
@@ -36,6 +36,8 @@ public class HelperCD {
         for(int i=0;i<titulosNoComentados.size();i++){
            listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
         }
+        CDVO a=new CDVO("DAA","artista","EEUU",12,1910);
+        listaCDs.add(a);
         return listaCDs;
     }
     
