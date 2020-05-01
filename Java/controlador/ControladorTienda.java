@@ -20,6 +20,7 @@ public class ControladorTienda extends HttpServlet {
 
     private HelperCD gestionCDS;
     private HelperUsuarios gestionUsuarios;
+    private HelperCarrito gestionCarrito;
 
     // atributos necesarias para la realización de las distintas peticiones
     private Carrito carrito;
@@ -32,6 +33,7 @@ public class ControladorTienda extends HttpServlet {
 
         gestionCDS = new HelperCD();
         gestionUsuarios = new HelperUsuarios();
+        gestionCarrito = new HelperCarrito();
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -138,8 +140,18 @@ public class ControladorTienda extends HttpServlet {
                     // Parte de envio del correo
                     MailSender mensajero = new MailSender();
                     mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());
+
+                   /* //EN CONSTRUCCION
+                    if(this.gestionCarrito.guardarPedido(this.carrito, this.usuario, this.conexion)){
+                        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                        mostrarPagina("./jsp/catalogo.jsp", request, response);
+                    }
+                    else {
+                        mostrarPagina("jsp/error.jsp", request, response);
+                    }*/
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
+                    
                     break;
                 case "iniciarSesion":
                     InicioSesionVO inicioSesion = new InicioSesionVO();

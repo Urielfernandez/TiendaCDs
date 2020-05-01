@@ -15,7 +15,35 @@ public class DAOPedidos {
     }
 
     public boolean guardarPedido(Pedido pedido, Connection conexion) {
-        return false;
+        String insercionPedidos = "INSERT INTO pedidos ('usuario', 'total_compra') VALUES (?,?)";
+
+        try {
+            conexion.setAutoCommit(false);
+
+            PreparedStatement preparedStatement = conexion.prepareStatement(insercionPedidos, PreparedStatement.RETURN_GENERATED_KEYS);
+
+            preparedStatement.setString(1, pedido.getUsuario().getEmail());
+            preparedStatement.setDouble(2, pedido.getTotalCompra());
+
+            int indice = preparedStatement.executeUpdate();
+
+
+
+
+
+        } catch (SQLException e) {
+            try {
+                conexion.rollback();
+            } catch (SQLException e1) {
+                System.out.println(e1.getMessage());
+            }
+            System.out.println("DAOUsuarios: No se ha podido guardar el pedido del usuario:" + pedido.getUsuario().getEmail());
+            System.out.println(e.getMessage());
+
+            return false;
+        }
+
+        return true;
     }
 
     public boolean actualizaStock(Pedido pedido, Connection conexion) {

@@ -12,6 +12,12 @@ public class Pedido {
     public Pedido() {
     }
 
+    public Pedido(UsuarioVO usuario, ArrayList<Seleccion> productos, double importe) {
+        this.usuario = usuario;
+        this.productos = productos;
+        this.importe = importe;
+    }
+
     public UsuarioVO getUsuario() {
         return this.usuario;
     }
