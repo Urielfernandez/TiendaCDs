@@ -12,6 +12,7 @@ import modelo.tienda.Carrito;
 import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
+import modelo.vo.Tipo;
 import modelo.vo.UsuarioVO;
 
 public class ControladorTienda extends HttpServlet {
@@ -53,7 +54,7 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "cargarCDsValorables":
-                    request.setAttribute("cdsValorables",gestionCDS.obtenerCDsValorables(usuario,conexion));
+                    request.setAttribute("cdsValorables", gestionCDS.obtenerCDsValorables(usuario, conexion));
                     mostrarPagina("jsp/addComment.jsp", request, response);
                     break;
 
@@ -104,10 +105,10 @@ public class ControladorTienda extends HttpServlet {
                     mostrarPagina("jsp/carrito.jsp", request, response);
                     break;
                 case "comprar":
-                    //this.usuario.getEmail()
+                    // this.usuario.getEmail()
                     // Parte de envio del correo
-                    //MailSender mensajero = new MailSender();
-                    //mensajero.enviarConGMail(usuario.getEmail() ,this.carrito.getProductos().values());
+                    MailSender mensajero = new MailSender();
+                    mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
                     break;
@@ -129,8 +130,18 @@ public class ControladorTienda extends HttpServlet {
 
                     sesion.setAttribute("email", usuario.getEmail());
                     sesion.setAttribute("usuario", usuario);
-                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                    mostrarPagina("./jsp/catalogo.jsp", request, response);
+
+                    // Ahora chequeamos si es usuario o administrador para llevarlo a una de las
+                    // páginas
+                    if (usuario.getTipo().equals(Tipo.administrador)) {
+
+                        request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
+                        mostrarPagina("jsp/administracion.jsp", request, response);
+
+                    } else {
+                        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                        mostrarPagina("./jsp/catalogo.jsp", request, response);
+                    }
 
                     break;
 
@@ -156,12 +167,12 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "comentarCD":
-                    gestionCDS.introducirValoracion(conexion,request.getParameter("cdSeleccionado"),usuario,0,"");
+                    gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, 0, "");
                     mostrarPagina("./jsp/addComment.jsp", request, response);
                     break;
 
                 case "verComentarios":
-                    
+
                     break;
             }
         }
@@ -198,7 +209,7 @@ public class ControladorTienda extends HttpServlet {
         // Creamos el usuario, el carrito y la conexion para una sesion si no existen
         if (sesion.getAttribute("usuario") == null) {
             sesion.setAttribute("usuario", new UsuarioVO());
-        }else{
+        } else {
             usuario = (UsuarioVO) sesion.getAttribute("usuario");
         }
 
