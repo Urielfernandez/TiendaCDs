@@ -23,7 +23,20 @@
     <section class="container">
       <div class="row">
         <div class="col">
-          <h1 class="tituloPagina">Valoraciones de: ${titulo}</h1>
+          <h1 class="tituloPagina">Valoraciones</h1>
+        </div>
+      </div>
+
+      <div class="row my-2">
+        <div class="col-4">
+          <img class="img-fluid" src="imagenes/cd.png">
+        </div>
+        <div class="col-8 my-auto">
+          <p style="font-size: 18px;">Título: ${cd.titulo}</p>
+          <p style="font-size: 18px;">Artista: ${cd.artista}</p>
+          <p style="font-size: 18px;">País: ${cd.anho}</p>
+          <p style="font-size: 18px;">Año: ${cd.anho}</p>
+          <p style="font-size: 18px;">Precio: <fmt:formatNumber value="${cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</p>
         </div>
       </div>
 
@@ -31,20 +44,18 @@
         <ul class="col tabla">
           <li class="items mt-2">
             <ul class="row p-0">
-              <li class="col-2"><b>Titulo</b></li>
-              <li class="col-1"><b>Nota</b></li>
-              <li class="col-6"><b>Opinion</b></li>
               <li class="col-3"><b>Usuario</b></li>
+              <li class="col-1"><b>Nota</b></li>
+              <li class="col-8"><b>Opinion</b></li>
             </ul>
           </li> 
               
           <c:forEach var="seleccion" items="${valoracionesCD}">
             <li class="items">
               <ul class="row p-0">
-                <li class="col-2 my-auto">${seleccion.tituloDelCD}</li>
-                <li class="col-1 my-auto">${seleccion.nota}</li>
-                <li class="col-6 my-auto">${seleccion.opinion}</li>
                 <li class="col-3 my-auto">${seleccion.emailUsuarioEmisor}</li>
+                <li class="col-1 my-auto">${seleccion.nota}</li>
+                <li class="col-8 my-auto">${seleccion.opinion}</li>
               </ul>
             </li>
           </c:forEach>
