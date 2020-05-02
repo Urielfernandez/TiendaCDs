@@ -21,7 +21,7 @@
 
     <section class="container">
       <div class="row">
-        <div class="col">
+        <div class="col-md-6 offset-md-3">
           <h1 class="tituloPagina">Error</h1>
         </div>
       </div>
@@ -34,7 +34,7 @@
           <p class="text-center">${mensajeError}</p>
           <p class="text-center">Por favor, inténtelo de nuevo más tarde.</p>
           <div class="text-center">
-            <a href="./tienda"><button type="button" class="boton px-3">Volver a la tienda</button><a>
+            <a href="./tienda"><button type="button" class="btn btn-primary px-3">Volver a la tienda</button><a>
           </div>
         </div>
       </div>
