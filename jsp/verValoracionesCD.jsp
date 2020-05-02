@@ -32,11 +32,12 @@
           <img class="img-fluid" src="imagenes/cd.png">
         </div>
         <div class="col-8 my-auto">
-          <p style="font-size: 18px;">Título: ${cd.titulo}</p>
-          <p style="font-size: 18px;">Artista: ${cd.artista}</p>
-          <p style="font-size: 18px;">País: ${cd.anho}</p>
-          <p style="font-size: 18px;">Año: ${cd.anho}</p>
-          <p style="font-size: 18px;">Precio: <fmt:formatNumber value="${cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</p>
+          <p class="my-1" style="font-size: 18px;">Título: ${cd.titulo}</p>
+          <p class="my-1" style="font-size: 18px;">Artista: ${cd.artista}</p>
+          <p class="my-1" style="font-size: 18px;">País: ${cd.pais}</p>
+          <p class="my-1" style="font-size: 18px;">Año: ${cd.anho}</p>
+          <p class="my-1" style="font-size: 18px;">Precio: <fmt:formatNumber value="${cd.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</p>
+          <p class="my-1" style="font-size: 18px;">Nota media: ${notaMedia}</p>
         </div>
       </div>
 

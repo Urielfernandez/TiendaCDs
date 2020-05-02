@@ -80,9 +80,10 @@ public class ControladorTienda extends HttpServlet {
 
                 case "verValoracionesCD":
                     String titulo = request.getParameter("titulo");
-                    CDVO cd=gestionCDS.obtenerCD(titulo,conexion);
+                    CDVO cd = gestionCDS.obtenerCD(titulo, conexion);
                     request.setAttribute("valoracionesCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
-                    request.setAttribute("cd",cd);
+                    request.setAttribute("cd", cd);
+                    request.setAttribute("notaMedia", gestionCDS.obtenerNotaMedia(titulo, conexion));
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
                     break;
             }

@@ -13,6 +13,7 @@ import modelo.vo.ValoracionVO;
 public class HelperCD {
     private DAOCDs conexionBDCDs;
     private DAOPedidos conexionBDpedidos;
+
     public HelperCD() {
         this.conexionBDCDs = new DAOCDs();
         this.conexionBDpedidos=new DAOPedidos();
@@ -75,7 +76,20 @@ public class HelperCD {
         return this.conexionBDCDs.obtenerCatalogo(conexion);
     }
 
-    public CDVO obtenerCD(String cd, Connection conexion) {
-        return this.conexionBDCDs.obtenerCD(cd, conexion);
+	public CDVO obtenerCD(String titulo, Connection conexion) {
+		return conexionBDCDs.obtenerCD(titulo, conexion);
+    }
+    
+    public double obtenerNotaMedia(String titulo, Connection conexion) {
+        ArrayList<ValoracionVO> valoraciones = conexionBDCDs.cargarValoracionesDeUnCD(titulo, conexion);
+        double media = 0.0;
+
+        for (ValoracionVO valoracion : valoraciones) {
+            media += valoracion.getNota();
+        }
+
+        media /= valoraciones.size();
+
+        return media;
     }
 }
