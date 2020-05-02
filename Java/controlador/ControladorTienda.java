@@ -14,6 +14,7 @@ import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
 import modelo.vo.UsuarioVO;
+import modelo.vo.CDVO;
 
 public class ControladorTienda extends HttpServlet {
 
@@ -79,8 +80,9 @@ public class ControladorTienda extends HttpServlet {
 
                 case "verValoracionesCD":
                     String titulo = request.getParameter("titulo");
+                    CDVO cd=gestionCDS.obtenerCD(titulo,conexion);
                     request.setAttribute("valoracionesCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
-                    request.setAttribute("titulo",titulo);
+                    request.setAttribute("cd",cd);
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
                     break;
             }

@@ -74,4 +74,8 @@ public class HelperCD {
     public ArrayList<CDVO> cargarCDs(Connection conexion) {
         return this.conexionBDCDs.obtenerCatalogo(conexion);
     }
+
+    public CDVO obtenerCD(String cd, Connection conexion) {
+        return this.conexionBDCDs.obtenerCD(cd, conexion);
+    }
 }
