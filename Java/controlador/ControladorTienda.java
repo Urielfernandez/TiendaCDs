@@ -206,9 +206,8 @@ public class ControladorTienda extends HttpServlet {
                     String comentario=request.getParameter("comentario");
                     if(!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, nota, comentario))
                         mostrarPagina("jsp/error.jsp", request, response);
-                    //devolver vista de catalogo o seguir en añadir comentarios?
-                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                    mostrarPagina("jsp/catalogo.jsp", request, response);
+                    request.setAttribute("cdsValorables", gestionCDS.obtenerCDsValorables(usuario, conexion));
+                    mostrarPagina("jsp/addComment.jsp", request, response);
                     break;
 
             }
