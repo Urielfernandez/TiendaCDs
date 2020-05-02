@@ -51,7 +51,7 @@
                 <input type="hidden" name="cdSeleccionado" value="${seleccion.titulo}">
 
                 <li class="col-2 my-auto">
-                  <input type="text" class="form-control" name="nota" placeholder="Nota">
+                  <input type="number" class="form-control" name="nota" placeholder="Nota" min="0" max="10" required>
                 </li>
                 <li class="col-8 my-auto">
                   <input type="text" class="form-control" name="comentario" placeholder="Tu comentario">
