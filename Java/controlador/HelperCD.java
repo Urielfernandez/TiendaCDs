@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import modelo.dao.DAOCDs;
 import modelo.dao.DAOPedidos;
+import modelo.tienda.TiendaException;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 import modelo.vo.ValoracionVO;
@@ -59,7 +60,7 @@ public class HelperCD {
         return null;
     }
 
-    public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) {
+    public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) throws TiendaException {
         if (cd != null){
             this.conexionBDCDs.guardarCD(cd, con);
             this.conexionBDCDs.insertarStockCD(cd.getTitulo(), cantidad, con);
