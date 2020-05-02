@@ -5,6 +5,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.util.ArrayList;
+
+import modelo.tienda.TiendaException;
 import modelo.vo.CDVO;
 import modelo.vo.ValoracionVO;
 
@@ -13,24 +15,28 @@ public class DAOCDs {
     public DAOCDs() {
     }
 
-    public boolean guardarCD(CDVO cd, Connection conexion) {
+    public boolean guardarCD(CDVO cd, Connection conexion) throws TiendaException{
+        String cdComprobacion = this.obtenerCD(cd.getTitulo(), conexion).getTitulo();
         String consulta = "INSERT INTO cds VALUES(?,?,?,?,?)";
 
-        try{
-            PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
+        if(cdComprobacion == null){
+            try{
+                PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
-            preparedStatement.setString(1, cd.getTitulo());
-            preparedStatement.setString(2, cd.getArtista());
-            preparedStatement.setString(3, cd.getPais());
-            preparedStatement.setString(4, Double.toString(cd.getPrecio()));
-            preparedStatement.setString(5, Integer.toString(cd.getAnho()));
+                preparedStatement.setString(1, cd.getTitulo());
+                preparedStatement.setString(2, cd.getArtista());
+                preparedStatement.setString(3, cd.getPais());
+                preparedStatement.setString(4, Double.toString(cd.getPrecio()));
+                preparedStatement.setString(5, Integer.toString(cd.getAnho()));
 
-            preparedStatement.executeUpdate();
+                preparedStatement.executeUpdate();
 
-            return true;
-        } catch (SQLException e) {
-            System.out.println("DAOCD: No se ha podido guardar el cd:" + cd.getTitulo());
-            System.out.println(e.getMessage());
+                return true;
+            } catch (SQLException e) {
+                System.out.println(e.getMessage());
+            }
+        }else{
+            throw new TiendaException("El CD " + cdComprobacion + " ya está en el catálogo.");
         }
 
         return false;
