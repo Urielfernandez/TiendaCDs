@@ -48,7 +48,7 @@
 
             <div class="form-group text-center">
               <input type="hidden" name="opcion" value="registrar">
-              <button type="submit" class="boton px-5">Registrarse</button>
+              <button type="submit" class="btn btn-primary px-5">Registrarse</button>
             </div>
           </form>
         </div>

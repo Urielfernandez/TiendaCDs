@@ -32,37 +32,39 @@
         <ul class="col tabla">
           <li class="items mt-2">
             <ul class="row p-0">
-              <li class="col-6"><b>Producto</b></li>
-              <li class="col-4"><b>Artista</b></li>
-              <li class="col-2"><b>Precio unidad</b></li>
+              <li class="col my-auto"><b>CDs sin valorar:</b></li>
             </ul>
           </li>     
           <c:forEach var="seleccion" items="${cdsValorables}">
             <li class="items">
               <ul class="row p-0">
-                <li class="col-6 my-auto">${seleccion.titulo}</li>
-                <li class="col-4 my-auto">${seleccion.artista}</li>
-                <li class="col-2 my-auto"><fmt:formatNumber value="${seleccion.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
+                <li class="col my-auto">Título: ${seleccion.titulo}</li>
+              </ul>
+              <ul class="row p-0">
+                <li class="col my-auto">Artista: ${seleccion.artista}</li>
+              </ul>
+              <ul class="row p-0">
+                <li class="col-2 my-auto">Precio: <fmt:formatNumber value="${seleccion.precio}" type="number" minFractionDigits="2" maxFractionDigits="2"/> €</li>
               </ul>
 
-              <ul class="row p-0">
-                <form action="tienda" method="post" class="text-center">
-                    <li><input type="text" class="form-control" name="nota" placeholder="Nota"></li>
-                    <li><input type="text" class="form-control" name="comentario" placeholder="Tu comentario"></li>
-                    <li>
-                      <input type="hidden" name="opcion" value="comentarCD">
-                      <input type="hidden" name="cdSeleccionado" value="${seleccion.titulo}">
-                      <button type="submit" class="btn btn-light"><strong>Comentar</strong></button>
-                    </li>
-                </form>
-              </ul>
+              <form action="tienda" method="POST" class="row p-0 my-2">
+                <input type="hidden" name="opcion" value="comentarCD">
+                <input type="hidden" name="cdSeleccionado" value="${seleccion.titulo}">
+
+                <li class="col-2 my-auto">
+                  <input type="text" class="form-control" name="nota" placeholder="Nota">
+                </li>
+                <li class="col-8 my-auto">
+                  <input type="text" class="form-control" name="comentario" placeholder="Tu comentario">
+                </li>
+                <li class="col-2 my-auto">
+                  <button type="submit" class="btn btn-primary">Comentar</button>
+                </li>
+              </form>
             </li>
-            <!--Añadir zona de comentarios y nota-->
           </c:forEach>
         </ul>
       </div>
-      
-      
     </section>
 
 		<!-- JQuery -->
@@ -79,6 +81,6 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous">
     </script>
-    <script src="jsp/comprobarLogin.js"></script>
   </body>
+
 </html>

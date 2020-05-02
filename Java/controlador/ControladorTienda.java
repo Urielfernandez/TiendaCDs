@@ -10,7 +10,6 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import modelo.tienda.Carrito;
-import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
