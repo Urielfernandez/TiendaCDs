@@ -1,6 +1,6 @@
 <%@ page contentType="text/html" pageEncoding="UTF-8" %>
 
-<div class="col-lg-3 col-md-4 my-2 px-3 itemCd ${cd.pais}">
+<div class="col-lg-3 col-md-4 my-2 px-3">
   <div class="card h-100">
     <img class="card-img-top" src="imagenes/cd.png">
 
