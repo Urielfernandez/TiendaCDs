@@ -151,12 +151,14 @@ public class DAOPedidos {
     public ArrayList<String> titulosNoComentados(UsuarioVO usuario, Connection conexion) {
         ArrayList<String> lista = new ArrayList<>();
         // añado los titulos de los cds comprados a una lista(sin repetirlos)
-        String consulta = "SELECT cd FROM pedidos p JOIN items_pedido i " + "ON p.id=i.pedido " + " WHERE p.usuario=?";
+        String consulta = "SELECT i.cd FROM pedidos p JOIN items_pedido i ON p.id=i.pedido WHERE p.usuario=? "+
+                            "AND i.cd NOT IN(SELECT o.cd FROM opiniones o WHERE email=? and o.cd=i.cd)";
 
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
             preparedStatement.setString(1, usuario.getEmail());
+            preparedStatement.setString(2, usuario.getEmail());
 
             ResultSet resultado = preparedStatement.executeQuery();
 
@@ -168,7 +170,7 @@ public class DAOPedidos {
             System.out.println(e.getMessage());
         }
         // Quito cds ya comentados
-        consulta = "SELECT cd FROM opiniones WHERE email=?";
+        /*consulta = "SELECT cd FROM opiniones WHERE email=?";
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
@@ -176,13 +178,13 @@ public class DAOPedidos {
 
             ResultSet resultado = preparedStatement.executeQuery();
 
-            while (resultado.next()) {
+            while(resultado.next()) {
                 if (lista.contains(resultado.getString("cd")))
                     lista.remove(resultado.getString("cd"));
             }
         } catch (SQLException e) {
             System.out.println(e.getMessage());
-        }
+        }*/
 
         return lista;
     }
