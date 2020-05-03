@@ -88,6 +88,10 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("notaMedia", gestionCDS.obtenerNotaMedia(titulo, conexion));
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
                     break;
+                case "filtrar":
+                request.setAttribute("listaArticulos", this.gestionCDS.filtrar(gestionCDS.cargarCDs(conexion), new CDVO(request.getParameter("titulo"), request.getParameter("artista"), request.getParameter("pais"), 0.0, 0),request.getParameter("precio"), request.getParameter("anho")));
+                mostrarPagina("jsp/catalogo.jsp", request, response);
+                    break;
             }
         }
 

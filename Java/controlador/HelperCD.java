@@ -54,19 +54,11 @@ public class HelperCD {
         return cd;
     }
 
-    public ArrayList<CDVO> filtrarCDs(CDVO cd) {
-        return null;
-    }
-
     public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) throws TiendaException {
         if (cd != null) {
             this.conexionBDCDs.guardarCD(cd, con);
             this.conexionBDCDs.insertarStockCD(cd.getTitulo(), cantidad, con);
         }
-    }
-
-    public boolean actualizarStock(CDVO cd, int nuevoStock) {
-        return false;
     }
 
     public ArrayList<CDVO> cargarCDs(Connection conexion) {
@@ -88,6 +80,68 @@ public class HelperCD {
         media /= valoraciones.size();
 
         return media;
+    }
+
+    public ArrayList<CDVO> filtrar(ArrayList<CDVO> listado, CDVO parametros, String precio, String anho){
+        ArrayList<CDVO> catalogoFiltrado = new ArrayList<>();
+
+        if(parametros.getTitulo() != null){
+            for(CDVO aux: listado){
+                if(aux.getTitulo().equals(parametros.getTitulo())){
+                    catalogoFiltrado.add(aux);
+                }
+            }
+        }
+
+        if(parametros.getArtista() != null){
+            for(CDVO aux: listado){
+                if(aux.getTitulo().equals(parametros.getTitulo())){
+                    if(!catalogoFiltrado.contains(aux)){
+                        catalogoFiltrado.add(aux);
+                    }
+                }
+            }
+        }
+
+        if(parametros.getPais() != null){
+            for(CDVO aux: listado){
+                if(!aux.getPais().equals(parametros.getPais())){
+                    if(!catalogoFiltrado.contains(aux)){
+                        catalogoFiltrado.add(aux);
+                    }
+                }
+            }
+        }
+
+        if(precio != null){
+            float precioMax = Float.parseFloat(precio);
+            for(CDVO aux: listado){
+                if(aux.getPrecio() > precioMax){
+                    if(!catalogoFiltrado.contains(aux)){
+                        catalogoFiltrado.add(aux);
+                    }
+                }
+            }
+        }
+
+        if(anho != null){
+            int ano = Integer.parseInt(anho);
+            for(CDVO aux: listado){
+                if(aux.getAnho() != ano){
+                    if(!catalogoFiltrado.contains(aux)){
+                        catalogoFiltrado.add(aux);
+                    }
+                }
+            }
+        }
+
+        for(CDVO aux : catalogoFiltrado){
+            if(listado.contains(aux)){
+                listado.remove(aux);
+            }
+        }
+
+        return listado;
     }
 
 }
