@@ -123,8 +123,7 @@ public class DAOUsuarios {
             ResultSet resultado = preparedStatement.executeQuery();
 
             while (resultado.next()) {
-                InicioSesionVO datosUsuario = new InicioSesionVO(resultado.getString("email"),
-                        resultado.getString("contrasenha"));
+                InicioSesionVO datosUsuario = new InicioSesionVO(resultado.getString("email"), resultado.getString("contrasenha"));
                 listadoDeUsuarios.add(datosUsuario);
             }
             return listadoDeUsuarios;
@@ -149,8 +148,7 @@ public class DAOUsuarios {
 
             return true;
         } catch (SQLException e) {
-            System.out.println("DAOUsuarios: No se ha podido modificar la contraseña del usuario con email: "
-                    + datosUsuario.getEmail());
+            System.out.println("DAOUsuarios: No se ha podido modificar la contraseña del usuario con email: " + datosUsuario.getEmail());
             System.out.println(e.getMessage());
         }
 

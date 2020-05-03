@@ -28,7 +28,7 @@ public class Seleccion {
         this.cantidad = cantidad;
     }
 
-    public double getImporteSeleccion(){
+    public double getImporteSeleccion() {
         return 0.0;
     }
 

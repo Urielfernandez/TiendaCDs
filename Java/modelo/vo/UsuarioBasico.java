@@ -1,6 +1,6 @@
 package modelo.vo;
 
-public class UsuarioBasico extends UsuarioVO{
+public class UsuarioBasico extends UsuarioVO {
 
     public UsuarioBasico() {
     }
@@ -9,5 +9,4 @@ public class UsuarioBasico extends UsuarioVO{
         super(nombre, email, Tipo.usuario);
     }
 
-    
 }

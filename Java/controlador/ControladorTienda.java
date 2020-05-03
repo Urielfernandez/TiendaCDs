@@ -5,10 +5,8 @@ import java.io.PrintWriter;
 import java.sql.Connection;
 import java.sql.DriverManager;
 import java.sql.SQLException;
-
 import javax.servlet.*;
 import javax.servlet.http.*;
-
 import modelo.tienda.Carrito;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
@@ -218,8 +216,7 @@ public class ControladorTienda extends HttpServlet {
                 case "comentarCD":
                     String nota = request.getParameter("nota");
                     String comentario = request.getParameter("comentario");
-                    if (!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario,
-                            nota, comentario))
+                    if (!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, nota, comentario))
                         mostrarPagina("jsp/error.jsp", request, response);
                     request.setAttribute("cdsValorables", gestionCDS.obtenerCDsValorables(usuario, conexion));
                     mostrarPagina("jsp/addComment.jsp", request, response);
@@ -239,8 +236,7 @@ public class ControladorTienda extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa",
-                    "Dawaproyecto1");
+            conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa", "Dawaproyecto1");
         } catch (SQLException e) {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());

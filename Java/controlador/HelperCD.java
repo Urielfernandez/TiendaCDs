@@ -2,7 +2,6 @@ package controlador;
 
 import java.sql.Connection;
 import java.util.ArrayList;
-
 import modelo.dao.DAOCDs;
 import modelo.dao.DAOPedidos;
 import modelo.tienda.TiendaException;
@@ -11,16 +10,17 @@ import modelo.vo.UsuarioVO;
 import modelo.vo.ValoracionVO;
 
 public class HelperCD {
+
     private DAOCDs conexionBDCDs;
     private DAOPedidos conexionBDpedidos;
 
     public HelperCD() {
         this.conexionBDCDs = new DAOCDs();
-        this.conexionBDpedidos=new DAOPedidos();
+        this.conexionBDpedidos = new DAOPedidos();
     }
 
-    public boolean introducirValoracion(Connection con,String cd, UsuarioVO usuario, String notaString, String comentario) {//Params cambiados
-        Float nota=Float.parseFloat(notaString);
+    public boolean introducirValoracion(Connection con, String cd, UsuarioVO usuario, String notaString, String comentario) {
+        Float nota = Float.parseFloat(notaString);
         return conexionBDpedidos.nuevaValoracion(con, cd, usuario, nota, comentario);
     }
 
@@ -30,24 +30,24 @@ public class HelperCD {
         listaValoraciones = conexionBDCDs.cargarValoracionesDeUnCD(cd.getTitulo(), con);
         return listaValoraciones;
     }
-    
-    public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario, Connection con){
-        ArrayList<CDVO> listaCDs=new ArrayList<>();
+
+    public ArrayList<CDVO> obtenerCDsValorables(UsuarioVO usuario, Connection con) {
+        ArrayList<CDVO> listaCDs = new ArrayList<>();
         // comprobar cuales de estos titulos ya se han valorado
-        ArrayList<String> titulosNoComentados=conexionBDpedidos.titulosNoComentados(usuario, con);
-        for(int i=0;i<titulosNoComentados.size();i++){
-           listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
+        ArrayList<String> titulosNoComentados = conexionBDpedidos.titulosNoComentados(usuario, con);
+        for (int i = 0; i < titulosNoComentados.size(); i++) {
+            listaCDs.add(conexionBDCDs.obtenerCD(titulosNoComentados.get(i), con));
         }
         return listaCDs;
     }
-    
-    public ArrayList<ValoracionVO> obtenerValoracionesCD(String titulo, Connection con){
-        ArrayList<ValoracionVO> lista=conexionBDpedidos.obtenerValoracionesTitulo(titulo, con);
+
+    public ArrayList<ValoracionVO> obtenerValoracionesCD(String titulo, Connection con) {
+        ArrayList<ValoracionVO> lista = conexionBDpedidos.obtenerValoracionesTitulo(titulo, con);
         return lista;
     }
 
     public CDVO recogerCamposCD(String titulo, String artista, String pais, String precioString, String anhoString) {
-        Double precio =  Double.parseDouble(precioString);
+        Double precio = Double.parseDouble(precioString);
         Integer anho = Integer.parseInt(anhoString);
 
         CDVO cd = new CDVO(titulo, artista, pais, precio, anho);
@@ -59,7 +59,7 @@ public class HelperCD {
     }
 
     public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) throws TiendaException {
-        if (cd != null){
+        if (cd != null) {
             this.conexionBDCDs.guardarCD(cd, con);
             this.conexionBDCDs.insertarStockCD(cd.getTitulo(), cantidad, con);
         }
@@ -73,10 +73,10 @@ public class HelperCD {
         return this.conexionBDCDs.obtenerCatalogo(conexion);
     }
 
-	public CDVO obtenerCD(String titulo, Connection conexion) {
-		return conexionBDCDs.obtenerCD(titulo, conexion);
+    public CDVO obtenerCD(String titulo, Connection conexion) {
+        return conexionBDCDs.obtenerCD(titulo, conexion);
     }
-    
+
     public double obtenerNotaMedia(String titulo, Connection conexion) {
         ArrayList<ValoracionVO> valoraciones = conexionBDCDs.cargarValoracionesDeUnCD(titulo, conexion);
         double media = 0.0;
@@ -89,4 +89,5 @@ public class HelperCD {
 
         return media;
     }
+
 }

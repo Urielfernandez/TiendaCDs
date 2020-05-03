@@ -13,27 +13,26 @@ public class HelperUsuarios {
     DAOUsuarios dao;
     DAOPedidos daoPedidos;
 
-    public HelperUsuarios(){
+    public HelperUsuarios() {
         dao = new DAOUsuarios();
         daoPedidos = new DAOPedidos();
     }
 
+    public UsuarioVO inicioSesion(InicioSesionVO inicioSesion, Connection conexion) {
 
-    public UsuarioVO inicioSesion(InicioSesionVO inicioSesion, Connection conexion){
-        
-        if (dao.iniciarSesion(inicioSesion, conexion)){
+        if (dao.iniciarSesion(inicioSesion, conexion)) {
             //Existe el usuario, lo buscamos y devolvemos
 
             UsuarioVO usuarioBusqueda = new UsuarioVO();
             usuarioBusqueda.setEmail(inicioSesion.getEmail());
-            return  dao.obtenerUsuarioPorEmail(usuarioBusqueda, conexion);
+            return dao.obtenerUsuarioPorEmail(usuarioBusqueda, conexion);
         }
 
         return null;
-        
+
     }
 
-    public ArrayList<InicioSesionVO> listarUsuarios (Connection conexion) {
+    public ArrayList<InicioSesionVO> listarUsuarios(Connection conexion) {
         return this.dao.obtenerUsuarios(conexion);
     }
 
@@ -41,11 +40,12 @@ public class HelperUsuarios {
         return this.dao.borrarUsuario(usuario, conexion);
     }
 
-    public boolean modificarContrasenha(InicioSesionVO datosUsuario, Connection conexion){
+    public boolean modificarContrasenha(InicioSesionVO datosUsuario, Connection conexion) {
         return this.dao.modificarUsuario(datosUsuario, conexion);
     }
 
-    public String updateMembresia(UsuarioVO usuario, Connection conexion){
+    public String updateMembresia(UsuarioVO usuario, Connection conexion) {
         return daoPedidos.updateMembresiaUsuario(usuario, conexion);
     }
+
 }

@@ -27,9 +27,7 @@ public class MailSender {
 
         MimeMessage message = new MimeMessage(session);
 
-        System.out.println("\n\n\n\n\n\t--------------------------------------------------\n\n\tENVIANDO CORREO DESDE "+correo+" para "+destinatario);
-
-
+        System.out.println("\n\n\n\n\n\t--------------------------------------------------\n\n\tENVIANDO CORREO DESDE " + correo + " para " + destinatario);
 
         try {
             message.setFrom(new InternetAddress(correo));
@@ -50,15 +48,14 @@ public class MailSender {
     private String construirTicket(Collection<Seleccion> items) {
         String ticket = new String();
 
-        ticket = "Muchas gracias por su compra en CDTien \n" + " Sus porductos comprados son: \n"
-                + "--------------------------------------------\n" + "\tNombre\tArtista\tPrecio\tCantidad\n"
+        ticket = "Muchas gracias por su compra en CDTien \n" + " Sus porductos comprados son: \n" + "--------------------------------------------\n" + "\tNombre\tArtista\tPrecio\tCantidad\n"
                 + "--------------------------------------------\n";
 
         for (Seleccion aux : items) {
-            ticket += "\t" + aux.getCd().getTitulo() + "\t" + aux.getCd().getArtista() + "\t" + aux.getCd().getPrecio()
-                    + "\t" + aux.getCantidad()+"\n";
+            ticket += "\t" + aux.getCd().getTitulo() + "\t" + aux.getCd().getArtista() + "\t" + aux.getCd().getPrecio() + "\t" + aux.getCantidad() + "\n";
         }
 
         return ticket;
     }
+
 }

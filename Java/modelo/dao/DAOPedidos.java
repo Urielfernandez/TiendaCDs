@@ -6,9 +6,6 @@ import java.sql.ResultSet;
 import java.sql.SQLException;
 import java.sql.Statement;
 import java.util.ArrayList;
-
-
-
 import modelo.tienda.Pedido;
 import modelo.tienda.Seleccion;
 import modelo.vo.*;
@@ -37,19 +34,19 @@ public class DAOPedidos {
             preparedStatement.executeUpdate();
 
             ResultSet clavesGeneradas = preparedStatement.getGeneratedKeys();
-            if(clavesGeneradas.next()){
+            if (clavesGeneradas.next()) {
                 indice = clavesGeneradas.getInt(1);
             }
 
-            for(Seleccion seleccionActual : pedido.getProductos()){
+            for (Seleccion seleccionActual : pedido.getProductos()) {
                 PreparedStatement preparedStatementStock = conexion.prepareStatement(consultaStock);
 
                 preparedStatementStock.setString(1, seleccionActual.getCd().getTitulo());
                 preparedStatementStock.setInt(2, seleccionActual.getCantidad());
-    
+
                 ResultSet hayStock = preparedStatementStock.executeQuery();
 
-                if(hayStock.next()){
+                if (hayStock.next()) {
                     int stockActual = hayStock.getInt("cantidad_stock");
                     stockActual -= seleccionActual.getCantidad();
 
@@ -58,7 +55,7 @@ public class DAOPedidos {
                     preparedStatementActualizacion.setString(2, seleccionActual.getCd().getTitulo());
 
                     preparedStatementActualizacion.executeUpdate();
-                    
+
                     PreparedStatement preparedStatementSeleccion = conexion.prepareStatement(insercionItemsPedido);
 
                     preparedStatementSeleccion.setInt(1, indice);
@@ -66,9 +63,8 @@ public class DAOPedidos {
                     preparedStatementSeleccion.setInt(3, seleccionActual.getCantidad());
 
                     preparedStatementSeleccion.executeUpdate();
-                }
-                else {
-                    System.out.println("No hay stock suficiente del CD "+seleccionActual.getCd().getTitulo());
+                } else {
+                    System.out.println("No hay stock suficiente del CD " + seleccionActual.getCd().getTitulo());
                     conexion.rollback();
                     return false;
                 }
@@ -117,8 +113,8 @@ public class DAOPedidos {
             ResultSet resultado = preparedStatement.executeQuery();
 
             while (resultado.next()) {
-                
-                importeGastado+= resultado.getDouble("total_compra");
+
+                importeGastado += resultado.getDouble("total_compra");
 
             }
 
@@ -127,12 +123,12 @@ public class DAOPedidos {
         }
 
         //Chequeamos el sumatorio
-        if(importeGastado>100){
+        if (importeGastado > 100) {
             membresia = "VIP";
 
-            if(usuario instanceof UsuarioBasico){
+            if (usuario instanceof UsuarioBasico) {
                 //El usuario ahora ha pasado a ser VIP, por lo que actualizamos su membresía
-                try{
+                try {
                     PreparedStatement preparedStatement = conexion.prepareStatement(actualizacion);
 
                     preparedStatement.setString(1, "VIP");
@@ -140,12 +136,12 @@ public class DAOPedidos {
 
                     preparedStatement.executeUpdate();
 
-                }catch(SQLException e) {
+                } catch (SQLException e) {
                     System.out.println(e.getMessage());
                 }
             }
 
-        }else{
+        } else {
             membresia = "Basico";
         }
 
@@ -155,9 +151,7 @@ public class DAOPedidos {
     public ArrayList<String> titulosNoComentados(UsuarioVO usuario, Connection conexion) {
         ArrayList<String> lista = new ArrayList<>();
         // añado los titulos de los cds comprados a una lista(sin repetirlos)
-        String consulta = "SELECT cd FROM pedidos p JOIN items_pedido i " +
-                                     "ON p.id=i.pedido " +
-                                     " WHERE p.usuario=?";
+        String consulta = "SELECT cd FROM pedidos p JOIN items_pedido i " + "ON p.id=i.pedido " + " WHERE p.usuario=?";
 
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -218,10 +212,10 @@ public class DAOPedidos {
         return lista;
     }
 
-    public boolean nuevaValoracion(Connection conexion,String cd, UsuarioVO usuario, float nota, String comentario){
+    public boolean nuevaValoracion(Connection conexion, String cd, UsuarioVO usuario, float nota, String comentario) {
         String consulta = "INSERT INTO opiniones VALUES(?,?,?,?)";
 
-        try{
+        try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
 
             preparedStatement.setFloat(1, nota);
@@ -233,7 +227,7 @@ public class DAOPedidos {
 
             return true;
         } catch (SQLException e) {
-            System.out.println("DAOCD: No se ha podido guardar la valoracion: "+nota+" : "+ comentario);
+            System.out.println("DAOCD: No se ha podido guardar la valoracion: " + nota + " : " + comentario);
             System.out.println(e.getMessage());
         }
 

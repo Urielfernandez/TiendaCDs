@@ -26,7 +26,7 @@ public class CDVO implements CD {
         this.pais = pais;
         this.precio = precio;
         this.anho = anho;
-        this.valoraciones=new ArrayList<>();
+        this.valoraciones = new ArrayList<>();
     }
 
     public String getTitulo() {
@@ -76,7 +76,5 @@ public class CDVO implements CD {
     public void setValoraciones(ArrayList<ValoracionVO> valoraciones) {
         this.valoraciones = valoraciones;
     }
-
-    
 
 }

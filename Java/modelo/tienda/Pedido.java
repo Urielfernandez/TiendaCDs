@@ -42,6 +42,4 @@ public class Pedido {
         this.importe = importe;
     }
 
-    
-
 }

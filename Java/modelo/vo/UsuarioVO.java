@@ -6,9 +6,9 @@ public class UsuarioVO {
     private String email;
     private Tipo tipo;
 
-    public UsuarioVO(){
+    public UsuarioVO() {
         this.nombre = new String();
-        this.email= new String();
+        this.email = new String();
     }
 
     public UsuarioVO(String nombre, String email, Tipo tipo) {
@@ -40,5 +40,5 @@ public class UsuarioVO {
     public void setTipo(Tipo tipo) {
         this.tipo = tipo;
     }
-    
+
 }

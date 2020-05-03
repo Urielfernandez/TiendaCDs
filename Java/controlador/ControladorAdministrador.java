@@ -6,7 +6,6 @@ import java.sql.DriverManager;
 import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
-
 import modelo.tienda.Carrito;
 import modelo.tienda.TiendaException;
 import modelo.vo.CDVO;
@@ -16,6 +15,7 @@ import modelo.vo.UsuarioBasico;
 import modelo.vo.UsuarioVO;
 
 public class ControladorAdministrador extends HttpServlet {
+
     private HelperCD gestionCDS;
     private HelperUsuarios gestionUsuarios;
     private HelperControlUsuario controlUsuarios;
@@ -37,11 +37,10 @@ public class ControladorAdministrador extends HttpServlet {
 
         actualizarDatosSesion(request, response);
 
-        if(vista == null){
+        if (vista == null) {
             request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
             mostrarPagina("jsp/administracion.jsp", request, response);
-        }
-        else if(vista.equals("verCatalogo")){
+        } else if (vista.equals("verCatalogo")) {
             request.setAttribute("listaArticulos", this.gestionCDS.cargarCDs(conexion));
             mostrarPagina("jsp/administracionCatalogo.jsp", request, response);
         }
@@ -54,9 +53,7 @@ public class ControladorAdministrador extends HttpServlet {
 
         switch (opcion) {
             case "almacenarNuevoCD":
-                CDVO nuevoCD = this.gestionCDS.recogerCamposCD(request.getParameter("titulo"),
-                        request.getParameter("artista"), request.getParameter("pais"), request.getParameter("precio"),
-                        request.getParameter("anho"));
+                CDVO nuevoCD = this.gestionCDS.recogerCamposCD(request.getParameter("titulo"), request.getParameter("artista"), request.getParameter("pais"), request.getParameter("precio"), request.getParameter("anho"));
                 int cantidadIntroducida = Integer.parseInt(request.getParameter("cantidad"));
                 try {
                     this.gestionCDS.anhadirNuevoCD(nuevoCD, cantidadIntroducida, conexion);
@@ -65,7 +62,7 @@ public class ControladorAdministrador extends HttpServlet {
                     request.setAttribute("mensajeError", e.getMessage());
                     mostrarPagina("jsp/error.jsp", request, response);
                 }
-                
+
                 break;
 
             case "eliminarUsuario":
@@ -100,18 +97,17 @@ public class ControladorAdministrador extends HttpServlet {
 
                 UsuarioBasico registroUser = new UsuarioBasico(nombre, email);
                 InicioSesionVO inicioSesion = new InicioSesionVO(email, password);
-                if (controlUsuarios.registrarCliente(registroUser, inicioSesion, this.conexion)){
+                if (controlUsuarios.registrarCliente(registroUser, inicioSesion, this.conexion)) {
                     request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                     mostrarPagina("./jsp/catalogo.jsp", request, response);
-                }else{
+                } else {
                     mostrarPagina("jsp/error.jsp", request, response);
                 }
                 break;
         }
     }
 
-    private void mostrarPagina(String pagina, HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void mostrarPagina(String pagina, HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         request.getRequestDispatcher(pagina).forward(request, response);
     }
 
@@ -120,8 +116,7 @@ public class ControladorAdministrador extends HttpServlet {
 
         try {
             Class.forName("com.mysql.jdbc.Driver");
-            conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa",
-                    "Dawaproyecto1");
+            conexion = DriverManager.getConnection("jdbc:mysql://127.0.0.1:3306/tiendacds?serverTimezone=UTC", "dawa", "Dawaproyecto1");
         } catch (SQLException e) {
             System.out.println("Controlador Tienda: no se ha podido generar una conexión para el usuario.");
             System.out.println(e.getMessage());
@@ -133,8 +128,7 @@ public class ControladorAdministrador extends HttpServlet {
         return conexion;
     }
 
-    private void actualizarDatosSesion(HttpServletRequest request, HttpServletResponse response)
-            throws ServletException, IOException {
+    private void actualizarDatosSesion(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
         // Obtenemos la sesion y la creamos si no la hay
         sesion = request.getSession();
 
