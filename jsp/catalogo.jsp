@@ -31,7 +31,7 @@
         <div class="col">
           <p class="mt-2" style="font-size: 18px">Filtros:</p>
           <form action="tienda" method="GET" class="mb-3">
-            <input type="hidden" name="filtrar" value="filtrar">
+            <input type="hidden" name="vista" value="filtrar">
             <div class="form-row">
               <div class="col">
                 <input type="text" class="form-control" name="precio" placeholder="Precio máximo">
@@ -51,7 +51,7 @@
             </div>
             <div class="form-row">
               <div class="col mt-3 text-center">
-                <button type="submit" class="btn btn-primary px-5" id="filtrar">Filtrar</button>
+                <button type="submit" class="btn btn-primary px-5">Filtrar</button>
               </div>
             </div>
           </form>
