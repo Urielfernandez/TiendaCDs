@@ -20,7 +20,7 @@
         <a class="linkBarraNavegacion" href="tienda?vista=carrito">Carrito</a>
       </li>
       <li class="itemBarraNavegacion">
-        <a class="linkBarraNavegacion" href="tienda?vista=cargarCDsValorables">Añadir Comentarios</a>
+        <a class="linkBarraNavegacion" href="tienda?vista=cargarCDsValorables">Añadir comentarios</a>
       </li>
     </ul>
 
