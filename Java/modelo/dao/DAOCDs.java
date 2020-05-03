@@ -16,7 +16,7 @@ public class DAOCDs {
     }
 
     public boolean guardarCD(CDVO cd, Connection conexion) throws TiendaException{
-        String cdComprobacion = this.obtenerCD(cd.getTitulo(), conexion).getTitulo();
+        CDVO cdComprobacion = this.obtenerCD(cd.getTitulo(), conexion);
         String consulta = "INSERT INTO cds VALUES(?,?,?,?,?)";
 
         if(cdComprobacion == null){
@@ -36,7 +36,7 @@ public class DAOCDs {
                 System.out.println(e.getMessage());
             }
         }else{
-            throw new TiendaException("El CD " + cdComprobacion + " ya está en el catálogo.");
+            throw new TiendaException("El CD " + cdComprobacion.getTitulo() + " ya está en el catálogo.");
         }
 
         return false;
