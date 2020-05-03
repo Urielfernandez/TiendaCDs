@@ -1,18 +1,18 @@
 package modelo.vo;
 
 public class ValoracionVO {
+
     public float nota;
     public String opinion;
     public String tituloDelCD;
     public String emailUsuarioEmisor;
 
-    public ValoracionVO(float nota, String opinion, String tituloDelCD, String emailUsuarioEmisor){
+    public ValoracionVO(float nota, String opinion, String tituloDelCD, String emailUsuarioEmisor) {
         this.nota = nota;
         this.opinion = opinion;
         this.tituloDelCD = tituloDelCD;
         this.emailUsuarioEmisor = emailUsuarioEmisor;
     }
-
 
     public float getNota() {
         return nota;
@@ -46,5 +46,4 @@ public class ValoracionVO {
         this.emailUsuarioEmisor = emailUsuarioEmisor;
     }
 
-    
 }
