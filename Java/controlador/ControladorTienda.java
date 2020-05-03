@@ -174,7 +174,7 @@ public class ControladorTienda extends HttpServlet {
                         // El usuario ha introducido unas credeciales válidas y queda logueado
 
                         // Enviamos la cookie que indica que el usuario está logueado
-                        Cookie cookie = new Cookie("email", usuario.getNombre());
+                        Cookie cookie = new Cookie("email", usuario.getEmail());
                         cookie.setMaxAge(30 * 60);
                         response.addCookie(cookie);
 
