@@ -85,17 +85,17 @@ public class HelperCD {
     public ArrayList<CDVO> filtrar(ArrayList<CDVO> listado, CDVO parametros, String precio, String anho){
         ArrayList<CDVO> catalogoFiltrado = new ArrayList<>();
 
-        if(parametros.getTitulo() != null){
+        if(!parametros.getTitulo().isEmpty()){
             for(CDVO aux: listado){
-                if(aux.getTitulo().equals(parametros.getTitulo())){
+                if(!aux.getTitulo().equals(parametros.getTitulo())){
                     catalogoFiltrado.add(aux);
                 }
             }
         }
 
-        if(parametros.getArtista() != null){
+        if(!parametros.getArtista().isEmpty()){
             for(CDVO aux: listado){
-                if(aux.getTitulo().equals(parametros.getTitulo())){
+                if(!aux.getArtista().equals(parametros.getArtista())){
                     if(!catalogoFiltrado.contains(aux)){
                         catalogoFiltrado.add(aux);
                     }
@@ -103,7 +103,7 @@ public class HelperCD {
             }
         }
 
-        if(parametros.getPais() != null){
+        if(!parametros.getPais().isEmpty()){
             for(CDVO aux: listado){
                 if(!aux.getPais().equals(parametros.getPais())){
                     if(!catalogoFiltrado.contains(aux)){
@@ -113,7 +113,7 @@ public class HelperCD {
             }
         }
 
-        if(precio != null){
+        if(!precio.isEmpty()){
             float precioMax = Float.parseFloat(precio);
             for(CDVO aux: listado){
                 if(aux.getPrecio() > precioMax){
@@ -124,7 +124,7 @@ public class HelperCD {
             }
         }
 
-        if(anho != null){
+        if(!anho.isEmpty()){
             int ano = Integer.parseInt(anho);
             for(CDVO aux: listado){
                 if(aux.getAnho() != ano){
