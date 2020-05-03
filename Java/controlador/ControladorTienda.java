@@ -13,6 +13,7 @@ import modelo.tienda.Carrito;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
+import modelo.vo.UsuarioVIP;
 import modelo.vo.UsuarioVO;
 import modelo.vo.CDVO;
 
@@ -57,16 +58,19 @@ public class ControladorTienda extends HttpServlet {
                     if (usuario.getNombre().isEmpty()) {
                         request.setAttribute("importeTotal", carrito.getImporteTotal());
                         mostrarPagina("./jsp/carrito.jsp", request, response);
-                    }
-                    else {
-                        String membresia = this.gestionUsuarios.getMembresia(usuario, conexion);
+                    } else {
+                        String membresia;
+                        if (!(usuario instanceof UsuarioVIP)) {
+                            membresia = this.gestionUsuarios.updateMembresia(usuario, conexion);
+                        } else {
+                            membresia = "VIP";
+                        }
                         request.setAttribute("tipo", membresia);
                         if (membresia.equals("VIP")) {
                             request.setAttribute("importeTotal", carrito.getImporteTotal());
                             request.setAttribute("mensajeDescuento", "20% de descuento");
-                            request.setAttribute("importeDescontado",  carrito.getImporteTotal() * 0.8);
-                        }
-                        else if (membresia.equals("Basico")) {
+                            request.setAttribute("importeDescontado", carrito.getImporteTotal() * 0.8);
+                        } else if (membresia.equals("Basico")) {
                             request.setAttribute("importeTotal", carrito.getImporteTotal());
                         }
                         mostrarPagina("./jsp/carrito.jsp", request, response);
@@ -88,6 +92,7 @@ public class ControladorTienda extends HttpServlet {
                     break;
             }
         }
+
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
@@ -109,13 +114,17 @@ public class ControladorTienda extends HttpServlet {
                     request.setAttribute("contenidoCarrito", carrito.getProductos().values());
 
                     // Chequeamos la membresia
-                    String membresia = this.gestionUsuarios.getMembresia(usuario, conexion);
+                    String membresia;
+                    if (!(usuario instanceof UsuarioVIP)) {
+                        membresia = this.gestionUsuarios.updateMembresia(usuario, conexion);
+                    } else {
+                        membresia = "VIP";
+                    }
                     if (membresia.equals("VIP")) {
                         request.setAttribute("importeTotal", carrito.getImporteTotal());
                         request.setAttribute("mensajeDescuento", "20% de descuento");
-                        request.setAttribute("importeDescontado",  carrito.getImporteTotal() * 0.8);
-                    }
-                    else if (membresia.equals("Basico")) {
+                        request.setAttribute("importeDescontado", carrito.getImporteTotal() * 0.8);
+                    } else if (membresia.equals("Basico")) {
                         request.setAttribute("importeTotal", carrito.getImporteTotal());
                     }
                     mostrarPagina("./jsp/carrito.jsp", request, response);
@@ -140,15 +149,15 @@ public class ControladorTienda extends HttpServlet {
                 case "comprar":
                     this.usuario.getEmail();
                     // Parte de envio del correo
-                    //MailSender mensajero = new MailSender();
-                    //mensajero.enviarConGMail(usuario.getEmail(), this.carrito.getProductos().values());
+                    // MailSender mensajero = new MailSender();
+                    // mensajero.enviarConGMail(usuario.getEmail(),
+                    // this.carrito.getProductos().values());
 
-                    if(this.gestionCarrito.guardarPedido(this.carrito, this.usuario, this.conexion)){
+                    if (this.gestionCarrito.guardarPedido(this.carrito, this.usuario, this.conexion)) {
                         this.carrito.getProductos().clear();
                         request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
                         mostrarPagina("./jsp/catalogo.jsp", request, response);
-                    }
-                    else {
+                    } else {
                         mostrarPagina("jsp/error.jsp", request, response);
                     }
                     break;
@@ -159,27 +168,29 @@ public class ControladorTienda extends HttpServlet {
 
                     usuario = gestionUsuarios.inicioSesion(inicioSesion, conexion);
 
-                    // DIRECTAMENTE QUITAMOS EL IF PORQUE SABEMOS QUE SIEMPRE SON CORRECTAS
-                    // LAS CREDENCIALES
-                    // El usuario ha introducido unas credeciales válidas y queda logueado
+                    if (usuario != null) {
+                        // El usuario ha introducido unas credeciales válidas y queda logueado
 
-                    // Enviamos la cookie que indica que el usuario está logueado
-                    Cookie cookie = new Cookie("email", usuario.getNombre());
-                    cookie.setMaxAge(30 * 60);
-                    response.addCookie(cookie);
+                        // Enviamos la cookie que indica que el usuario está logueado
+                        Cookie cookie = new Cookie("email", usuario.getNombre());
+                        cookie.setMaxAge(30 * 60);
+                        response.addCookie(cookie);
 
-                    sesion.setAttribute("email", usuario.getEmail());
-                    sesion.setAttribute("usuario", usuario);
+                        sesion.setAttribute("email", usuario.getEmail());
+                        sesion.setAttribute("usuario", usuario);
 
-                    // Ahora chequeamos si es usuario o administrador para llevarlo a una de las
-                    // páginas
-                    if (usuario.getTipo().equals(Tipo.administrador)) {
-                        request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
-                        mostrarPagina("jsp/administracion.jsp", request, response);
+                        // Ahora chequeamos si es usuario o administrador para llevarlo a una de las
+                        // páginas
+                        if (usuario.getTipo().equals(Tipo.administrador)) {
+                            request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
+                            mostrarPagina("jsp/administracion.jsp", request, response);
 
+                        } else {
+                            request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
+                            mostrarPagina("./jsp/catalogo.jsp", request, response);
+                        }
                     } else {
-                        request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                        mostrarPagina("./jsp/catalogo.jsp", request, response);
+                        mostrarPagina("./jsp/error.jsp", request, response);
                     }
 
                     break;
@@ -205,9 +216,10 @@ public class ControladorTienda extends HttpServlet {
                     break;
 
                 case "comentarCD":
-                    String nota= request.getParameter("nota");
-                    String comentario=request.getParameter("comentario");
-                    if(!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario, nota, comentario))
+                    String nota = request.getParameter("nota");
+                    String comentario = request.getParameter("comentario");
+                    if (!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario,
+                            nota, comentario))
                         mostrarPagina("jsp/error.jsp", request, response);
                     request.setAttribute("cdsValorables", gestionCDS.obtenerCDsValorables(usuario, conexion));
                     mostrarPagina("jsp/addComment.jsp", request, response);

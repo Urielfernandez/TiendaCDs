@@ -21,6 +21,7 @@ INSERT INTO usuarios VALUES("usuario@gmail.com", "usuario", "1234", "usuario", "
 INSERT INTO usuarios VALUES("usuarioVIP@gmail.com", "usuarioVIP", "1234", "usuario", "VIP");
 INSERT INTO usuarios VALUES("administradorBasico@gmail.com", "administradorBasico", "1234", "administrador", "Basico");
 INSERT INTO usuarios VALUES("administradorVIP@gmail.com", "administradorVIP", "1234", "administrador", "VIP");
+INSERT INTO usuarios VALUES("chandecurros@gmail.com", "Manuel", "1234", "usuario", "Basico");
 
 
 -- Insertar un pedido para generar un usuario VIP

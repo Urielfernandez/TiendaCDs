@@ -45,7 +45,7 @@ public class HelperUsuarios {
         return this.dao.modificarUsuario(datosUsuario, conexion);
     }
 
-    public String getMembresia(UsuarioVO usuario, Connection conexion){
-        return daoPedidos.getMembresiaUsuario(usuario, conexion);
+    public String updateMembresia(UsuarioVO usuario, Connection conexion){
+        return daoPedidos.updateMembresiaUsuario(usuario, conexion);
     }
 }
