@@ -22,7 +22,7 @@
     <section class="container">
       <div class="row">
         <div class="col-md-6 offset-md-3">
-          <h1 class="tituloPagina">Error</h1>
+          <h1 class="tituloPagina text-center">Error</h1>
         </div>
       </div>
 
