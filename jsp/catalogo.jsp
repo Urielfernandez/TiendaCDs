@@ -28,6 +28,38 @@
       </div>
 
       <div class="row">
+        <div class="col">
+          <p class="mt-2" style="font-size: 18px">Filtros:</p>
+          <form action="tienda" method="GET" class="mb-3">
+            <input type="hidden" name="filtrar" value="filtrar">
+            <div class="form-row">
+              <div class="col">
+                <input type="text" class="form-control" name="precio" placeholder="Precio máximo">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="titulo" placeholder="Título">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="artista" placeholder="Artista">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="anho" placeholder="Año">
+              </div>
+              <div class="col">
+                <input type="text" class="form-control" name="pais" placeholder="País" id="pais">
+              </div>
+            </div>
+            <div class="form-row">
+              <div class="col mt-3 text-center">
+                <button type="button" class="btn btn-primary px-5" id="filtrar">Filtrar</button>
+              </div>
+            </div>
+          </form>
+          <h1 class="tituloPagina"></h1>
+        </div>
+      </div>
+
+      <div class="row">
         <c:forEach var="cd" items="${listaArticulos}">
           <%@ include file="cd.jsp" %>
         </c:forEach>
@@ -52,6 +84,8 @@
       integrity="sha384-JjSmVgyd0p3pXB1rRibZUAYoIIy6OrQ6VrjIEaFf/nJGzIxFDsf4x0xIM+B07jRM"
 			crossorigin="anonymous">
     </script>
+    <script src="js/filtro.js"></script>
+
 	</body>
 
 </html>
