@@ -46,12 +46,12 @@
                 <input type="text" class="form-control" name="anho" placeholder="Año">
               </div>
               <div class="col">
-                <input type="text" class="form-control" name="pais" placeholder="País" id="pais">
+                <input type="text" class="form-control" name="pais" placeholder="País">
               </div>
             </div>
             <div class="form-row">
               <div class="col mt-3 text-center">
-                <button type="button" class="btn btn-primary px-5" id="filtrar">Filtrar</button>
+                <button type="submit" class="btn btn-primary px-5" id="filtrar">Filtrar</button>
               </div>
             </div>
           </form>
