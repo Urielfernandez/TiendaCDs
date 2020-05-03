@@ -8,6 +8,7 @@ import java.sql.SQLException;
 import javax.servlet.*;
 import javax.servlet.http.*;
 import modelo.tienda.Carrito;
+import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
@@ -151,9 +152,9 @@ public class ControladorTienda extends HttpServlet {
                 case "comprar":
                     this.usuario.getEmail();
                     // Parte de envio del correo
-                    // MailSender mensajero = new MailSender();
-                    // mensajero.enviarConGMail(usuario.getEmail(),
-                    // this.carrito.getProductos().values());
+                    MailSender mensajero = new MailSender();
+                    mensajero.enviarConGMail(usuario.getEmail(),
+                    this.carrito.getProductos().values());
 
                     if (this.gestionCarrito.guardarPedido(this.carrito, this.usuario, this.conexion)) {
                         this.carrito.getProductos().clear();
