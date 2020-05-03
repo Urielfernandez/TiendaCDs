@@ -83,7 +83,8 @@ public class DAOUsuarios {
                 String tipo = resultado.getString("tipo");
                 Tipo t;
                 if (tipo.equals("usuario")) {
-                    String membresia = daoPedidos.getMembresiaUsuario(usuario, conexion);
+
+                    String membresia = resultado.getString("membresia");
 
                     if (membresia.equals("Basico")) {
 

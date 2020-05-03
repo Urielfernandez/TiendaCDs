@@ -102,10 +102,12 @@ public class DAOPedidos {
         return false;
     }
 
-    public String getMembresiaUsuario(UsuarioVO usuario, Connection conexion) {
+    public String updateMembresiaUsuario(UsuarioVO usuario, Connection conexion) {
         String membresia = null;
         double importeGastado = 0.0;
+
         String consulta = "SELECT * FROM pedidos WHERE usuario=?";
+        String actualizacion = "UPDATE usuarios SET membresia=? WHERE usuario = ?";
 
         try {
             PreparedStatement preparedStatement = conexion.prepareStatement(consulta);
@@ -124,8 +126,25 @@ public class DAOPedidos {
             System.out.println(e.getMessage());
         }
 
+        //Chequeamos el sumatorio
         if(importeGastado>100){
             membresia = "VIP";
+
+            if(usuario instanceof UsuarioBasico){
+                //El usuario ahora ha pasado a ser VIP, por lo que actualizamos su membresía
+                try{
+                    PreparedStatement preparedStatement = conexion.prepareStatement(actualizacion);
+
+                    preparedStatement.setString(1, "VIP");
+                    preparedStatement.setString(2, usuario.getEmail());
+
+                    preparedStatement.executeUpdate();
+
+                }catch(SQLException e) {
+                    System.out.println(e.getMessage());
+                }
+            }
+
         }else{
             membresia = "Basico";
         }
