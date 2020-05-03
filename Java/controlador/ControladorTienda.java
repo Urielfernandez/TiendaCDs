@@ -10,12 +10,12 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import modelo.tienda.Carrito;
-import modelo.tienda.MailSender;
 import modelo.tienda.Seleccion;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
 import modelo.vo.UsuarioVIP;
 import modelo.vo.UsuarioVO;
+import modelo.vo.CDVO;
 
 public class ControladorTienda extends HttpServlet {
 
@@ -84,8 +84,10 @@ public class ControladorTienda extends HttpServlet {
 
                 case "verValoracionesCD":
                     String titulo = request.getParameter("titulo");
+                    CDVO cd = gestionCDS.obtenerCD(titulo, conexion);
                     request.setAttribute("valoracionesCD", gestionCDS.obtenerValoracionesCD(titulo, conexion));
-                    request.setAttribute("titulo", titulo);
+                    request.setAttribute("cd", cd);
+                    request.setAttribute("notaMedia", gestionCDS.obtenerNotaMedia(titulo, conexion));
                     mostrarPagina("jsp/verValoracionesCD.jsp", request, response);
                     break;
             }
@@ -219,9 +221,8 @@ public class ControladorTienda extends HttpServlet {
                     if (!gestionCDS.introducirValoracion(conexion, request.getParameter("cdSeleccionado"), usuario,
                             nota, comentario))
                         mostrarPagina("jsp/error.jsp", request, response);
-                    // devolver vista de catalogo o seguir en añadir comentarios?
-                    request.setAttribute("listaArticulos", gestionCDS.cargarCDs(conexion));
-                    mostrarPagina("jsp/catalogo.jsp", request, response);
+                    request.setAttribute("cdsValorables", gestionCDS.obtenerCDsValorables(usuario, conexion));
+                    mostrarPagina("jsp/addComment.jsp", request, response);
                     break;
 
             }

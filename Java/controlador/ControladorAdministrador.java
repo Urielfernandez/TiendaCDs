@@ -8,6 +8,7 @@ import javax.servlet.*;
 import javax.servlet.http.*;
 
 import modelo.tienda.Carrito;
+import modelo.tienda.TiendaException;
 import modelo.vo.CDVO;
 import modelo.vo.InicioSesionVO;
 import modelo.vo.Tipo;
@@ -20,7 +21,7 @@ public class ControladorAdministrador extends HttpServlet {
     private HelperControlUsuario controlUsuarios;
 
     // atributos necesarias para la realización de las distintas peticiones
-    //private UsuarioVO usuario;
+    // private UsuarioVO usuario;
     private Connection conexion;
     private HttpSession sesion;
 
@@ -51,8 +52,14 @@ public class ControladorAdministrador extends HttpServlet {
                         request.getParameter("artista"), request.getParameter("pais"), request.getParameter("precio"),
                         request.getParameter("anho"));
                 int cantidadIntroducida = Integer.parseInt(request.getParameter("cantidad"));
-                this.gestionCDS.anhadirNuevoCD(nuevoCD, cantidadIntroducida, conexion);
-                mostrarPagina("jsp/anhadirNuevoCD.jsp", request, response);
+                try {
+                    this.gestionCDS.anhadirNuevoCD(nuevoCD, cantidadIntroducida, conexion);
+                    mostrarPagina("jsp/anhadirNuevoCD.jsp", request, response);
+                } catch (TiendaException e) {
+                    request.setAttribute("mensajeError", e.getMessage());
+                    mostrarPagina("jsp/error.jsp", request, response);
+                }
+                
                 break;
 
             case "eliminarUsuario":

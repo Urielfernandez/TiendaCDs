@@ -5,6 +5,7 @@ import java.util.ArrayList;
 
 import modelo.dao.DAOCDs;
 import modelo.dao.DAOPedidos;
+import modelo.tienda.TiendaException;
 import modelo.vo.CDVO;
 import modelo.vo.UsuarioVO;
 import modelo.vo.ValoracionVO;
@@ -12,6 +13,7 @@ import modelo.vo.ValoracionVO;
 public class HelperCD {
     private DAOCDs conexionBDCDs;
     private DAOPedidos conexionBDpedidos;
+
     public HelperCD() {
         this.conexionBDCDs = new DAOCDs();
         this.conexionBDpedidos=new DAOPedidos();
@@ -59,7 +61,7 @@ public class HelperCD {
         return null;
     }
 
-    public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) {
+    public void anhadirNuevoCD(CDVO cd, int cantidad, Connection con) throws TiendaException {
         if (cd != null){
             this.conexionBDCDs.guardarCD(cd, con);
             this.conexionBDCDs.insertarStockCD(cd.getTitulo(), cantidad, con);
@@ -72,5 +74,22 @@ public class HelperCD {
 
     public ArrayList<CDVO> cargarCDs(Connection conexion) {
         return this.conexionBDCDs.obtenerCatalogo(conexion);
+    }
+
+	public CDVO obtenerCD(String titulo, Connection conexion) {
+		return conexionBDCDs.obtenerCD(titulo, conexion);
+    }
+    
+    public double obtenerNotaMedia(String titulo, Connection conexion) {
+        ArrayList<ValoracionVO> valoraciones = conexionBDCDs.cargarValoracionesDeUnCD(titulo, conexion);
+        double media = 0.0;
+
+        for (ValoracionVO valoracion : valoraciones) {
+            media += valoracion.getNota();
+        }
+
+        media /= valoraciones.size();
+
+        return media;
     }
 }
