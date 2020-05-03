@@ -19,6 +19,9 @@
       <li class="nav-item">
         <a class="linkBarraNavegacion" href="nuevoCD">Añadir nuevo CD</a>
       </li>
+      <li class="nav-item">
+        <a class="linkBarraNavegacion" href="administrador?vista=verCatalogo">Catálogo</a>
+      </li>
     </ul>
 
     <ul class="navbar-nav">

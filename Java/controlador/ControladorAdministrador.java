@@ -33,12 +33,18 @@ public class ControladorAdministrador extends HttpServlet {
     }
 
     public void doGet(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
-        // String vista = request.getParameter("vista");
+        String vista = request.getParameter("vista");
 
         actualizarDatosSesion(request, response);
 
-        request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
-        mostrarPagina("jsp/administracion.jsp", request, response);
+        if(vista == null){
+            request.setAttribute("listaUsuarios", this.gestionUsuarios.listarUsuarios(conexion));
+            mostrarPagina("jsp/administracion.jsp", request, response);
+        }
+        else if(vista.equals("verCatalogo")){
+            request.setAttribute("listaArticulos", this.gestionCDS.cargarCDs(conexion));
+            mostrarPagina("jsp/administracionCatalogo.jsp", request, response);
+        }
     }
 
     public void doPost(HttpServletRequest request, HttpServletResponse response) throws ServletException, IOException {
